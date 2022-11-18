@@ -33,7 +33,8 @@ colors = {
     "clock_bg": "152447",
     "netmon_fg": "c59d6c",
     "sysmon_fg": "f18b37",
-    "batmon_fg": "b3a852",
+    "battery_ok_fg": "b3a852",
+    "battery_low_fg": "df2c14",
     "volmon_fg": "ffffff",
     "volmon_bg": "363e37",
 }
@@ -186,7 +187,9 @@ screens = [
                 widget.Battery(
                     battery=0,
                     format="{percent:2.0%}",
-                    foreground=colors["batmon_fg"],
+                    foreground=colors["battery_ok_fg"],
+                    low_foreground=colors["battery_low_fg"],
+                    low_percentage=0.2,
                 ),
                 widget.BatteryIcon(
                     battery=0,
@@ -194,7 +197,9 @@ screens = [
                 widget.Battery(
                     battery=1,
                     format="{percent:2.0%}",
-                    foreground=colors["batmon_fg"],
+                    foreground=colors["battery_ok_fg"],
+                    low_foreground=colors["battery_low_fg"],
+                    low_percentage=0.2,
                 ),
                 widget.BatteryIcon(
                     battery=1,
