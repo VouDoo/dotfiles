@@ -5,18 +5,15 @@ from libqtile.lazy import lazy
 # Super key binding
 mod = "mod4"  # Windows key :)
 
-# Terminal emulator
-terminal = [
-    # Path to terminal binary
-    "/usr/bin/alacritty",
-    # Add options if needed
-    # "-o font.size=10",
-]
+# Applications
+terminal = "/usr/bin/alacritty"
+browser = "/usr/bin/brave"
 
 # Font collection
 fonts = {
     "regular": "Hack Nerd Font",
     "bold": "Hack Nerd Font Bold",
+    "italic": "Hack Nerd Font Italic",
     "mono": "Hack Nerd Font Mono",
 }
 
@@ -73,23 +70,15 @@ keys = [
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
-    Key(
-        [mod, "shift"],
-        "Return",
-        lazy.layout.toggle_split(),
-        desc="Toggle between split and unsplit sides of stack",
-    ),
-    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    # Launch applications
+    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    Key([mod, "shift"], "Return", lazy.spawn(browser), desc="Launch Browser"),
 ]
 
 # Groups
