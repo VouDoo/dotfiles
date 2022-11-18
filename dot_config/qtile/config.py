@@ -143,7 +143,6 @@ screens = [
                     scale=0.8,
                 ),
                 widget.WindowName(),
-                widget.Systray(),
                 widget.Clock(
                     format="%d/%m/%y %H:%M",
                     font=fonts["bold"],
@@ -160,6 +159,7 @@ screens = [
             widgets=[
                 widget.Prompt(),
                 widget.Spacer(),
+                widget.Systray(),
                 widget.Sep(
                     foreground=colors["separator"],
                 ),
