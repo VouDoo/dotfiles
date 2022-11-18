@@ -1,0 +1,27 @@
+# Increase volume
+"wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+   XF86AudioRaiseVolume
+
+# Decrease volume
+"wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+   XF86AudioLowerVolume
+
+# Mute volume
+"wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+   XF86AudioMute
+
+# Mute microphone
+"wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+   XF86AudioMicMute
+
+# Increase brightness
+"brightnessctl set +10%"
+   XF86MonBrightnessUp
+
+# Decrease brightness
+"brightnessctl set 10%-"
+   XF86MonBrightnessDown
+
+# Take screenshoot
+"maim -s /tmp/capture.png; feh /tmp/capture.png"
+   Print
