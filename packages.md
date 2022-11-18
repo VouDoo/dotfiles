@@ -34,6 +34,7 @@ most|[community - `most`](https://archlinux.org/packages/extra/x86_64/most/)|Pag
 lf|[community - `lf`](https://archlinux.org/packages/community/x86_64/lf/)|Terminal File manager|utility|[pkg.go.dev](https://pkg.go.dev/github.com/gokcehan/lf)|TUI file manager inspired by rancher written in Golang
 mpv|[community - `mpv`](https://archlinux.org/packages/community/x86_64/mpv/)|Video player|utility|[wiki.archlinux.org](https://wiki.archlinux.org/title/Mpv)|Hackable Video player
 Git|[extra - `git`](https://archlinux.org/packages/extra/x86_64/git/)|Git client|utility|[wiki.archlinux.org](https://wiki.archlinux.org/title/Git)|Client for the most famous SCM
+lazygit|[community - `lazygit`](https://archlinux.org/packages/community/x86_64/lazygit/)|TUI Git Client|[github.com](https://github.com/jesseduffield/lazygit)|A simple terminal UI for git commands written in Go
 feh|[extra - `feh`](https://archlinux.org/packages/extra/x86_64/feh/)|Image viewer|utility|[wiki.archlinux.org](https://wiki.archlinux.org/title/feh)|Very lightweight image viewer
 maim|[community - `maim`](https://archlinux.org/packages/community/x86_64/maim/)|Screen capture|utility|[github.com](https://github.com/naelstrof/maim)|Lightweight tool to take screenshot
 jq|[community - `jq`](https://archlinux.org/packages/community/x86_64/jq/)|JSON processor tool|utility|[stedolan.github.io](https://stedolan.github.io/jq/)|The most advanced JSON parser and processor
