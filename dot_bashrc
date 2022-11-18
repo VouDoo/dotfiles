@@ -1,0 +1,22 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+PS1='[\u@\h \W]\$ '
+
+# Pager
+export PAGER=most
+export LESSHISTFILE=-
+
+# Editor
+export EDITOR=/usr/bin/nvim
+
+# Environement variables
+#export EXAMPLE=foo
+
+# Run fish in interactive mode
+exec /bin/fish
