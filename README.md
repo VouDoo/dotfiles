@@ -1,4 +1,4 @@
-# My dotfiles
+# $ ~/\.files
 
 This repository stores all my configuration [dotfiles](https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory#Unix_and_Unix-like_environments).
 
