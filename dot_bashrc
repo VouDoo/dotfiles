@@ -15,7 +15,7 @@ export LESSHISTFILE=-
 # Editor
 export EDITOR=/usr/bin/nvim
 
-# Environement variables
+# Environment variables
 #export EXAMPLE=foo
 
 # Run fish in interactive mode
