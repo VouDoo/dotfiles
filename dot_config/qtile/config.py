@@ -6,8 +6,10 @@ from libqtile.lazy import lazy
 mod = "mod4"  # Windows key :)
 
 # Applications
-terminal = "/usr/bin/alacritty"
-browser = "/usr/bin/brave"
+apps = {
+    "terminal": "/usr/bin/alacritty",
+    "browser": "/usr/bin/brave",
+}
 
 # Font collection
 fonts = {
@@ -78,8 +80,8 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     # Launch applications
-    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    Key([mod, "shift"], "Return", lazy.spawn(browser), desc="Launch Browser"),
+    Key([mod], "Return", lazy.spawn(apps["terminal"]), desc="Launch terminal"),
+    Key([mod, "shift"], "Return", lazy.spawn(apps["browser"]), desc="Launch Browser"),
 ]
 
 # Groups
