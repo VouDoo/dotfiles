@@ -101,7 +101,7 @@ config = [
                 ),
             ],
             size=25,
-            background=theme.foreground,
+            background=theme.background,
             border_width=[2, 0, 0, 0],
             border_color=theme.border_active,
         ),
