@@ -95,7 +95,7 @@ config = [
                     length=20,
                 ),
                 widget.Volume(
-                    fmt="Vol: {}",
+                    emoji=True,
                     foreground=theme.volume_foreground,
                     background=theme.volume_background,
                 ),
