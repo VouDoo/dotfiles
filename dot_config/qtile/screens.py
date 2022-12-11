@@ -51,15 +51,15 @@ config = [
                 widget.Sep(
                     foreground=theme.separator,
                 ),
-            widget.Net(
-                format="🖧 ↓{down}  ↑{up}",
-                foreground=theme.network_monitor,
-            ),
-            widget.Sep(
-                foreground=theme.separator,
-            ),
-            widget.CPU(
-                format="CPU {load_percent}%",
+                widget.Net(
+                    format="🖧 ↓{down}  ↑{up}",
+                    foreground=theme.network_monitor,
+                ),
+                widget.Sep(
+                    foreground=theme.separator,
+                ),
+                widget.CPU(
+                    format="CPU {load_percent}%",
                     update_interval=2.0,
                     foreground=theme.system_monitor,
                 ),
