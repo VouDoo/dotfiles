@@ -47,7 +47,6 @@ config = [
             widgets=[
                 widget.Prompt(),
                 widget.Spacer(),
-                widget.Systray(),
                 widget.Sep(
                     foreground=theme.separator,
                 ),
@@ -93,6 +92,10 @@ config = [
                 ),
                 widget.Spacer(
                     length=20,
+                ),
+                widget.Systray(),
+                widget.Spacer(
+                    length=10,
                 ),
                 widget.Volume(
                     emoji=True,
