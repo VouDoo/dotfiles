@@ -31,6 +31,13 @@ config = [
                     scale=0.8,
                 ),
                 widget.WindowName(),
+                widget.Spacer(
+                    length=10,
+                ),
+                widget.Systray(),
+                widget.Spacer(
+                    length=10,
+                ),
                 widget.Clock(
                     format="%d/%m/%y %H:%M",
                     font=fonts.bold,
@@ -92,10 +99,6 @@ config = [
                 ),
                 widget.Spacer(
                     length=20,
-                ),
-                widget.Systray(),
-                widget.Spacer(
-                    length=10,
                 ),
                 widget.Volume(
                     emoji=True,
