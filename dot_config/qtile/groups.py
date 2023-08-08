@@ -3,7 +3,7 @@ from libqtile.config import Group, Key
 
 from keys import mod
 
-config = [Group(i) for i in "123"]
+config = [Group(i) for i in "12345"]
 extra_keys = []
 for group in config:
     extra_keys.extend(
