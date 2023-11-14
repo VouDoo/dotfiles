@@ -2,7 +2,7 @@ window:
   opacity: 1.0
   title: Alacritty
   dynamic_title: true
-  decoration: none
+  decorations: {{ .decorations }}
   class:
     # Application instance name
     instance: Alacritty
@@ -13,18 +13,18 @@ scrolling:
   multiplier: 3
 font:
   normal:
-    family: Hack Nerd Font Mono
+    family: {{ .font }}
     style: Regular
   bold:
-    family: Hack Nerd Font Mono
+    family: {{ .font }}
     style: Bold
   italic:
-    family: Hack Nerd Font Mono
+    family: {{ .font }}
     style: Italic
   bold_italic:
-    family: Hack Nerd Font Mono
+    family: {{ .font }}
     style: Bold Italic
-  size: 6.0
+  size: {{ .fontsize }}
 colors:
   primary:
     background: '#2D2A2E'

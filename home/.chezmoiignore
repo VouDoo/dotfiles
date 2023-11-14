@@ -1,0 +1,18 @@
+# files related to Aramis Windows
+{{ if (and (ne .chezmoi.os "windows") (ne .chezmoi.os "aramis")) }}
+AppData
+Documents
+{{ end }}
+
+# files related to Aramis Linux
+{{ if (and (ne .chezmoi.os "linux") (ne .chezmoi.os "aramis")) }}
+.config
+.local
+.bash_profile
+.bashrc
+.xbindkeysrc
+.xinitrc
+{{ end }}
+
+# ignored files and directories
+**/ignore_*

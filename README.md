@@ -4,5 +4,5 @@ This repository stores all my configuration [dotfiles](https://en.wikipedia.org/
 
 I use [`chezmoi`](https://www.chezmoi.io/) to easily manage them.
 
-Also, I keep track of all the packages I use.
-See [my packages](./packages.md).
+Also, I keep track of all the packages I use and how I install my systems.
+See [docs](./docs).
