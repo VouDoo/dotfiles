@@ -1,7 +1,6 @@
 @{
     # Personal details
-    FirstName     = "Maxence"
-    LastName      = "Grymonprez"
+    Name          = "Maxence"
     Email         = "maxgrymonprez@live.fr"
     GitHubProfile = "VouDoo"
     # Development environment and tools

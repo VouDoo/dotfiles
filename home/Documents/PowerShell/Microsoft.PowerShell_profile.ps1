@@ -15,11 +15,11 @@ param (
     [switch] $NonInteractive
 )
 
-#region     Set my variables (My hashtable)
+#region Set my variables (My hashtable)
 [hashtable] $My = Import-PowerShellDataFile -Path "$PSScriptRoot\Microsoft.PowerShell_my.psd1"
-#endregion  Set my variables (My hashtable)
+#endregion
 
-#region     Define helper functions
+#region Define helper functions
 function Show-MyVariables {
     # Print key/value pairs from My hashtable
     $My.GetEnumerator() | ForEach-Object -Process {
@@ -118,12 +118,6 @@ function Use-Workspace {
     # Set location to my workspace
     Set-Location -Path $My.Workspace
 }
-function Get-Signature {
-    # Get my signature
-    "{0} {1} - Email: {2} - GitHub: https://github.com/{3}" -f (
-        $My.FirstName, $My.LastName, $My.Email, $My.GitHub
-    )
-}
 function Open-GitHubProfile {
     # Open GitHub profile page in default browser
     Start-Process -FilePath ("https://github.com/{0}" -f $My.GitHub)
@@ -134,9 +128,21 @@ function Invoke-Chezmoi {
     try { & chezmoi.exe $args }
     finally { $env:EDITOR = $Prev }
 }
-#endregion  Define helper functions
+function Invoke-FileExplorer {
+    # Browse current location with File Explorer
+    & explorer.exe (Get-Location)
+}
+function Enable-History {
+    # Enable shell history
+    Set-PSReadLineOption -HistorySaveStyle SaveIncrementally
+}
+function Disable-History {
+    # Disable shell history
+    Set-PSReadLineOption -HistorySaveStyle SaveNothing
+}
+#endregion
 
-#region     Set Aliases for helper functions
+#region Set Aliases for helper functions
 $script:AliasCommonParams = @{
     ErrorAction = "SilentlyContinue"
     Option      = "ReadOnly"
@@ -144,39 +150,41 @@ $script:AliasCommonParams = @{
 New-Alias @AliasCommonParams -Name my -Value Show-MyVariables -Description "print my variables"
 New-Alias @AliasCommonParams -Name grep -Value Out-Grep -Description "grep like in *nix"
 New-Alias @AliasCommonParams -Name ws -Value Use-Workspace -Description "Change directory to my workspace"
-New-Alias @AliasCommonParams -Name signature -Value Get-Signature -Description "Get my signature"
 New-Alias @AliasCommonParams -Name github -Value Open-GitHub -Description "Go to GitHub profile page"
-New-Alias @AliasCommonParams -Name cm -Value Invoke-Chezmoi -Description "Go to GitHub profile page"
-#endregion  Set Aliases for helper functions
+New-Alias @AliasCommonParams -Name cm -Value Invoke-Chezmoi -Description "Execute chezmoi"
+New-Alias @AliasCommonParams -Name ex -Value Invoke-FileExplorer -Description "Execute File Explorer"
+New-Alias @AliasCommonParams -Name historyOn -Value Enable-History -Description "Enable shell history"
+New-Alias @AliasCommonParams -Name historyOff -Value Disable-History -Description "Disable shell history"
+#endregion
 
-#region     Import Chocolatey profile
+#region Import Chocolatey profile
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path -Path $ChocolateyProfile) {
     Import-Module -Name "$ChocolateyProfile"
 }
-#endregion  Import Chocolatey profile
+#endregion
 
-#region     Run in user interactive session
+#region Run in user interactive session
 if (Test-Interactive -and -not $NonInteractive.IsPresent) {
     #region     Set session environment variables
     $env:WORKSPACE = $My.Workspace
     $env:EDITOR = $My.TextEditor
-    #endregion  Set session environment variables
+    #endregion
 
     #region     Set aliases for my text editor
     ("edit", "notepad") | ForEach-Object {
         New-Alias @AliasCommonParams -Name $_ -Value $My.TextEditor -Description "Open my text editor"
     }
-    #endregion  Set aliases for my text editor
+    #endregion
 
-    #region     Set PSReadLine
+    #region Set PSReadLine
     # Import module
     Import-Module -Name PSReadLine
     # Set options
     Set-PSReadLineOption -PredictionSource HistoryAndPlugin -BellStyle Visual
-    #endregion  Set PSReadLine
+    #endregion
 
-    #region     Set MyRemoteManager module
+    #region Set MyRemoteManager module
     # Import module
     Import-Module -Name MyRemoteManager
     # Create aliases
@@ -185,24 +193,24 @@ if (Test-Interactive -and -not $NonInteractive.IsPresent) {
     New-Alias @AliasCommonParams -Name coGet -Value Get-MyRMConnection -Description "Get MyRemoteManager connections"
     New-Alias @AliasCommonParams -Name coAdd -Value Add-MyRMConnection -Description "Add MyRemoteManager connection"
     New-Alias @AliasCommonParams -Name coRm -Value Remove-MyRMConnection -Description "Remove MyRemoteManager connection"
-    #endregion  Set MyRemoteManager module
+    #endregion
 
-    #region     Set Posh module
+    #region Set Posh module
     # Import module
     Import-Module -Name posh-git
     # Set Oh My Posh theme
     Set-OhMyPoshTheme
-    #endregion  Set Posh module
+    #endregion
 
-    #region     Import other modules
+    #region Import other modules
     Import-Module -Name Terminal-Icons
     Import-Module -Name MyJavaManager
     Import-Module -Name PomoShell
-    #endregion  Import other modules
+    #endregion
 
-    #region     Print greeting message
-    $GreetingMessage = "Greetings, Professor {0}. Shall we play a game?`n" -f $My.FirstName
+    #region Print greeting message
+    $GreetingMessage = "Greetings, Professor {0}. Shall we play a game?`n" -f $My.Name
     Write-Host $GreetingMessage -ForegroundColor Yellow
-    #endregion  Print greeting message
+    #endregion
 }
-#endregion  Run in user interactive session
+#endregion
