@@ -152,7 +152,7 @@ New-Alias @AliasCommonParams -Name grep -Value Out-Grep -Description "grep like 
 New-Alias @AliasCommonParams -Name ws -Value Use-Workspace -Description "Change directory to my workspace"
 New-Alias @AliasCommonParams -Name github -Value Open-GitHub -Description "Go to GitHub profile page"
 New-Alias @AliasCommonParams -Name cm -Value Invoke-Chezmoi -Description "Execute chezmoi"
-New-Alias @AliasCommonParams -Name ex -Value Invoke-FileExplorer -Description "Execute File Explorer"
+New-Alias @AliasCommonParams -Name x -Value Invoke-FileExplorer -Description "Execute File Explorer"
 New-Alias @AliasCommonParams -Name historyOn -Value Enable-History -Description "Enable shell history"
 New-Alias @AliasCommonParams -Name historyOff -Value Disable-History -Description "Disable shell history"
 #endregion
@@ -169,12 +169,12 @@ if (Test-Interactive -and -not $NonInteractive.IsPresent) {
     #region     Set session environment variables
     $env:WORKSPACE = $My.Workspace
     $env:EDITOR = $My.TextEditor
+    $env:KUBE_EDITOR = $My.KubeEditor
     #endregion
 
-    #region     Set aliases for my text editor
-    ("edit", "notepad") | ForEach-Object {
-        New-Alias @AliasCommonParams -Name $_ -Value $My.TextEditor -Description "Open my text editor"
-    }
+    #region     Set aliases
+    New-Alias @AliasCommonParams -Name e -Value $My.TextEditor -Description "Open my text editor"
+    New-Alias @AliasCommonParams -Name k -Value "kubectl.exe" -Description "Run kubectl cmdline tool"
     #endregion
 
     #region Set PSReadLine
