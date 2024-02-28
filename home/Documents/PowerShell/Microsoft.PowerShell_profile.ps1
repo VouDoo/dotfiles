@@ -132,6 +132,10 @@ function Invoke-FileExplorer {
     # Browse current location with File Explorer
     & explorer.exe (Get-Location)
 }
+function Invoke-Editor {
+    # Invoke my text editor
+    & $My.TextEditor
+}
 function Enable-History {
     # Enable shell history
     Set-PSReadLineOption -HistorySaveStyle SaveIncrementally
@@ -140,21 +144,33 @@ function Disable-History {
     # Disable shell history
     Set-PSReadLineOption -HistorySaveStyle SaveNothing
 }
-#endregion
-
-#region Set Aliases for helper functions
-$script:AliasCommonParams = @{
-    ErrorAction = "SilentlyContinue"
-    Option      = "ReadOnly"
+function New-MyAideMemoireEntry {
+    # Create a new entry in my aide-memoire
+    param (
+        [Parameter(Position = 0)]
+        [string] $Command,
+        [Parameter(Position = 1)]
+        [string] $Description
+    )
+    $global:My.AideMemoire += @{ Command = $Command; Description = $Description }
 }
-New-Alias @AliasCommonParams -Name my -Value Show-MyVariables -Description "print my variables"
-New-Alias @AliasCommonParams -Name grep -Value Out-Grep -Description "grep like in *nix"
-New-Alias @AliasCommonParams -Name ws -Value Use-Workspace -Description "Change directory to my workspace"
-New-Alias @AliasCommonParams -Name github -Value Open-GitHub -Description "Go to GitHub profile page"
-New-Alias @AliasCommonParams -Name cm -Value Invoke-Chezmoi -Description "Execute chezmoi"
-New-Alias @AliasCommonParams -Name x -Value Invoke-FileExplorer -Description "Execute File Explorer"
-New-Alias @AliasCommonParams -Name historyOn -Value Enable-History -Description "Enable shell history"
-New-Alias @AliasCommonParams -Name historyOff -Value Disable-History -Description "Disable shell history"
+function Show-MyAideMemoire {
+    # Print commands and aliases from my aide-memoire
+    $My.AideMemoire | ForEach-Object -Process { [PSCustomObject] $_ } | Sort-Object -Property Command | Format-Table Command,Description -AutoSize
+}
+function New-MyAlias {
+    # Create a new alias
+    param (
+        [Parameter(Position = 0)]
+        [string] $Name,
+        [Parameter(Position = 1)]
+        [string] $Command,
+        [Parameter(Position = 2)]
+        [string] $Description
+    )
+    New-Alias -Name $Name -Value $Command -Description $Description -ErrorAction Continue -Option ReadOnly -Scope Script
+    New-MyAideMemoireEntry -Command $Name -Description $Description
+}
 #endregion
 
 #region Import Chocolatey profile
@@ -166,52 +182,74 @@ if (Test-Path -Path $ChocolateyProfile) {
 
 #region Run in user interactive session
 if (Test-Interactive -and -not $NonInteractive.IsPresent) {
-    #region     Set session environment variables
+    #region Set environment variables
     $env:WORKSPACE = $My.Workspace
     $env:EDITOR = $My.TextEditor
-    $env:KUBE_EDITOR = $My.KubeEditor
     #endregion
 
-    #region     Set aliases
-    New-Alias @AliasCommonParams -Name e -Value $My.TextEditor -Description "Open my text editor"
-    New-Alias @AliasCommonParams -Name k -Value "kubectl.exe" -Description "Run kubectl cmdline tool"
+    #region Create my aliases
+    New-MyAlias my      Show-MyVariables    "Print my variables"
+    New-MyAlias aide    Show-MyAideMemoire  "Print my aide-memoire for my commands and alias"
+    New-MyAlias grep    Out-Grep            "Execute grep like in *nix"
+    New-MyAlias ws      Use-Workspace       "Change directory to my workspace"
+    New-MyAlias github  Open-GitHub         "Open GitHub profile page in default browser"
+    New-MyAlias cm      Invoke-Chezmoi      "Execute chezmoi dotfiles manager"
+    New-MyAlias histOn  Enable-History      "Enable shell history"
+    New-MyAlias histOff Disable-History     "Disable shell history"
+    New-MyAlias ex      Invoke-FileExplorer "Execute File Explorer"
+    New-MyAlias ed      Invoke-Editor       "Open my text editor"
     #endregion
 
-    #region Set PSFzf
-    Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
-    set-PsFzfOption -EnableAliasFuzzyScoop -EnableAliasFuzzyEdit
+    #region Set PSFzf module
+    # Set PSReadline related options
+    Set-PsFzfOption -PSReadlineChordProvider "Ctrl+t"
+    Set-PsFzfOption -PSReadlineChordReverseHistory "Ctrl+r"
+    # Enable alias
+    Set-PsFzfOption -EnableAliasFuzzyScoop
+    New-MyAideMemoireEntry fs "Execute scoop with fuzzy finder"
+    Set-PsFzfOption -EnableAliasFuzzyEdit
+    New-MyAideMemoireEntry fe "Execute editor with fuzzy finder"
     #endregion
 
-    #region Set PSReadLine
+    #region Set PSReadLine module
     # Import module
-    Import-Module -Name PSReadLine
-    # Set options
+    Import-Module PSReadLine
+    # Set options and key handlers
     Set-PSReadLineOption -PredictionSource HistoryAndPlugin -BellStyle Visual
     Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
     #endregion
 
     #region Set MyRemoteManager module
     # Import module
-    Import-Module -Name MyRemoteManager
+    Import-Module MyRemoteManager
     # Create aliases
-    New-Alias @AliasCommonParams -Name co -Value Invoke-MyRMConnection -Description "Invoke MyRemoteManager connection"
-    New-Alias @AliasCommonParams -Name coTest -Value Test-MyRMConnection -Description "Test MyRemoteManager connection"
-    New-Alias @AliasCommonParams -Name coGet -Value Get-MyRMConnection -Description "Get MyRemoteManager connections"
-    New-Alias @AliasCommonParams -Name coAdd -Value Add-MyRMConnection -Description "Add MyRemoteManager connection"
-    New-Alias @AliasCommonParams -Name coRm -Value Remove-MyRMConnection -Description "Remove MyRemoteManager connection"
+    New-MyAlias co      Invoke-MyRMConnection   "Invoke MyRemoteManager connection"
+    New-MyAlias coTest  Test-MyRMConnection     "Test MyRemoteManager connection"
+    New-MyAlias coGet   Get-MyRMConnection      "Get MyRemoteManager connections"
+    New-MyAlias coAdd   Add-MyRMConnection      "Add MyRemoteManager connection"
+    New-MyAlias coRm    Remove-MyRMConnection   "Remove MyRemoteManager connection"
     #endregion
 
     #region Set Posh module
     # Import module
-    Import-Module -Name posh-git
+    Import-Module posh-git
     # Set Oh My Posh theme
     Set-OhMyPoshTheme
     #endregion
 
     #region Import other modules
-    Import-Module -Name Terminal-Icons
-    Import-Module -Name MyJavaManager
-    Import-Module -Name PomoShell
+    Import-Module Terminal-Icons
+    Import-Module MyJavaManager
+    Import-Module PomoShell
+    #endregion
+
+    #region Set Kubernetes related stuff
+    if (Test-Command "kubectl") {
+        # Set KUBE_EDITOR environment variable for kubectl
+        $env:KUBE_EDITOR = $My.KubeEditor
+        # Create alias for kubectl
+        New-MyAlias k "kubectl.exe" "Run kubectl cmdline tool"
+    }
     #endregion
 
     #region Print greeting message
