@@ -177,11 +177,17 @@ if (Test-Interactive -and -not $NonInteractive.IsPresent) {
     New-Alias @AliasCommonParams -Name k -Value "kubectl.exe" -Description "Run kubectl cmdline tool"
     #endregion
 
+    #region Set PSFzf
+    Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
+    set-PsFzfOption -EnableAliasFuzzyScoop -EnableAliasFuzzyEdit
+    #endregion
+
     #region Set PSReadLine
     # Import module
     Import-Module -Name PSReadLine
     # Set options
     Set-PSReadLineOption -PredictionSource HistoryAndPlugin -BellStyle Visual
+    Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
     #endregion
 
     #region Set MyRemoteManager module
