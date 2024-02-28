@@ -58,6 +58,8 @@ scoop install main/lf       # lf - terminal file manager
 scoop install main/eza      # eza - ls-clone tool
 scoop install main/jq       # jq - JSON processor
 scoop install main/tokei    # tokei - code stats
+scoop install main/fzf      # fzf - fuzzy finder
+scoop install main/psfzf    # fzf - PowerShell wrapper for fzf
 
 scoop bucket add extras
 scoop install extras/lazygit  # lazygit - terminal UI for git commands

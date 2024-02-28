@@ -40,6 +40,7 @@ maim|[extra - `maim`](https://archlinux.org/packages/extra/x86_64/maim/)|Screen 
 jq|[extra - `jq`](https://archlinux.org/packages/extra/x86_64/jq/)|JSON processor tool|utility|[stedolan.github.io](https://stedolan.github.io/jq/)|The most advanced JSON parser and processor
 Tokei|[extra - `tokei`](https://archlinux.org/packages/extra/x86_64/tokei/)|Code statistics tool|utility|[github.com](https://github.com/XAMPPRocky/tokei)|Good little tool to get code stats
 fd|[extra - `fd`](https://archlinux.org/packages/extra/x86_64/fd/)|File finder tool|utility|[github.com](https://github.com/sharkdp/fd)|like `find` command, but way better
+fzf|[extra - `fzf`](https://archlinux.org/packages/extra/x86_64/fzf/)|Command-line fuzzy finder|utility|[github.com](https://github.com/junegunn/fzf)|Blazingly fast and fully-featured tool to find stuff
 ripgrep (rg)|[extra - `ripgrep`](https://archlinux.org/packages/extra/x86_64/ripgrep/)|line-oriented search tool|utility|[github.com](https://github.com/BurntSushi/ripgrep)|like `grep` command, but way better
 man (db-man)|[core - `man-db`](https://archlinux.org/packages/core/x86_64/man-db/)|Manual reader|utility|[wiki.archlinux.org](https://wiki.archlinux.org/title/man_page)|Implementation of man on Arch Linux
 Neofetch|[extra - `neofetch`](https://archlinux.org/packages/extra/any/neofetch/)|System information tool|utility|[github.com](https://github.com/dylanaraps/neofetch)|Print system info with style
