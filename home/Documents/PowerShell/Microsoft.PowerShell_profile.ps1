@@ -156,7 +156,7 @@ function New-MyAideMemoireEntry {
 }
 function Show-MyAideMemoire {
     # Print commands and aliases from my aide-memoire
-    $My.AideMemoire | ForEach-Object -Process { [PSCustomObject] $_ } | Sort-Object -Property Command | Format-Table Command,Description -AutoSize
+    $My.AideMemoire | ForEach-Object -Process { [PSCustomObject] $_ } | Sort-Object -Property Command | Format-Table Command, Description -AutoSize
 }
 function New-MyAlias {
     # Create a new alias
@@ -170,6 +170,21 @@ function New-MyAlias {
     )
     New-Alias -Name $Name -Value $Command -Description $Description -ErrorAction Continue -Option ReadOnly -Scope Script
     New-MyAideMemoireEntry -Command $Name -Description $Description
+}
+function Convert-Base64 {
+    param (
+        [Parameter(Position = 0, ValueFromPipeline)]
+        [string] $String,
+        [Parameter()]
+        [Alias("d")]
+        [switch] $Decode
+    )
+    if ($Decode.IsPresent) {
+        [Text.Encoding]::Utf8.GetString([Convert]::FromBase64String($String))
+    }
+    else {
+        [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($String))
+    }
 }
 #endregion
 
@@ -188,16 +203,17 @@ if (Test-Interactive -and -not $NonInteractive.IsPresent) {
     #endregion
 
     #region Create my aliases
-    New-MyAlias my      Show-MyVariables    "Print my variables"
-    New-MyAlias aide    Show-MyAideMemoire  "Print my aide-memoire for my commands and alias"
-    New-MyAlias grep    Out-Grep            "Execute grep like in *nix"
-    New-MyAlias ws      Use-Workspace       "Change directory to my workspace"
-    New-MyAlias github  Open-GitHub         "Open GitHub profile page in default browser"
-    New-MyAlias cm      Invoke-Chezmoi      "Execute chezmoi dotfiles manager"
-    New-MyAlias histOn  Enable-History      "Enable shell history"
-    New-MyAlias histOff Disable-History     "Disable shell history"
-    New-MyAlias ex      Invoke-FileExplorer "Execute File Explorer"
-    New-MyAlias ed      Invoke-Editor       "Open my text editor"
+    New-MyAlias my       Show-MyVariables       "Print my variables"
+    New-MyAlias aide     Show-MyAideMemoire     "Print my aide-memoire for my commands and alias"
+    New-MyAlias grep     Out-Grep               "Execute grep like in *nix"
+    New-MyAlias ws       Use-Workspace          "Change directory to my workspace"
+    New-MyAlias github   Open-GitHub            "Open GitHub profile page in default browser"
+    New-MyAlias cm       Invoke-Chezmoi         "Execute chezmoi dotfiles manager"
+    New-MyAlias histOn   Enable-History         "Enable shell history"
+    New-MyAlias histOff  Disable-History        "Disable shell history"
+    New-MyAlias ex       Invoke-FileExplorer    "Execute File Explorer"
+    New-MyAlias ed       Invoke-Editor          "Open my text editor"
+    New-MyAlias base64   Convert-Base64         "Base64 Encode and Decode"
     #endregion
 
     #region Set PSFzf module
