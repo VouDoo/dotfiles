@@ -59,10 +59,12 @@ scoop install main/eza      # eza - ls-clone tool
 scoop install main/jq       # jq - JSON processor
 scoop install main/tokei    # tokei - code stats
 scoop install main/fzf      # fzf - fuzzy finder
-scoop install main/psfzf    # fzf - PowerShell wrapper for fzf
 
 scoop bucket add extras
-scoop install extras/lazygit  # lazygit - terminal UI for git commands
+scoop install extras/lazygit          # lazygit - terminal UI for git commands
+scoop install extras/posh-git         # posh-git - PowerShell module that integrates Git and PowerShell
+scoop install extras/terminal-icons   # Terminal-Icons - PowerShell module that displays file and folder icons in terminal
+scoop install extras/PSFzf            # psfzf - PowerShell module that provides a wrapper for fzf
 
 scoop bucket add nerd-fonts
 scoop install nerd-fonts/CascadiaCode-NF-Mono  # Cascadia Code Mono - coding font

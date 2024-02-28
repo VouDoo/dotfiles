@@ -11,8 +11,8 @@
             AllowPrerelease = $true
         }
     }
-    "posh-git"        = "latest"
-    "Terminal-Icons"  = "latest"
+    #"posh-git"        = "latest"  # managed by scoop
+    #"Terminal-Icons"  = "latest"  # managed by scoop
     "BurntToast"      = "latest"
     "MyRemoteManager" = "latest"
     "MyJavaManager"   = "latest"
