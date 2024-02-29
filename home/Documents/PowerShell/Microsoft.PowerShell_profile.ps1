@@ -26,7 +26,7 @@ function Show-MyVariables {
         Write-Output -InputObject ("{0}={1}" -f $_.Key, $_.Value)
     }
 }
-function Test-Interactive {
+function Test-InteractiveSession {
     # Test if the session is interactive
     [Environment]::GetCommandLineArgs() -notcontains "-NonInteractive"
 }
@@ -46,61 +46,15 @@ function Update-EnvPath {
     }
     $env:Path = $Paths -join $Separator
 }
-function Install-PSCore {
-    # Install the latest version of PowerShell Core
-    # Official installation documentation: https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows
-    if (Test-Command "winget") { & winget install --id "Microsoft.Powershell" --source winget }
-    else {
-        # Fall back on the old fashion way to install PowerShell
-        "& { $(Invoke-RestMethod -Uri "https://aka.ms/install-powershell.ps1") } -UseMSI -AddExplorerContextMenu" | Invoke-Expression
-    }
-}
-function Install-Chocolatey {
-    # Install the latest version of Chocolatey
-    # Official installation documentation: https://chocolatey.org/install
-    Set-ExecutionPolicy -Scope Process -Force -ExecutionPolicy Bypass
-    Invoke-RestMethod -Uri "https://chocolatey.org/install.ps1" | Invoke-Expression
-}
-function Install-Scoop {
-    # Install the latest version of Scoop
-    # Official installation documentation: https://scoop.sh/
-    Set-ExecutionPolicy -Scope Process -Force -ExecutionPolicy RemoteSigned
-    Invoke-RestMethod -Uri "https://get.scoop.sh" | Invoke-Expression
-}
-function Install-OhMyPosh {
-    # Install latest version of Oh My Posh
-    # Official installation documentation: https://ohmyposh.dev/docs/installation/windows
-    param (
-        [Parameter(HelpMessage = "Choose a method to install Oh My Posh")]
-        [ValidateSet("winget", "scoop", "manual")]
-        [string] $Method = "winget"
-    )
-    switch ($Method) {
-        "winget" {
-            if (Test-Command "winget") { & winget install --id  "JanDeDobbeleer.OhMyPosh" --source winget winget }
-            else {
-                Write-Error -Message "Windows Package Manager CLI (aka. winget) must be installed to install Oh My Posh."
-            }
-        }
-        "scoop" {
-            if (Test-Command "scoop") { & scoop install "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json" }
-            else {
-                Write-Error -Message "scoop must be installed to install Oh My Posh."
-            }
-        }
-        "manual" {
-            Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
-            Invoke-RestMethod -Uri "https://ohmyposh.dev/install.ps1" | Invoke-Expression
-        }
-        Default {
-            Write-Error -Message "Invalid method to install Oh My Posh."
-        }
-    }
-}
 function Set-OhMyPoshTheme {
     # Set Oh My Posh theme for the current PowerShell session
     $Config = "{0}\{1}.omp.json" -f $env:POSH_THEMES_PATH, $My.OhMyPoshTheme
-    oh-my-posh init pwsh --config "$Config" | Invoke-Expression
+    try {
+        oh-my-posh init pwsh --config "$Config" | Invoke-Expression
+    }
+    catch {
+        Write-Warning -Message ("Oh My Posh theme could not be loaded: {0}" -f $_.Exception.Message)
+    }
 }
 function Install-MyModules {
     # Install modules from the requirements file
@@ -196,7 +150,7 @@ if (Test-Path -Path $ChocolateyProfile) {
 #endregion
 
 #region Run in user interactive session
-if (Test-Interactive -and -not $NonInteractive.IsPresent) {
+if (Test-InteractiveSession -and -not $NonInteractive.IsPresent) {
     #region Set environment variables
     $env:WORKSPACE = $My.Workspace
     $env:EDITOR = $My.TextEditor
@@ -213,6 +167,7 @@ if (Test-Interactive -and -not $NonInteractive.IsPresent) {
     New-MyAlias histOff  Disable-History        "Disable shell history"
     New-MyAlias ex       Invoke-FileExplorer    "Execute File Explorer"
     New-MyAlias ed       Invoke-Editor          "Open my text editor"
+    New-MyAlias pathUpd  Update-EnvPath         "Refresh PATH environment variable"
     New-MyAlias base64   Convert-Base64         "Base64 Encode and Decode"
     #endregion
 
@@ -269,7 +224,7 @@ if (Test-Interactive -and -not $NonInteractive.IsPresent) {
     #endregion
 
     #region Print greeting message
-    $GreetingMessage = "Greetings, Professor {0}. Shall we play a game?`n" -f $My.Name
+    $GreetingMessage = "`nGreetings, Professor {0}. Shall we play a game?`n" -f $My.Name
     Write-Host $GreetingMessage -ForegroundColor Yellow
     #endregion
 }

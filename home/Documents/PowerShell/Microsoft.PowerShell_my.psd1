@@ -13,35 +13,35 @@
     AideMemoire   = @(
         @{
             Command     = "rg"
-            Description = "Execute ripgrep (grep-like)"
+            Description = "Execute ripgrep grep-like tool"
         }
         @{
             Command     = "fd"
-            Description = "Execute fd (find-like)"
+            Description = "Execute fd find-like tool"
         }
         @{
             Command     = "bat"
-            Description = "Execute bat (cat-like)"
+            Description = "Execute bat cat-like tool"
         }
         @{
             Command     = "lf"
-            Description = "Execute lf (terminal file manager)"
+            Description = "Execute lf terminal file manager"
         }
         @{
             Command     = "eza"
-            Description = "Execute eza (ls-like)"
+            Description = "Execute eza ls-like like"
         }
         @{
             Command     = "jq"
-            Description = "Execute jq (JSON processor)"
+            Description = "Execute jq JSON processor"
         }
         @{
             Command     = "tokei"
-            Description = "Execute tokei (code stats)"
+            Description = "Execute tokei code stats"
         }
         @{
             Command     = "fzf"
-            Description = "Execute fzf (fuzzy finder)"
+            Description = "Execute fzf fuzzy finder"
         }
         @{
             Command     = "git"
@@ -61,7 +61,15 @@
         }
         @{
             Command     = "lazygit"
-            Description = "Execute lazygit (GUI Git client)"
+            Description = "Execute lazygit GUI Git client"
+        }
+        @{
+            Command     = "glow"
+            Description = "Execute glow markdown render"
+        }
+        @{
+            Command     = "nvim"
+            Description = "Execute Neovim text editor"
         }
     )
 }
