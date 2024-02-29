@@ -109,8 +109,30 @@ function New-MyAideMemoireEntry {
     $global:My.AideMemoire += @{ Command = $Command; Description = $Description }
 }
 function Show-MyAideMemoire {
+    param (
+        [Parameter()]
+        [Alias("a")]
+        [switch] $ShowAll
+    )
     # Print commands and aliases from my aide-memoire
-    $My.AideMemoire | ForEach-Object -Process { [PSCustomObject] $_ } | Sort-Object -Property Command | Format-Table Command, Description -AutoSize
+    $AvailableCommands = @()
+    $UnavailableCommands = @()
+    $My.AideMemoire | ForEach-Object -Process {
+        if (Test-Command $_.Command) {
+            $AvailableCommands += [PSCustomObject] $_
+        }
+        else {
+            $UnavailableCommands += [PSCustomObject] $_
+        }
+    }
+    if ($ShowAll.IsPresent) {
+        $AvailableCommands | ForEach-Object -Process { $_ | Add-Member -Name 'Available' -Type NoteProperty -Value $true }
+        $UnavailableCommands | ForEach-Object -Process { $_ | Add-Member -Name 'Available' -Type NoteProperty -Value $false }
+        $AvailableCommands + $UnavailableCommands | Sort-Object -Property Command | Format-Table Command, Description, Available -AutoSize
+    }
+    else {
+        $AvailableCommands | Sort-Object -Property Command | Format-Table Command, Description -AutoSize
+    }
 }
 function New-MyAlias {
     # Create a new alias
