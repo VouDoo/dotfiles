@@ -1,3 +1,3 @@
-function ls --wraps='exa --icons --time-style iso --group' --description 'alias ls=exa --icons --time-style iso --group'
-  eza --icons --time-style iso --group $argv; 
+function ls --wraps eza --description 'alias Use eza instead of ls'
+  eza --icons --time-style iso --group $argv
 end

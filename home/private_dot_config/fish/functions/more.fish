@@ -1,3 +1,3 @@
-function more --wraps=most --description 'alias more=most'
-  most $argv; 
+function more --wraps most --description 'alias Use most instead of more'
+  most $argv
 end

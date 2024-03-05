@@ -1,3 +1,3 @@
-function fish_greeting --wraps=neofetch --description 'alias fish_greeting=neofetch'
-  neofetch $argv; 
+function fish_greeting --description 'Set welcome message in interactive shells'
+  neofetch
 end
