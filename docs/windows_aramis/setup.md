@@ -65,7 +65,8 @@ scoop install main/jq       # jq - JSON processor
 scoop install main/tokei    # tokei - code stats
 scoop install main/fzf      # fzf - fuzzy finder
 scoop install main/glow     # glow - Terminal based markdown reader
-scoop install main/less     # less - *nix pager
+scoop install main/less     # less - *nix pagers
+scoop install main/task     # Task - task runner/build tool like GNU Make
 
 scoop bucket add extras
 scoop install extras/lazygit          # lazygit - terminal UI for git commands
