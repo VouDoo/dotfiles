@@ -111,7 +111,7 @@ config = [
             border_width=[2, 0, 0, 0],
             border_color=theme.border_active,
         ),
-        wallpaper="~/.local/share/img/outerwilds.jpg",
+        wallpaper="~/.local/share/img/wallpaper.jpg",
         wallpaper_mode="stretch",
     ),
 ]
