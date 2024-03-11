@@ -80,6 +80,8 @@ scoop install nerd-fonts/CascadiaCode-NF-Mono  # Cascadia Code Mono - coding fon
 scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json  # Oh My Posh - Prompt theme engine for PowerShell
 ```
 
+My extra applications are listed in [`extra_packages` directory](./extra_packages).
+
 ### Update applications
 
 ```sh
