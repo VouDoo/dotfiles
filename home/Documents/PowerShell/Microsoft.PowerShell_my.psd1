@@ -71,5 +71,25 @@
             Command     = "nvim"
             Description = "Execute Neovim text editor"
         }
+        @{
+            Command     = "kubectl"
+            Description = "Execute kubectl cmdline tool"
+        }
+        @{
+            Command     = "kubectx"
+            Description = "Execute kubectx cmdline tool"
+        }
+        @{
+            Command     = "kubens"
+            Description = "Execute kubens cmdline tool"
+        }
+        @{
+            Command     = "k9s"
+            Description = "Execute k9s TUI tool"
+        }
+        @{
+            Command     = "kind"
+            Description = "Execute KinD cmdline tool"
+        }
     )
 }

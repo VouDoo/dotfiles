@@ -243,6 +243,8 @@ if (Test-InteractiveSession -and -not $NonInteractive.IsPresent) {
         # Create alias for kubectl
         New-MyAlias k "kubectl.exe" "Run kubectl cmdline tool"
     }
+    if (Test-Command "kubectx") { New-MyAlias kctx "kubectx.exe" "Run kubectx cmdline tool" }
+    if (Test-Command "kubens") { New-MyAlias kns "kubens.exe" "Run kubens cmdline tool" }
     #endregion
 
     #region Print greeting message
