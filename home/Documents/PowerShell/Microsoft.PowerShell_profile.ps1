@@ -88,7 +88,7 @@ function Invoke-FileExplorer {
 }
 function Invoke-Editor {
     # Invoke my text editor
-    & $My.TextEditor
+    & $My.TextEditor $args
 }
 function Enable-History {
     # Enable shell history
