@@ -55,18 +55,10 @@ winget install -s winget --id Microsoft.PowerToys        # PowerToys - set of ut
 scoop install main/git      # Git - official Git client
 scoop install main/7zip     # 7-Zip - file archiver
 scoop install main/chezmoi  # chezmoi - dotfiles manager
-scoop install main/neovim   # Neovim - text editor
 scoop install main/ripgrep  # ripgrep - grep-clone tool
 scoop install main/fd       # fd - find-clone tool
 scoop install main/bat      # bat - cat-clone tool
-scoop install main/lf       # lf - terminal file manager
-scoop install main/eza      # eza - ls-clone tool
-scoop install main/jq       # jq - JSON processor
-scoop install main/tokei    # tokei - code stats
 scoop install main/fzf      # fzf - fuzzy finder
-scoop install main/glow     # glow - Terminal based markdown reader
-scoop install main/less     # less - *nix pagers
-scoop install main/task     # Task - task runner/build tool like GNU Make
 
 scoop bucket add extras
 scoop install extras/lazygit          # lazygit - terminal UI for git commands
@@ -88,7 +80,7 @@ My extra applications are listed in [`extra_packages` directory](./extra_package
 winget upgrade --id Microsoft.Powershell
 winget upgrade --id Microsoft.WindowsTerminal
 winget upgrade --id Microsoft.PowerToys
-scoop update -a
+scoop update --all --no-cache
 ```
 
 ## Initialize dotfiles - chezmoi
