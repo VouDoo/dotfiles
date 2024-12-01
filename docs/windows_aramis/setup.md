@@ -50,6 +50,7 @@ Chocolatey installs packaged applications as Administrator in conventional insta
 winget install -s winget --id Microsoft.Powershell       # PowerShell Core - most popular Windows shell
 winget install -s winget --id Microsoft.WindowsTerminal  # Windows Terminal - Windows Terminal emulator
 winget install -s winget --id Microsoft.PowerToys        # PowerToys - set of utilities for power users
+winget install -s winget --id JanDeDobbeleer.OhMyPosh    # Oh My Posh - custom prompt engine
 
 # install scoop packages (main bucket)
 scoop install main/git      # Git - official Git client
@@ -68,8 +69,6 @@ scoop install extras/PSFzf            # psfzf - PowerShell module that provides 
 
 scoop bucket add nerd-fonts
 scoop install nerd-fonts/CascadiaCode-NF-Mono  # Cascadia Code Mono - coding font
-
-scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json  # Oh My Posh - Prompt theme engine for PowerShell
 ```
 
 My extra applications are listed in [`extra_packages` directory](./extra_packages).
@@ -80,6 +79,7 @@ My extra applications are listed in [`extra_packages` directory](./extra_package
 winget upgrade --id Microsoft.Powershell
 winget upgrade --id Microsoft.WindowsTerminal
 winget upgrade --id Microsoft.PowerToys
+winget upgrade --id JanDeDobbeleer.OhMyPosh
 scoop update --all --no-cache
 ```
 
