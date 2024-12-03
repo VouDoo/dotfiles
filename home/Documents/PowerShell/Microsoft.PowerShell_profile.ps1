@@ -7,7 +7,6 @@
 
     .NOTES
     This profile is designed for Windows only.
-
 #>
 
 param (
@@ -15,16 +14,31 @@ param (
     [switch] $NonInteractive
 )
 
-#region Set my variables (My hashtable)
-[hashtable] $My = Import-PowerShellDataFile -Path "$PSScriptRoot\Microsoft.PowerShell_my.psd1"
+#region Define my profile
+$My = @{
+    # Personal details
+    Name          = "Maxence"
+    Email         = "maxgrymonprez@live.fr"
+    GitHubProfile = "VouDoo"
+    # Development environment and tools
+    Workspace     = "~\Workspace"
+    TextEditor    = "code.cmd"  # VS Code
+    KubeEditor    = "code.cmd --wait"  # VS Code
+}
 #endregion
 
 #region Define helper functions
-function Show-MyVariables {
-    # Print key/value pairs from My hashtable
-    $My.GetEnumerator() | ForEach-Object -Process {
-        Write-Output -InputObject ("{0}={1}" -f $_.Key, $_.Value)
-    }
+function New-MyAlias {
+    # Create a new alias
+    param (
+        [Parameter(Position = 0)]
+        [string] $Name,
+        [Parameter(Position = 1)]
+        [string] $Command,
+        [Parameter(Position = 2)]
+        [string] $Description
+    )
+    New-Alias -Name $Name -Value $Command -Description $Description -ErrorAction Continue -Option ReadOnly -Scope Script
 }
 function Test-InteractiveSession {
     # Test if the session is interactive
@@ -32,11 +46,7 @@ function Test-InteractiveSession {
 }
 function Test-Command {
     # Test if a command is present
-    param (
-        [Parameter(Position = 0)]
-        [string] $Command
-    )
-    if (Get-Command -Name $Command -ErrorAction SilentlyContinue) { $true } else { $false }
+    if (Get-Command -Name $args -ErrorAction SilentlyContinue) { $true } else { $false }
 }
 function Update-EnvPath {
     # Refresh PATH environment variable
@@ -46,35 +56,18 @@ function Update-EnvPath {
     }
     $env:Path = $Paths -join $Separator
 }
-function Set-OhMyPoshTheme {
-    # Set Oh My Posh theme for the current PowerShell session
-    $Config = "{0}\{1}.omp.json" -f $env:POSH_THEMES_PATH, $My.OhMyPoshTheme
-    try {
-        oh-my-posh init pwsh --config "$Config" | Invoke-Expression
-    }
-    catch {
-        Write-Warning -Message ("Oh My Posh theme could not be loaded: {0}" -f $_.Exception.Message)
-    }
-}
 function Install-MyModules {
     # Install modules from the requirements file
     if (-not (Get-Module -Name PSDepend -ListAvailable)) {
         Install-Module -Name PSDepend -Repository PSGallery
     }
     Import-Module -Name PSDepend
-    Invoke-PSDepend -Path "$PSScriptRoot\Microsoft.PowerShell_modules.psd1" -Install -Import -Force
+    Invoke-PSDepend -Path "$PSScriptRoot\requirements.psd1" -Install -Import -Force
 }
-function Out-Grep {
-    # grep like in *nix systems
-    $input | Out-String -Stream | Select-String $args
-}
-function Use-Workspace {
-    # Set location to my workspace
-    Set-Location -Path $My.Workspace
-}
-function Open-GitHubProfile {
-    # Open GitHub profile page in default browser
-    Start-Process -FilePath ("https://github.com/{0}" -f $My.GitHub)
+function Start-Starship {
+    # Initialize Starship
+    $env:STARSHIP_CONFIG = "$HOME\.config\starship\config.toml"
+    Invoke-Expression (& starship init powershell)
 }
 function Invoke-Chezmoi {
     # Wrapper for chezmoi command
@@ -90,6 +83,10 @@ function Invoke-Editor {
     # Invoke my text editor
     & $My.TextEditor $args
 }
+function Use-Workspace {
+    # Set location to my workspace
+    Set-Location -Path $My.Workspace
+}
 function Enable-History {
     # Enable shell history
     Set-PSReadLineOption -HistorySaveStyle SaveIncrementally
@@ -97,55 +94,6 @@ function Enable-History {
 function Disable-History {
     # Disable shell history
     Set-PSReadLineOption -HistorySaveStyle SaveNothing
-}
-function New-MyAideMemoireEntry {
-    # Create a new entry in my aide-memoire
-    param (
-        [Parameter(Position = 0)]
-        [string] $Command,
-        [Parameter(Position = 1)]
-        [string] $Description
-    )
-    $global:My.AideMemoire += @{ Command = $Command; Description = $Description }
-}
-function Show-MyAideMemoire {
-    param (
-        [Parameter()]
-        [Alias("a")]
-        [switch] $ShowAll
-    )
-    # Print commands and aliases from my aide-memoire
-    $AvailableCommands = @()
-    $UnavailableCommands = @()
-    $My.AideMemoire | ForEach-Object -Process {
-        if (Test-Command $_.Command) {
-            $AvailableCommands += [PSCustomObject] $_
-        }
-        else {
-            $UnavailableCommands += [PSCustomObject] $_
-        }
-    }
-    if ($ShowAll.IsPresent) {
-        $AvailableCommands | ForEach-Object -Process { $_ | Add-Member -Name 'Available' -Type NoteProperty -Value $true }
-        $UnavailableCommands | ForEach-Object -Process { $_ | Add-Member -Name 'Available' -Type NoteProperty -Value $false }
-        $AvailableCommands + $UnavailableCommands | Sort-Object -Property Command | Format-Table Command, Description, Available -AutoSize
-    }
-    else {
-        $AvailableCommands | Sort-Object -Property Command | Format-Table Command, Description -AutoSize
-    }
-}
-function New-MyAlias {
-    # Create a new alias
-    param (
-        [Parameter(Position = 0)]
-        [string] $Name,
-        [Parameter(Position = 1)]
-        [string] $Command,
-        [Parameter(Position = 2)]
-        [string] $Description
-    )
-    New-Alias -Name $Name -Value $Command -Description $Description -ErrorAction Continue -Option ReadOnly -Scope Script
-    New-MyAideMemoireEntry -Command $Name -Description $Description
 }
 function Convert-Base64 {
     param (
@@ -164,13 +112,6 @@ function Convert-Base64 {
 }
 #endregion
 
-#region Import Chocolatey profile
-$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-if (Test-Path -Path $ChocolateyProfile) {
-    Import-Module -Name "$ChocolateyProfile"
-}
-#endregion
-
 #region Run in user interactive session
 if (Test-InteractiveSession -and -not $NonInteractive.IsPresent) {
     #region Set environment variables
@@ -179,18 +120,27 @@ if (Test-InteractiveSession -and -not $NonInteractive.IsPresent) {
     #endregion
 
     #region Create my aliases
-    New-MyAlias my       Show-MyVariables       "Print my variables"
-    New-MyAlias aide     Show-MyAideMemoire     "Print my aide-memoire for my commands and alias"
-    New-MyAlias grep     Out-Grep               "Execute grep like in *nix"
-    New-MyAlias ws       Use-Workspace          "Change directory to my workspace"
-    New-MyAlias github   Open-GitHub            "Open GitHub profile page in default browser"
+    New-MyAlias pathUpd  Update-EnvPath         "Refresh PATH environment variable"
     New-MyAlias cm       Invoke-Chezmoi         "Execute chezmoi dotfiles manager"
-    New-MyAlias histOn   Enable-History         "Enable shell history"
-    New-MyAlias histOff  Disable-History        "Disable shell history"
     New-MyAlias ex       Invoke-FileExplorer    "Execute File Explorer"
     New-MyAlias ed       Invoke-Editor          "Open my text editor"
-    New-MyAlias pathUpd  Update-EnvPath         "Refresh PATH environment variable"
+    New-MyAlias ws       Use-Workspace          "Change directory to my workspace"
+    New-MyAlias histOn   Enable-History         "Enable shell history"
+    New-MyAlias histOff  Disable-History        "Disable shell history"
     New-MyAlias base64   Convert-Base64         "Base64 Encode and Decode"
+    if (Test-Command "rg") {
+        New-MyAlias grep "rg" "Execute ripgrep"
+    }
+    if (Test-Command "kubectl") {
+        $env:KUBE_EDITOR = $My.KubeEditor  # Set KUBE_EDITOR environment variable for kubectl
+        New-MyAlias k "kubectl" "Run kubectl cmdline tool"
+    }
+    if (Test-Command "kubectx") {
+        New-MyAlias kctx "kubectx" "Run kubectx cmdline tool"
+    }
+    if (Test-Command "kubens") {
+        New-MyAlias kns "kubens" "Run kubens cmdline tool"
+    }
     #endregion
 
     #region Set PSFzf module
@@ -199,9 +149,7 @@ if (Test-InteractiveSession -and -not $NonInteractive.IsPresent) {
     Set-PsFzfOption -PSReadlineChordReverseHistory "Ctrl+r"
     # Enable alias
     Set-PsFzfOption -EnableAliasFuzzyScoop
-    New-MyAideMemoireEntry fs "Execute scoop with fuzzy finder"
     Set-PsFzfOption -EnableAliasFuzzyEdit
-    New-MyAideMemoireEntry fe "Execute editor with fuzzy finder"
     #endregion
 
     #region Set PSReadLine module
@@ -212,9 +160,10 @@ if (Test-InteractiveSession -and -not $NonInteractive.IsPresent) {
     Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
     #endregion
 
-    #region Set MyRemoteManager module
-    # Import module
+    #region Set my modules
+    # Import modules
     Import-Module MyRemoteManager
+    Import-Module MyJavaManager
     # Create aliases
     New-MyAlias co      Invoke-MyRMConnection   "Invoke MyRemoteManager connection"
     New-MyAlias coTest  Test-MyRMConnection     "Test MyRemoteManager connection"
@@ -223,33 +172,16 @@ if (Test-InteractiveSession -and -not $NonInteractive.IsPresent) {
     New-MyAlias coRm    Remove-MyRMConnection   "Remove MyRemoteManager connection"
     #endregion
 
-    #region Set Posh module
-    # Import module
+    #region Set custom prompt
+    # Import modules
     Import-Module posh-git
-    # Set Oh My Posh theme
-    Set-OhMyPoshTheme
-    #endregion
-
-    #region Import other modules
     Import-Module Terminal-Icons
-    Import-Module MyJavaManager
-    Import-Module PomoShell
-    #endregion
-
-    #region Set Kubernetes related stuff
-    if (Test-Command "kubectl") {
-        # Set KUBE_EDITOR environment variable for kubectl
-        $env:KUBE_EDITOR = $My.KubeEditor
-        # Create alias for kubectl
-        New-MyAlias k "kubectl.exe" "Run kubectl cmdline tool"
-    }
-    if (Test-Command "kubectx") { New-MyAlias kctx "kubectx.exe" "Run kubectx cmdline tool" }
-    if (Test-Command "kubens") { New-MyAlias kns "kubens.exe" "Run kubens cmdline tool" }
+    # Initialize Starship
+    Start-Starship
     #endregion
 
     #region Print greeting message
-    $GreetingMessage = "`nGreetings, Professor {0}. Shall we play a game?`n" -f $My.Name
-    Write-Host $GreetingMessage -ForegroundColor Yellow
+    Write-Host ("`nGreetings, Professor {0}. Shall we play a game?`n" -f $My.Name) -ForegroundColor Yellow
     #endregion
 }
 #endregion

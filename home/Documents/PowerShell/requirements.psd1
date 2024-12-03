@@ -11,8 +11,6 @@
             AllowPrerelease = $true
         }
     }
-    "BurntToast"      = "latest"
     "MyRemoteManager" = "latest"
     "MyJavaManager"   = "latest"
-    "PomoShell"       = "latest"
 }
