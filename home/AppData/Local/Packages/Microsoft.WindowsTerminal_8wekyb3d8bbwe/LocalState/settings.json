@@ -78,29 +78,6 @@
     "schemes": 
     [
         {
-            "background": "#0F0F0F",
-            "black": "#000000",
-            "blue": "#36A3D9",
-            "brightBlack": "#858585",
-            "brightBlue": "#68D5FF",
-            "brightCyan": "#C7FFFD",
-            "brightGreen": "#EAFE84",
-            "brightPurple": "#FFA3AA",
-            "brightRed": "#FF6565",
-            "brightWhite": "#FFFFFF",
-            "brightYellow": "#FFF779",
-            "cursorColor": "#F29718",
-            "cyan": "#95E6CB",
-            "foreground": "#E6E1CF",
-            "green": "#B8CC52",
-            "name": "Ayu",
-            "purple": "#F07178",
-            "red": "#FF3333",
-            "selectionBackground": "#253340",
-            "white": "#FFFFFF",
-            "yellow": "#E7C547"
-        },
-        {
             "background": "#282828",
             "black": "#282828",
             "blue": "#458588",

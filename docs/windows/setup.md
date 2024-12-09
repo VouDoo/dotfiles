@@ -1,6 +1,6 @@
-# Setup `windows/aramis`
+# Setup `windows`
 
-- [Setup `windows/aramis`](#setup-windowsaramis)
+- [Setup `windows`](#setup-windows)
   - [Install Package managers](#install-package-managers)
     - [Windows Package Manager (required)](#windows-package-manager-required)
     - [Scoop (required)](#scoop-required)
@@ -10,6 +10,7 @@
     - [Update applications](#update-applications)
   - [Initialize dotfiles - chezmoi](#initialize-dotfiles---chezmoi)
   - [Initialize PowerShell profile](#initialize-powershell-profile)
+  - [Install Visual Studio Code](#install-visual-studio-code)
 
 ---
 
@@ -71,7 +72,9 @@ scoop bucket add nerd-fonts
 scoop install nerd-fonts/CascadiaCode-NF-Mono  # Cascadia Code Mono - coding font
 ```
 
-My extra applications are listed in [`extra_packages` directory](./extra_packages).
+My extra applications are listed in [`extra_packages` directory](./extra_packages):
+
+- [Packages for Kubernetes](./extra_packages/k8s.md)
 
 ### Update applications
 
@@ -101,3 +104,9 @@ run these PowerShell commands:
 ```powershell
 Install-MyModules
 ```
+
+## Install Visual Studio Code
+
+Download and install from <https://code.visualstudio.com/download>.
+
+Then, synchronize the configuration with the GitHub account.

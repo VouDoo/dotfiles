@@ -14,17 +14,12 @@ param (
     [switch] $NonInteractive
 )
 
-#region Define my profile
-$My = @{
-    # Personal details
-    Name          = "Maxence"
-    Email         = "maxgrymonprez@live.fr"
-    GitHubProfile = "VouDoo"
-    # Development environment and tools
-    Workspace     = "~\Workspace"
-    TextEditor    = "code.cmd"  # VS Code
-    KubeEditor    = "code.cmd --wait"  # VS Code
-}
+#region Define profile variables
+# Set path to my workspace directory
+$script:MyWorkspace = "$HOME\Workspace"
+# Set text editor variables
+$script:TextEditor = "code.cmd"  # Visual Studio Code
+$script:TextEditorWithWait = "{0} --wait" -f $TextEditor
 #endregion
 
 #region Define helper functions
@@ -71,9 +66,9 @@ function Start-Starship {
 }
 function Invoke-Chezmoi {
     # Wrapper for chezmoi command
-    $Prev, $env:EDITOR = $env:EDITOR, "code.cmd --wait"
+    $EditorPrevValue, $env:EDITOR = $env:EDITOR, $TextEditorWithWait
     try { & chezmoi.exe $args }
-    finally { $env:EDITOR = $Prev }
+    finally { $env:EDITOR = $EditorPrevValue }
 }
 function Invoke-FileExplorer {
     # Browse current location with File Explorer
@@ -81,11 +76,14 @@ function Invoke-FileExplorer {
 }
 function Invoke-Editor {
     # Invoke my text editor
-    & $My.TextEditor $args
+    & $TextEditor $args
 }
-function Use-Workspace {
-    # Set location to my workspace
-    Set-Location -Path $My.Workspace
+function Use-MyWorkspace {
+    # Move to my workspace
+    if (-not (Test-Path -Path $MyWorkspace -PathType Container)) {
+        New-Item -Path $MyWorkspace -ItemType Directory
+    }
+    Set-Location -Path $MyWorkspace
 }
 function Enable-History {
     # Enable shell history
@@ -114,17 +112,12 @@ function Convert-Base64 {
 
 #region Run in user interactive session
 if (Test-InteractiveSession -and -not $NonInteractive.IsPresent) {
-    #region Set environment variables
-    $env:WORKSPACE = $My.Workspace
-    $env:EDITOR = $My.TextEditor
-    #endregion
-
     #region Create my aliases
     New-MyAlias pathUpd  Update-EnvPath         "Refresh PATH environment variable"
     New-MyAlias cm       Invoke-Chezmoi         "Execute chezmoi dotfiles manager"
     New-MyAlias ex       Invoke-FileExplorer    "Execute File Explorer"
     New-MyAlias ed       Invoke-Editor          "Open my text editor"
-    New-MyAlias ws       Use-Workspace          "Change directory to my workspace"
+    New-MyAlias ws       Use-MyWorkspace        "Change current directory to my workspace"
     New-MyAlias histOn   Enable-History         "Enable shell history"
     New-MyAlias histOff  Disable-History        "Disable shell history"
     New-MyAlias base64   Convert-Base64         "Base64 Encode and Decode"
@@ -132,14 +125,22 @@ if (Test-InteractiveSession -and -not $NonInteractive.IsPresent) {
         New-MyAlias grep "rg" "Execute ripgrep"
     }
     if (Test-Command "kubectl") {
-        $env:KUBE_EDITOR = $My.KubeEditor  # Set KUBE_EDITOR environment variable for kubectl
+        # Note for myself:
+        # kubectl is the main tool for Kubernetes management and development.
+        # So, if it is found, let's assume that the other tools are present too.
+        $env:KUBE_EDITOR = $TextEditorWithWait
+        & kubectl completion powershell | Out-String | Invoke-Expression
         New-MyAlias k "kubectl" "Run kubectl cmdline tool"
-    }
-    if (Test-Command "kubectx") {
-        New-MyAlias kctx "kubectx" "Run kubectx cmdline tool"
-    }
-    if (Test-Command "kubens") {
-        New-MyAlias kns "kubens" "Run kubens cmdline tool"
+        if (Test-Command "k9s") {
+            $env:K9S_EDITOR = $TextEditorWithWait
+            New-MyAlias k9s "k9s" "Run k9s cmdline tool"
+        }
+        if (Test-Command "kubectx") {
+            New-MyAlias kctx "kubectx" "Run kubectx cmdline tool"
+        }
+        if (Test-Command "kubens") {
+            New-MyAlias kns "kubens" "Run kubens cmdline tool"
+        }
     }
     #endregion
 
@@ -181,7 +182,7 @@ if (Test-InteractiveSession -and -not $NonInteractive.IsPresent) {
     #endregion
 
     #region Print greeting message
-    Write-Host ("`nGreetings, Professor {0}. Shall we play a game?`n" -f $My.Name) -ForegroundColor Yellow
+    Write-Host ("`nGreetings, Professor Maxence. Shall we play a game?`n") -ForegroundColor Yellow
     #endregion
 }
 #endregion

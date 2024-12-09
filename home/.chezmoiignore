@@ -1,15 +1,24 @@
-# files related to Aramis Windows
-{{ if (and (ne .chezmoi.os "windows") (ne .chezmoi.os "aramis")) }}
+# files for Windows only
+{{ if (ne .chezmoi.os "windows") }}
 AppData
 Documents
 {{ end }}
 
-# files related to Aramis Linux
-{{ if (and (ne .chezmoi.os "linux") (ne .chezmoi.os "aramis")) }}
-.config
-.local
+# files for Linux only
+{{ if (ne .chezmoi.os "linux") }}
+.config/alacritty
+.config/fish
+.config/nvim
+.config/qtile
 .bash_profile
 .bashrc
+{{ end }}
+
+# files for my Thinkpad laptop
+{{ if (and (ne .chezmoi.os "linux" and ne .chezmoi.hostname "aramis")) }}
+.config/dunst
+.config/picom
+.local/bin/executable_keepass
 .xbindkeysrc
 .xinitrc
 {{ end }}

@@ -1,6 +1,6 @@
 [user]
 	email = maxgrymonprez@live.fr
-	name = Maxence
+	name = Maxence Grymonprez (a.k.a. VouDoo)
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
