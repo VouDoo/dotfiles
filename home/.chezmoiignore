@@ -15,7 +15,7 @@ Documents
 {{ end }}
 
 # files for my Thinkpad laptop
-{{ if (and (ne .chezmoi.os "linux" and ne .chezmoi.hostname "aramis")) }}
+{{ if (and (ne .chezmoi.os "linux") (ne .chezmoi.hostname "aramis")) }}
 .config/dunst
 .config/picom
 .local/bin/executable_keepass
