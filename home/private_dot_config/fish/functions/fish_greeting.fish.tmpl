@@ -1,0 +1,7 @@
+function fish_greeting --description 'Set welcome message in interactive shells'
+    if type -q fastfetch
+        fastfetch
+    end
+    echo -e "GREETINGS PROFESSOR {{ .firstname | upper }}.\n"
+    echo -e "SHALL WE PLAY A GAME?\n"
+end

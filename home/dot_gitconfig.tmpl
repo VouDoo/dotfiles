@@ -1,0 +1,25 @@
+[user]
+	name = {{ .fullname }}
+	email = {{ .email }}
+
+[core]
+{{- if (eq .chezmoi.os "windows") }}
+	editor = code --wait
+{{- else }}
+	editor = nvim
+{{- end }}
+
+[pull]
+	rebase = true
+
+[color]
+	ui = auto
+
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+
+[init]
+	defaultBranch = main

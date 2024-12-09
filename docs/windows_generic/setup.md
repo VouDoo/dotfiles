@@ -1,6 +1,6 @@
-# Setup `windows/aramis`
+# Setup `windows`
 
-- [Setup `windows/aramis`](#setup-windowsaramis)
+- [Setup `windows`](#setup-windows)
   - [Install Package managers](#install-package-managers)
     - [Windows Package Manager (required)](#windows-package-manager-required)
     - [Scoop (required)](#scoop-required)
@@ -10,6 +10,7 @@
     - [Update applications](#update-applications)
   - [Initialize dotfiles - chezmoi](#initialize-dotfiles---chezmoi)
   - [Initialize PowerShell profile](#initialize-powershell-profile)
+  - [Install Visual Studio Code](#install-visual-studio-code)
 
 ---
 
@@ -50,28 +51,31 @@ Chocolatey installs packaged applications as Administrator in conventional insta
 winget install -s winget --id Microsoft.Powershell       # PowerShell Core - most popular Windows shell
 winget install -s winget --id Microsoft.WindowsTerminal  # Windows Terminal - Windows Terminal emulator
 winget install -s winget --id Microsoft.PowerToys        # PowerToys - set of utilities for power users
-winget install -s winget --id JanDeDobbeleer.OhMyPosh    # Oh My Posh - custom prompt engine
 
 # install scoop packages (main bucket)
-scoop install main/git      # Git - official Git client
-scoop install main/7zip     # 7-Zip - file archiver
-scoop install main/chezmoi  # chezmoi - dotfiles manager
-scoop install main/ripgrep  # ripgrep - grep-clone tool
-scoop install main/fd       # fd - find-clone tool
-scoop install main/bat      # bat - cat-clone tool
-scoop install main/fzf      # fzf - fuzzy finder
+scoop install main/git       # Git - official Git client
+scoop install main/7zip      # 7-Zip - file archiver
+scoop install main/chezmoi   # chezmoi - dotfiles manager
+scoop install main/ripgrep   # ripgrep - grep-clone tool
+scoop install main/fd        # fd - find-clone tool
+scoop install main/bat       # bat - cat-clone tool
+scoop install main/fzf       # fzf - fuzzy finder
+scoop install main/starship  # Starship - cross-shell prompt
+scoop install main/neovim    # Neovim - text editor program
 
 scoop bucket add extras
-scoop install extras/lazygit          # lazygit - terminal UI for git commands
-scoop install extras/posh-git         # posh-git - PowerShell module that integrates Git and PowerShell
-scoop install extras/terminal-icons   # Terminal-Icons - PowerShell module that displays file and folder icons in terminal
-scoop install extras/PSFzf            # psfzf - PowerShell module that provides a wrapper for fzf
+scoop install extras/lazygit         # lazygit - terminal UI for git commands
+scoop install extras/posh-git        # posh-git - PowerShell module that integrates Git and PowerShell
+scoop install extras/terminal-icons  # Terminal-Icons - PowerShell module that displays file and folder icons in terminal
+scoop install extras/PSFzf           # psfzf - PowerShell module that provides a wrapper for fzf
 
 scoop bucket add nerd-fonts
 scoop install nerd-fonts/CascadiaCode-NF-Mono  # Cascadia Code Mono - coding font
 ```
 
-My extra applications are listed in [`extra_packages` directory](./extra_packages).
+My extra applications are listed in [`extra_packages` directory](./extra_packages):
+
+- [Packages for Kubernetes](./extra_packages/k8s.md)
 
 ### Update applications
 
@@ -79,7 +83,6 @@ My extra applications are listed in [`extra_packages` directory](./extra_package
 winget upgrade --id Microsoft.Powershell
 winget upgrade --id Microsoft.WindowsTerminal
 winget upgrade --id Microsoft.PowerToys
-winget upgrade --id JanDeDobbeleer.OhMyPosh
 scoop update --all --no-cache
 ```
 
@@ -87,8 +90,10 @@ scoop update --all --no-cache
 
 To initialize `chezmoi` and apply the dotfiles, run:
 
+_This requires an SSH key pair to connect GitHub._
+
 ```sh
-chezmoi init --apply --verbose https://github.com/VouDoo/dotfiles.git
+chezmoi init --apply --verbose git@github.com:VouDoo/dotfiles.git
 ```
 
 ## Initialize PowerShell profile
@@ -101,3 +106,9 @@ run these PowerShell commands:
 ```powershell
 Install-MyModules
 ```
+
+## Install Visual Studio Code
+
+Download and install from <https://code.visualstudio.com/download>.
+
+Then, synchronize the configuration with the GitHub account.

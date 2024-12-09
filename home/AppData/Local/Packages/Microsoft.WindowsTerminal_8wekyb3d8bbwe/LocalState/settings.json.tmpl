@@ -17,7 +17,7 @@
             "font": 
             {
                 "face": "Cascadia Code",
-                "size": 12
+                "size": {{ .terminal_font_size }}
             },
             "padding": "15, 10, 15, 20"
         },
@@ -27,7 +27,7 @@
                 "colorScheme": "Gruvbox Dark",
                 "font": 
                 {
-                    "face": "CaskaydiaCove Nerd Font Mono"
+                    "face": {{ .terminal_font_familly | quote }}
                 },
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "hidden": false,
@@ -39,7 +39,7 @@
                 "colorScheme": "Ubuntu",
                 "font": 
                 {
-                    "face": "CaskaydiaCove Nerd Font Mono"
+                    "face": {{ .terminal_font_familly | quote }}
                 },
                 "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
                 "hidden": false,
@@ -77,29 +77,6 @@
     },
     "schemes": 
     [
-        {
-            "background": "#0F0F0F",
-            "black": "#000000",
-            "blue": "#36A3D9",
-            "brightBlack": "#858585",
-            "brightBlue": "#68D5FF",
-            "brightCyan": "#C7FFFD",
-            "brightGreen": "#EAFE84",
-            "brightPurple": "#FFA3AA",
-            "brightRed": "#FF6565",
-            "brightWhite": "#FFFFFF",
-            "brightYellow": "#FFF779",
-            "cursorColor": "#F29718",
-            "cyan": "#95E6CB",
-            "foreground": "#E6E1CF",
-            "green": "#B8CC52",
-            "name": "Ayu",
-            "purple": "#F07178",
-            "red": "#FF3333",
-            "selectionBackground": "#253340",
-            "white": "#FFFFFF",
-            "yellow": "#E7C547"
-        },
         {
             "background": "#282828",
             "black": "#282828",

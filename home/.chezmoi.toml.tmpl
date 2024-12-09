@@ -1,0 +1,30 @@
+{{- $firstname := promptStringOnce . "firstname" "First name" -}}
+{{- $lastname := promptStringOnce . "lastname" "Last name" -}}
+
+sourceDir = "{{ .chezmoi.homeDir }}/.dotfiles"
+[data]
+    # Personal details
+    firstname = {{ $firstname | quote }}
+    lastname = {{ $lastname | quote }}
+    fullname = {{ cat $firstname $lastname | quote }}
+    email = {{ promptStringOnce . "email" "Email address" | quote }}
+
+    # Terminal settings
+    {{- $defaultFontFamilly := "Hack Nerd Font Mono" -}}
+    {{- if eq .chezmoi.os "windows" }}
+        {{- $defaultFontFamilly = "CaskaydiaCove Nerd Font Mono" -}}
+    {{- end }}
+    {{- $terminalFontFamilly := promptStringOnce . "terminal_font_familly" (printf "Font familly for Terminal (default: %s)" $defaultFontFamilly) | default $defaultFontFamilly }}
+    terminal_font_familly = {{ $terminalFontFamilly | quote }}
+    {{- $terminalFontSize := promptIntOnce . "terminal_font_size" "Font familly for Terminal (default: 12)" | default 12 }}
+    terminal_font_size = {{ $terminalFontSize }}
+
+    # Enable specific configuration
+    starship = {{ promptBoolOnce . "starship" "Enable configuration for Starship shell prompt" }}
+    alacritty = {{ promptBoolOnce . "alacritty" "Enable configuration for Alacritty terminal emulator" }}
+    nvim = {{ promptBoolOnce . "nvim" "Enable configuration for Neovim text editor" }}
+    kubernetes = {{ promptBoolOnce . "kubernetes" "Enable configuration for Kubernetes development/management tools" }}
+    {{- if ne .chezmoi.os "windows" }}
+    bash = {{ promptBoolOnce . "bash" "Enable configuration for Bash shell" }}
+    fish = {{ promptBoolOnce . "fish" "Enable configuration for Fish shell" }}
+    {{- end }}

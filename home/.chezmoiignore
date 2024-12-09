@@ -1,18 +1,50 @@
-# files related to Aramis Windows
-{{ if (and (ne .chezmoi.os "windows") (ne .chezmoi.os "aramis")) }}
+# files for Windows only
+{{ if ne .chezmoi.os "windows" }}
 AppData
 Documents
 {{ end }}
 
-# files related to Aramis Linux
-{{ if (and (ne .chezmoi.os "linux") (ne .chezmoi.os "aramis")) }}
+# files for Linux only
+{{ if ne .chezmoi.os "linux" }}
 .config
 .local
+{{ end }}
+
+# ignore alacritty files if configuration is disabled
+{{ if not .alacritty }}
+AppData/Roaming/alacritty  # Windows
+.config/alacritty          # Linux
+{{ end }}
+
+# ignore nvim files if configuration is disabled
+{{ if not .nvim }}
+AppData/Local/nvim  # Windows
+.config/nvim        # Linux
+{{ end }}
+
+# ignore bash files if OS is Windows or configuration is disabled
+{{ if or (eq .chezmoi.os "windows") (not .bash) }}
 .bash_profile
 .bashrc
+{{ end }}
+
+# ignore fish files if OS is Windows or configuration is disabled
+{{ if or (eq .chezmoi.os "windows") (not .fish) }}
+.config/fish
+{{ end }}
+
+# files for Linux/aramis (my Thinkpad) only
+{{ if or (ne .chezmoi.os "linux") (ne .chezmoi.hostname "aramis") }}
+.config/dunst
+.config/picom
+.config/qtile
+.local/bin/keepass
 .xbindkeysrc
 .xinitrc
 {{ end }}
 
 # ignored files and directories
 **/ignore_*
+
+# archives directory
+archives
