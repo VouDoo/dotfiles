@@ -10,6 +10,7 @@ if status is-interactive
 
     # https://github.com/starship/starship#fish
     if type -q starship
+        set -gx STARSHIP_CONFIG "$XDG_CONFIG_HOME/starship/config.toml"
         starship init fish | source
     end
 
