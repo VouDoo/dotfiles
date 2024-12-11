@@ -1,0 +1,24 @@
+# https://fishshell.com/docs/current/cmds/abbr.html
+
+# Core
+abbr -a cm chezmoi
+abbr -a find fd
+abbr -a grep rg
+abbr -a vi nvim
+abbr -a vim nvim
+abbr -a tree ls --tree
+
+# Moving around...
+abbr -a .. 'cd ..'
+abbr -a ... 'cd ../../'
+abbr -a .... 'cd ../../../'
+abbr -a ..... 'cd ../../../../'
+abbr -a - 'cd -'
+
+# Extra
+if type -q bluetoothctl
+    abbr -a bluetooth bluetoothctl
+end
+if type -q iwctl
+    abbr -a wifi iwctl
+end

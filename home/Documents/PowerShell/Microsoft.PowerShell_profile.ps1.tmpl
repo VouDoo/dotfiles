@@ -113,37 +113,37 @@ function Convert-Base64 {
 #region Run in user interactive session
 if (Test-InteractiveSession -and -not $NonInteractive.IsPresent) {
     #region Create my aliases
-    New-MyAlias pathUpd  Update-EnvPath         "Refresh PATH environment variable"
-    New-MyAlias cm       Invoke-Chezmoi         "Execute chezmoi dotfiles manager"
-    New-MyAlias ex       Invoke-FileExplorer    "Execute File Explorer"
-    New-MyAlias ed       Invoke-Editor          "Open my text editor"
-    New-MyAlias ws       Use-MyWorkspace        "Change current directory to my workspace"
-    New-MyAlias histOn   Enable-History         "Enable shell history"
-    New-MyAlias histOff  Disable-History        "Disable shell history"
-    New-MyAlias base64   Convert-Base64         "Base64 Encode and Decode"
+    New-MyAlias pathUpd Update-EnvPath      "Refresh PATH environment variable"
+    New-MyAlias cm      Invoke-Chezmoi      "Execute chezmoi dotfiles manager"
+    New-MyAlias ex      Invoke-FileExplorer "Execute File Explorer"
+    New-MyAlias ed      Invoke-Editor       "Open my text editor"
+    New-MyAlias ws      Use-MyWorkspace     "Change current directory to my workspace"
+    New-MyAlias histOn  Enable-History      "Enable shell history"
+    New-MyAlias histOff Disable-History     "Disable shell history"
+    New-MyAlias base64  Convert-Base64      "Base64 Encode and Decode"
     if (Test-Command "rg") {
         New-MyAlias grep "rg" "Execute ripgrep"
     }
+    #endregion
+{{ if .kubernetes }}
+    #region Set kubernetes toolset
     if (Test-Command "kubectl") {
-        # Note for myself:
-        # kubectl is the main tool for Kubernetes management and development.
-        # So, if it is found, let's assume that the other tools are present too.
         $env:KUBE_EDITOR = $TextEditorWithWait
         & kubectl completion powershell | Out-String | Invoke-Expression
         New-MyAlias k "kubectl" "Run kubectl cmdline tool"
-        if (Test-Command "k9s") {
-            $env:K9S_EDITOR = $TextEditorWithWait
-            New-MyAlias k9s "k9s" "Run k9s cmdline tool"
-        }
-        if (Test-Command "kubectx") {
-            New-MyAlias kctx "kubectx" "Run kubectx cmdline tool"
-        }
-        if (Test-Command "kubens") {
-            New-MyAlias kns "kubens" "Run kubens cmdline tool"
-        }
+    }
+    if (Test-Command "k9s") {
+        $env:K9S_EDITOR = $TextEditorWithWait
+        New-MyAlias k9s "k9s" "Run k9s cmdline tool"
+    }
+    if (Test-Command "kubectx") {
+        New-MyAlias kctx "kubectx" "Run kubectx cmdline tool"
+    }
+    if (Test-Command "kubens") {
+        New-MyAlias kns "kubens" "Run kubens cmdline tool"
     }
     #endregion
-
+{{ end }}
     #region Set PSFzf module
     # Set PSReadline related options
     Set-PsFzfOption -PSReadlineChordProvider "Ctrl+t"
@@ -166,11 +166,11 @@ if (Test-InteractiveSession -and -not $NonInteractive.IsPresent) {
     Import-Module MyRemoteManager
     Import-Module MyJavaManager
     # Create aliases
-    New-MyAlias co      Invoke-MyRMConnection   "Invoke MyRemoteManager connection"
-    New-MyAlias coTest  Test-MyRMConnection     "Test MyRemoteManager connection"
-    New-MyAlias coGet   Get-MyRMConnection      "Get MyRemoteManager connections"
-    New-MyAlias coAdd   Add-MyRMConnection      "Add MyRemoteManager connection"
-    New-MyAlias coRm    Remove-MyRMConnection   "Remove MyRemoteManager connection"
+    New-MyAlias co     Invoke-MyRMConnection "Invoke MyRemoteManager connection"
+    New-MyAlias coTest Test-MyRMConnection   "Test MyRemoteManager connection"
+    New-MyAlias coGet  Get-MyRMConnection    "Get MyRemoteManager connections"
+    New-MyAlias coAdd  Add-MyRMConnection    "Add MyRemoteManager connection"
+    New-MyAlias coRm   Remove-MyRMConnection "Remove MyRemoteManager connection"
     #endregion
 
     #region Set custom prompt
@@ -181,8 +181,8 @@ if (Test-InteractiveSession -and -not $NonInteractive.IsPresent) {
     Start-Starship
     #endregion
 
-    #region Print greeting message
-    Write-Host ("`nGreetings, Professor Maxence. Shall we play a game?`n") -ForegroundColor Yellow
+    #region Print greeting message like in the movie "WarGames"
+    Write-Host ("`nGREETINGS PROFESSOR {{ .firstname | upper }}.`n`nSHALL WE PLAY A GAME?`n") -ForegroundColor Yellow
     #endregion
 }
 #endregion

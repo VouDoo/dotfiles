@@ -1,11 +1,11 @@
 #!/bin/sh
-# Start KeePass
+# start KeePass
 
-# Check if dropbox is running
+# check if dropbox is running
 if test ! $(pgrep dropbox)
 then
 	notify-send --urgency=critical "Dropbox client is not started. The KeePass database will be not synchronized."
 fi
 
-# Start KeePassXC
-/usr/bin/keepassxc
+# start KeePassXC
+keepassxc

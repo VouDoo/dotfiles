@@ -1,27 +1,37 @@
 # files for Windows only
-{{ if (ne .chezmoi.os "windows") }}
+{{ if ne .chezmoi.os "windows" }}
 AppData
 Documents
 {{ end }}
 
-# files for Linux only
-{{ if (ne .chezmoi.os "linux") }}
-.config/alacritty
-.config/fish
-.config/nvim
-.config/qtile
+# ignore bash files if OS is Windows or configuration is disabled
+{{ if or (eq .chezmoi.os "windows") (not .bash) }}
 .bash_profile
 .bashrc
 {{ end }}
 
-# files for my Thinkpad laptop
-{{ if (and (ne .chezmoi.os "linux") (ne .chezmoi.hostname "aramis")) }}
+# ignore fish files if OS is Windows or configuration is disabled
+{{ if or (eq .chezmoi.os "windows") (not .fish) }}
+.config/fish
+{{ end }}
+
+# ignore alacritty files if configuration is disabled
+{{ if not .alacritty }}
+.config/alacritty
+{{ end }}
+
+# files for Linux/aramis (my Thinkpad) only
+{{ if or (ne .chezmoi.os "linux") (ne .chezmoi.hostname "aramis") }}
 .config/dunst
 .config/picom
-.local/bin/executable_keepass
+.config/qtile
+.local/bin/keepass
 .xbindkeysrc
 .xinitrc
 {{ end }}
 
 # ignored files and directories
 **/ignore_*
+
+# archives directory
+archives

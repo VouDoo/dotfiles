@@ -1,1 +1,56 @@
-{{- template "alacritty/alacritty.toml" . -}}
+[colors.bright]
+black = "#727072"
+blue = "#FC9867"
+cyan = "#78DCE8"
+green = "#A9DC76"
+magenta = "#AB9DF2"
+red = "#FF6188"
+white = "#FCFCFA"
+yellow = "#FFD866"
+
+[colors.normal]
+black = "#403E41"
+blue = "#FC9867"
+cyan = "#78DCE8"
+green = "#A9DC76"
+magenta = "#AB9DF2"
+red = "#FF6188"
+white = "#FCFCFA"
+yellow = "#FFD866"
+
+[colors.primary]
+background = "#2D2A2E"
+foreground = "#FCFCFA"
+
+[font]
+size = {{ .terminal_font_size }}
+
+[font.bold]
+family = {{ .terminal_font_familly | quote }}
+style = "Bold"
+
+[font.bold_italic]
+family = {{ .terminal_font_familly | quote }}
+style = "Bold Italic"
+
+[font.italic]
+family = {{ .terminal_font_familly | quote }}
+style = "Italic"
+
+[font.normal]
+family = {{ .terminal_font_familly | quote }}
+style = "Regular"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[window]
+decorations = "none"
+dynamic_title = true
+opacity = 1.0
+title = "Alacritty"
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"

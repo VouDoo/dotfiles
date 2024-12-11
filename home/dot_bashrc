@@ -2,24 +2,30 @@
 # ~/.bashrc
 #
 
-# If not running interactively, don't do anything
+# if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
-# Pager
-export PAGER=most
-export LESSHISTFILE=-
+# set pager
+if [[ -x "$(command -v less 2>/dev/null)" ]]; then
+    export PAGER="less"
+    export LESSHISTFILE=-
+elif [[ -x "$(command -v more 2>/dev/null)" ]]; then
+    export PAGER="more"
+else
+    export PAGER="cat"
+fi
 
-# Editor
-export EDITOR=/usr/bin/nvim
+# set editor
+if [[ -x "$(command -v nvim 2>/dev/null)" ]]; then
+    export EDITOR="$(command -v nvim)"
+elif [[ -x "$(command -v vim 2>/dev/null)" ]]; then
+    export EDITOR="$(command -v vim)"
+else
+    export EDITOR="$(command -v vi)"
+fi
 
-# Add user's local binaries to PATH
-[[ ":$PATH:" != *":${HOME}/.local/bin:"* ]] && PATH="${PATH}:${HOME}/.local/bin"
-
-# Environment variables
-#export EXAMPLE=foo
-
-# Run fish in interactive mode
-exec /bin/fish
+# add user's local binaries to PATH
+[[ ":$PATH:" != *":${HOME}/.local/bin:"* ]] && PATH="${HOME}/.local/bin:${PATH}"

@@ -1,0 +1,20 @@
+#  https://fishshell.com/docs/current/index.html
+
+# Environment variables - https://fishshell.com/docs/current/cmds/set.html
+set -gx EDITOR "nvim"
+set -gx PAGER "less"
+set -gx XDG_CONFIG_HOME "$HOME/.config"
+
+if status is-interactive
+    source $XDG_CONFIG_HOME/fish/abbreviations.fish
+
+    # https://github.com/starship/starship#fish
+    if type -q starship
+        starship init fish | source
+    end
+
+    # https://github.com/ajeetdsouza/zoxide
+    if type -q zoxide
+        zoxide init fish | source
+    end
+end
