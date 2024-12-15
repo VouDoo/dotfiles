@@ -1,16 +1,16 @@
 @{
-    PSDependOptions   = @{
+    PSDependOptions = @{
         Target     = "CurrentUser"
         Repository = "PSGallery"
     }
 
     # Modules
-    "PSReadLine"      = @{
+    "PSReadLine"    = @{
         Version    = "latest"
         Parameters = @{
             AllowPrerelease = $true
         }
     }
-    "MyRemoteManager" = "latest"
-    "MyJavaManager"   = "latest"
+    "Portal"        = "latest"
+    "MyJavaManager" = "latest"
 }

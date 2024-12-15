@@ -136,14 +136,10 @@ if (Test-InteractiveSession -and -not $NonInteractive.IsPresent) {
 
     #region Set my modules
     # Import modules
-    Import-Module MyRemoteManager
+    Import-Module Portal
     Import-Module MyJavaManager
     # Create aliases
-    New-MyAlias co     Invoke-MyRMConnection "Invoke MyRemoteManager connection"
-    New-MyAlias coTest Test-MyRMConnection   "Test MyRemoteManager connection"
-    New-MyAlias coGet  Get-MyRMConnection    "Get MyRemoteManager connections"
-    New-MyAlias coAdd  Add-MyRMConnection    "Add MyRemoteManager connection"
-    New-MyAlias coRm   Remove-MyRMConnection "Remove MyRemoteManager connection"
+    New-MyAlias portal Open-Portal "Open Portal connection"
     #endregion
 
     #region Set tools
