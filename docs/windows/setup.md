@@ -1,36 +1,42 @@
 # Setup `windows`
 
 - [Setup `windows`](#setup-windows)
+  - [Before you start](#before-you-start)
   - [Install Package managers](#install-package-managers)
-    - [Windows Package Manager (required)](#windows-package-manager-required)
-    - [Scoop (required)](#scoop-required)
+    - [Windows Package Manager](#windows-package-manager)
+    - [Scoop](#scoop)
     - [Chocolatey _(optional)_](#chocolatey-optional)
-  - [Manage my core applications](#manage-my-core-applications)
+  - [Manage core applications](#manage-core-applications)
     - [Install applications](#install-applications)
-    - [Update applications](#update-applications)
-  - [Initialize dotfiles - chezmoi](#initialize-dotfiles---chezmoi)
-  - [Initialize PowerShell profile](#initialize-powershell-profile)
+    - [Upgrade applications](#upgrade-applications)
+  - [Initialize dotfiles with chezmoi](#initialize-dotfiles-with-chezmoi)
+  - [Configure PowerShell profile](#configure-powershell-profile)
   - [Install Visual Studio Code](#install-visual-studio-code)
 
 ---
 
+## Before you start
+
+This guide will assist you in setting up your Windows environment, ideally following a fresh Windows installation.
+
+**All commands in this guide should be executed in a PowerShell console.**
+
 ## Install Package managers
 
-I mainly use `winget` and `scoop`. So these package managers are required for the next action steps.
+**Windows Package Manager (winget)** and **Scoop** package managers are required for the next action steps.
 
-I only use `Chocolatey` in some cases for specific packages.
+### Windows Package Manager
 
-### Windows Package Manager (required)
+Windows Package Manager (winget) is the official package management tool for the Windows operating system.
 
-Windows Package Manager (winget) is the official package manager on Windows OS.
+_Think of it as a command-line alternative to the Microsoft Store._
 
-_It's basically the command-line version of the Microsoft Store._
-
-**This command-line tool is bundled with modern versions of Windows (from Windows 10).**
+**This command-line tool is bundled with modern versions of Windows (starting from Windows 10).**
+**Chances are, you won’t need to install it.**
 
 🔗 [How to install winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/#install-winget)
 
-### Scoop (required)
+### Scoop
 
 Scoop installs packaged applications as non-Administrator (by default) inside user directory.
 
@@ -42,7 +48,7 @@ Chocolatey installs packaged applications as Administrator in conventional insta
 
 🔗 [How to install Chocolatey](https://chocolatey.org/install)
 
-## Manage my core applications
+## Manage core applications
 
 ### Install applications
 
@@ -63,45 +69,60 @@ scoop install main/fzf       # fzf - fuzzy finder
 scoop install main/starship  # Starship - cross-shell prompt
 scoop install main/neovim    # Neovim - text editor program
 
+# install scoop packages (extra bucket)
 scoop bucket add extras
 scoop install extras/lazygit         # lazygit - terminal UI for git commands
 scoop install extras/posh-git        # posh-git - PowerShell module that integrates Git and PowerShell
 scoop install extras/terminal-icons  # Terminal-Icons - PowerShell module that displays file and folder icons in terminal
 scoop install extras/PSFzf           # psfzf - PowerShell module that provides a wrapper for fzf
 
+# install scoop packages (nerd-fonts bucket)
 scoop bucket add nerd-fonts
 scoop install nerd-fonts/CascadiaCode-NF-Mono  # Cascadia Code Mono - coding font
 ```
 
-My extra applications are listed in [`extra_packages` directory](./extra_packages):
+_Feel free to check out this [catalog file](./catalog.md), which provides a list of packages/applications organized by specific usage._
 
-- [Packages for Kubernetes](./extra_packages/k8s.md)
-
-### Update applications
+### Upgrade applications
 
 ```sh
+# Upgrade winget packages individually
 winget upgrade --id Microsoft.Powershell
 winget upgrade --id Microsoft.WindowsTerminal
 winget upgrade --id Microsoft.PowerToys
+
+# Upgrade all Scoop packages, skipping the cache to avoid unnecessary disk usage
 scoop update --all --no-cache
 ```
 
-## Initialize dotfiles - chezmoi
+## Initialize dotfiles with chezmoi
 
-To initialize `chezmoi` and apply the dotfiles, run:
+To set up chezmoi and apply the dotfiles, follow these steps:
 
-_This requires an SSH key pair to connect GitHub._
+_This requires an SSH key pair to connect to GitHub._
+
+To generate an SSH key, use this command:
+
+_Skip it if you already have a key pair._
+
+```sh
+sh-keygen -t ed25519 -C "Generated on $(Get-date -Format 'yyyy-MM-dd HH:mm:ss')"
+```
+
+Then, add the generated public key to your [GitHub SSH keys](https://github.com/settings/keys).
+
+Finally, initialize and apply your dotfiles with:
 
 ```sh
 chezmoi init --apply --verbose git@github.com:VouDoo/dotfiles.git
 ```
 
-## Initialize PowerShell profile
+## Configure PowerShell profile
 
-_The PowerShell profile files are maintained by `chezmoi`._
+_The PowerShell profile files are maintained by [chezmoi](https://www.chezmoi.io/)._
 
-To install the requirements for the PowerShell profile,
-run these PowerShell commands:
+Once you've applied the files with chezmoi, you'll need to install the requirements for the PowerShell profile.
+Open a new PowerShell session and execute the following command:
 
 ```powershell
 Install-MyModules
@@ -111,4 +132,4 @@ Install-MyModules
 
 Download and install from <https://code.visualstudio.com/download>.
 
-Then, synchronize the configuration with the GitHub account.
+Then, synchronize the configuration with your GitHub account.
