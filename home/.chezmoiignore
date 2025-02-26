@@ -1,46 +1,43 @@
-# files for Windows only
-{{ if ne .chezmoi.os "windows" }}
+{{ if eq .chezmoi.os "windows" }}
+.config
+.local
+{{ else }}
 AppData
 Documents
 {{ end }}
 
-# files for Linux only
-{{ if ne .chezmoi.os "linux" }}
-.config
-.local
-{{ end }}
-
-# ignore alacritty files if configuration is disabled
 {{ if not .alacritty }}
 AppData/Roaming/alacritty  # Windows
-.config/alacritty          # Linux
+.config/alacritty.toml     # Linux
 {{ end }}
 
-# ignore nvim files if configuration is disabled
-{{ if not .nvim }}
-AppData/Local/nvim  # Windows
-.config/nvim        # Linux
+{{ if and (eq .chezmoi.os "windows") (not .nvim) }}
+AppData/Local/nvim
 {{ end }}
 
-# ignore bash files if OS is Windows or configuration is disabled
 {{ if or (eq .chezmoi.os "windows") (not .bash) }}
 .bash_profile
 .bashrc
 {{ end }}
 
-# ignore fish files if OS is Windows or configuration is disabled
 {{ if or (eq .chezmoi.os "windows") (not .fish) }}
 .config/fish
 {{ end }}
 
-# files for Linux/aramis (my Thinkpad) only
-{{ if or (ne .chezmoi.os "linux") (ne .chezmoi.hostname "aramis") }}
-.config/dunst
+{{ if or (eq .chezmoi.os "windows") (ne .desktop "hyprland") }}
+.config/hypr
+.config/waybar
+{{ end }}
+
+{{ if or (eq .chezmoi.os "windows") (ne .desktop "qtile") }}
 .config/picom
 .config/qtile
-.local/bin/keepass
 .xbindkeysrc
 .xinitrc
+{{ end }}
+
+{{ if or (eq .chezmoi.os "windows") (eq .desktop "none") }}
+.config/dunst
 {{ end }}
 
 # ignored files and directories
