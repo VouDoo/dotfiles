@@ -1,3 +1,6 @@
+### Audio ###
+# WirePlumber is required <https://wiki.archlinux.org/title/WirePlumber>
+
 # Increase volume
 "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1"
    XF86AudioRaiseVolume
@@ -14,6 +17,9 @@
 "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
    XF86AudioMicMute
 
+### Monitor brightness ###
+# brightnessctl is required <https://man.archlinux.org/man/extra/brightnessctl/brightnessctl.1.en>
+
 # Increase brightness
 "brightnessctl set +10%"
    XF86MonBrightnessUp
@@ -21,6 +27,9 @@
 # Decrease brightness
 "brightnessctl set 10%-"
    XF86MonBrightnessDown
+
+### Screenshot ###
+# maim is required <https://man.archlinux.org/man/maim.1.en>
 
 # Take screenshoot
 "maim -s /tmp/capture.png; feh /tmp/capture.png"

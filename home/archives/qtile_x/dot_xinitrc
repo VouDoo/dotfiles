@@ -33,6 +33,7 @@ if [ -f "$userbindkeys" ]; then
 	xbindkeys
 fi
 
+# picom <https://wiki.archlinux.org/title/Picom>
 picom &
 
 exec /usr/bin/qtile start
