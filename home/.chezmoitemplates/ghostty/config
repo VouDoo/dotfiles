@@ -1,4 +1,4 @@
 shell-integration = fish
 font-family = {{ .terminal_font_familly }}
 font-size = {{ .terminal_font_size }}
-theme = MyTheme
+theme = rose-pine-moon
