@@ -99,7 +99,7 @@
   },
   "clock": {
     "format": "{:%H:%M}  ",
-    "format-alt": "{:%d-%m-%Y}",
+    "format-alt": "{:%d/%m/%Y} ",
     "tooltip": false
   }
 }
