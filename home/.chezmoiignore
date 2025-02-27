@@ -11,10 +11,6 @@ AppData/Roaming/alacritty  # Windows
 .config/alacritty.toml     # Linux
 {{ end }}
 
-{{ if and (eq .chezmoi.os "windows") (not .nvim) }}
-AppData/Local/nvim
-{{ end }}
-
 {{ if or (eq .chezmoi.os "windows") (not .bash) }}
 .bash_profile
 .bashrc

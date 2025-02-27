@@ -68,7 +68,6 @@ scoop install main/bat       # bat - cat-clone tool
 scoop install main/fzf       # fzf - fuzzy finder
 scoop install main/delta     # delta - syntax-highlighter for git and diff output
 scoop install main/starship  # Starship - cross-shell prompt
-scoop install main/neovim    # Neovim - text editor program
 
 # install scoop packages (extra bucket)
 scoop bucket add extras

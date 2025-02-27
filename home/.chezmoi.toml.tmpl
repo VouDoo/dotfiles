@@ -27,9 +27,7 @@ sourceDir = "{{ .chezmoi.homeDir }}/.dotfiles"
     # Enable specific configuration
     starship = {{ promptBoolOnce . "starship" "Enable configuration for Starship shell prompt" }}
     alacritty = {{ promptBoolOnce . "alacritty" "Enable configuration for Alacritty terminal emulator" }}
-    {{- if eq .chezmoi.os "windows" }}
-    nvim = {{ promptBoolOnce . "nvim" "Enable configuration for Neovim text editor" }}
-    {{- else }}
+    {{- if eq .chezmoi.os "linux" }}
     bash = {{ promptBoolOnce . "bash" "Enable configuration for Bash shell" }}
     fish = {{ promptBoolOnce . "fish" "Enable configuration for Fish shell" }}
     hyprland = {{ promptBoolOnce . "hyprland" "Enable configuration for Hyprland compositor" }}
