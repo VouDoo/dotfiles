@@ -6,5 +6,6 @@ The archive directories are located relative to the home directory.
 
 Archive directories with description:
 
+- [alacritty](./alacritty): Configuration for Alacritty for Windows and Linux.
 - [neovim_basic](./neovim_basic): Very basic Neovim configuration.
 - [qtile_x](./qtile_x): Qtile based on X window system.
