@@ -9,7 +9,7 @@ source=~/.config/hypr/theme.conf
 ### MONITORS ###
 ################
 
-monitor=,preferred,auto,auto
+monitor=,preferred,auto,{{ .hypr_monitor_scale }}
 
 
 ###################
@@ -33,8 +33,8 @@ exec-once = waybar & hyprpaper
 ### ENVIRONMENT VARIABLES ###
 #############################
 
-env = XCURSOR_SIZE,24
-env = HYPRCURSOR_SIZE,24
+env = XCURSOR_SIZE,{{ .hypr_cursor_size }}
+env = HYPRCURSOR_SIZE,{{ .hypr_cursor_size }}
 
 
 #####################
@@ -50,7 +50,7 @@ general {
     col.active_border = $rose $pine $love $iris 90deg
     col.inactive_border = $muted
 
-    layout = dwindle
+    layout = master
 }
 
 decoration {
@@ -100,11 +100,6 @@ animations {
     animation = workspacesOut, 1, 1.94, almostLinear, fade
 }
 
-dwindle {
-    pseudotile = true
-    preserve_split = true
-}
-
 master {
     new_status = master
 }
@@ -137,8 +132,6 @@ bind = $mainMod, M, exit,
 bind = $mainMod, E, exec, $fileManager
 bind = $mainMod, V, togglefloating,
 bind = $mainMod, R, exec, $menu
-bind = $mainMod, P, pseudo, # dwindle
-bind = $mainMod, J, togglesplit, # dwindle
 
 # Move focus with mainMod + vim motion keys
 bind = $mainMod, h, movefocus, l

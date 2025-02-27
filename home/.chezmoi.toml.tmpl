@@ -22,5 +22,11 @@ sourceDir = "{{ .chezmoi.homeDir }}/.dotfiles"
     {{- $terminalFontSize := promptIntOnce . "terminal_font_size" (printf "Font size for Terminal (default: %d)" $defaultTerminalFontSize) | default $defaultTerminalFontSize }}
     terminal_font_size = {{ $terminalFontSize }}
 
+    {{- if eq .chezmoi.os "linux" }}
+    # Hyprland settings
+    hypr_monitor_scale = {{ promptIntOnce . "hypr_monitor_scale" "Hyprland monitor scale (leave empty for default)" | default 1 }}
+    hypr_cursor_size = {{ promptIntOnce . "hypr_cursor_size" "Hyprland cursor size (leave empty for default)" | default 24 }}
+    {{- end }}
+
     # Enable specific configuration
     kubernetes = {{ promptBoolOnce . "kubernetes" "Enable configuration for Kubernetes development/management tools" }}
