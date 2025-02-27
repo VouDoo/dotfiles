@@ -24,19 +24,19 @@ AppData/Local/nvim
 .config/fish
 {{ end }}
 
-{{ if or (eq .chezmoi.os "windows") (ne .desktop "hyprland") }}
+{{ if or (eq .chezmoi.os "windows") (not .hyprland) }}
 .config/hypr
 .config/waybar
 {{ end }}
 
-{{ if or (eq .chezmoi.os "windows") (ne .desktop "qtile") }}
+{{ if or (eq .chezmoi.os "windows") (not .qtile) }}
 .config/picom
 .config/qtile
 .xbindkeysrc
 .xinitrc
 {{ end }}
 
-{{ if or (eq .chezmoi.os "windows") (eq .desktop "none") }}
+{{ if and (not .hyprland) (not .qtile) }}
 .config/dunst
 {{ end }}
 

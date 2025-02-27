@@ -27,6 +27,7 @@ sourceDir = "{{ .chezmoi.homeDir }}/.dotfiles"
     {{- else }}
     bash = {{ promptBoolOnce . "bash" "Enable configuration for Bash shell" }}
     fish = {{ promptBoolOnce . "fish" "Enable configuration for Fish shell" }}
-    desktop = {{ promptChoiceOnce . "desktop" "Select a desktop environment" (list "hyprland" "qtile" "none") }}
+    hyprland = {{ promptBoolOnce . "hyprland" "Enable configuration for Hyprland compositor" }}
+    qtile = {{ promptBoolOnce . "qtile" "Enable configuration for Qtile tiling window manager" }}
     {{- end }}
     kubernetes = {{ promptBoolOnce . "kubernetes" "Enable configuration for Kubernetes development/management tools" }}
