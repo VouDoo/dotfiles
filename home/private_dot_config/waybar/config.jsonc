@@ -2,8 +2,8 @@
 {
   "position": "bottom",
   "spacing": 4,
-  "modules-left": ["tray", "hyprland/workspaces", "hyprland/submap"],
-  "modules-center": ["hyprland/window"],
+  "modules-left": ["hyprland/workspaces", "tray", "hyprland/submap", "hyprland/window"],
+  "modules-center": [],
   "modules-right": [
     "idle_inhibitor",
     "wireplumber",
@@ -29,13 +29,17 @@
       "*": 4
     }
   },
+  "tray": {
+    "spacing": 10
+  },
   "hyprland/submap": {
     "format": "✌️ {}",
     "max-length": 8,
     "tooltip": false
   },
-  "tray": {
-    "spacing": 10
+  "hyprland/window": {
+    "format": " {}",
+    "separate-outputs": true
   },
   "idle_inhibitor": {
     "format": "{icon}",
