@@ -11,7 +11,7 @@
     "network",
     "cpu",
     "memory",
-    "battery#bat1",
+    "battery",
     "battery#bat2",
     "clock"
   ],
