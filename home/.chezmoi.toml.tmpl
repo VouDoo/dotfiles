@@ -2,6 +2,11 @@
 {{- $lastname := promptStringOnce . "lastname" "Last name" -}}
 
 sourceDir = "{{ .chezmoi.homeDir }}/.dotfiles"
+
+[diff]
+    command = "delta"
+    pager = "delta"
+
 [data]
     # Personal details
     firstname = {{ $firstname | quote }}

@@ -66,6 +66,7 @@ scoop install main/ripgrep   # ripgrep - grep-clone tool
 scoop install main/fd        # fd - find-clone tool
 scoop install main/bat       # bat - cat-clone tool
 scoop install main/fzf       # fzf - fuzzy finder
+scoop install main/delta     # delta - syntax-highlighter for git and diff output
 scoop install main/starship  # Starship - cross-shell prompt
 scoop install main/neovim    # Neovim - text editor program
 

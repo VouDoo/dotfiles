@@ -8,9 +8,21 @@
 {{- else }}
 	editor = nvim
 {{- end }}
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	dark = true
+	line-numbers = true
 
 [pull]
 	rebase = true
+
+[merge]
+	conflictstyle = zdiff3
 
 [color]
 	ui = auto
