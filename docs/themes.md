@@ -1,9 +1,10 @@
 # Themes
 
-## Theme on Linux
-
-I try to apply the Rosé Pine (Moon) theme as much as possible, which is describe as:
+I strive to apply the Rosé Pine (Moon) theme to GUI components whenever possible.
+This theme is described as:
 
 > _All natural pine, faux fur and a bit of soho vibes for the classy minimalist._
 
-See the collection of personalization settings per application for this theme: <https://rosepinetheme.com/>
+You can explore the collection of personalization settings for various applications here: <https://rosepinetheme.com/>
+
+For my development environment, however, I sometimes prefer the Gruvbox theme, so I may use that instead: <https://github.com/morhetz/gruvbox>
