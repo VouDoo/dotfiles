@@ -1,6 +1,3 @@
-{{- $firstname := promptStringOnce . "firstname" "First name" -}}
-{{- $lastname := promptStringOnce . "lastname" "Last name" -}}
-
 sourceDir = "{{ .chezmoi.homeDir }}/.dotfiles"
 
 [diff]
@@ -9,19 +6,20 @@ sourceDir = "{{ .chezmoi.homeDir }}/.dotfiles"
 
 [data]
     # Personal details
+    {{- $firstname := promptStringOnce . "firstname" "First name" }}
+    {{- $lastname := promptStringOnce . "lastname" "Last name" }}
     firstname = {{ $firstname | quote }}
     lastname = {{ $lastname | quote }}
     fullname = {{ cat $firstname $lastname | quote }}
     email = {{ promptStringOnce . "email" "Email address" | quote }}
 
     # Terminal settings
-    {{- $defaultFontFamilly := "0xProto Nerd Font Mono" -}}
-    {{- if eq .chezmoi.os "windows" }}
-        {{- $defaultFontFamilly = "CaskaydiaCove Nerd Font Mono" -}}
-    {{- end }}
-    {{- $terminalFontFamilly := promptStringOnce . "terminal_font_familly" (printf "Font familly for Terminal (default: %s)" $defaultFontFamilly) | default $defaultFontFamilly }}
+    {{- $defaultTerminalFontFamily := "0xProto Nerd Font Mono" }}
+    {{- if eq .chezmoi.os "windows" }}{{ $defaultTerminalFontFamily = "CaskaydiaCove Nerd Font Mono" }}{{ end }}
+    {{- $terminalFontFamilly := promptStringOnce . "terminal_font_familly" (printf "Font familly for Terminal (default: %s)" $defaultTerminalFontFamily) | default $defaultTerminalFontFamily }}
     terminal_font_familly = {{ $terminalFontFamilly | quote }}
-    {{- $terminalFontSize := promptIntOnce . "terminal_font_size" "Font size for Terminal (default: 12)" | default 12 }}
+    {{- $defaultTerminalFontSize := 12 }}
+    {{- $terminalFontSize := promptIntOnce . "terminal_font_size" (printf "Font size for Terminal (default: %d)" $defaultTerminalFontSize) | default $defaultTerminalFontSize }}
     terminal_font_size = {{ $terminalFontSize }}
 
     # Enable specific configuration
