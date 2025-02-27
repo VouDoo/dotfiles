@@ -71,7 +71,7 @@
     "tooltip": true,
     "tooltip-format": "{used:0.1f} GiB"
   },
-  "battery#bat0": {
+  "battery": {
     "bat": "BAT0",
     "states": {
       "warning": 30,
