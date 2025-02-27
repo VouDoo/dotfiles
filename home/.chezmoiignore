@@ -36,7 +36,7 @@ AppData/Local/nvim
 .xinitrc
 {{ end }}
 
-{{ if and (not .hyprland) (not .qtile) }}
+{{ if or (eq .chezmoi.os "windows") (and (not .hyprland) (not .qtile)) }}
 .config/dunst
 {{ end }}
 
