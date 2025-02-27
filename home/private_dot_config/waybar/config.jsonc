@@ -2,7 +2,7 @@
 {
   "position": "bottom",
   "spacing": 4,
-  "modules-left": ["tray","hyprland/workspace", "hyprland/submap", "custom/media"],
+  "modules-left": ["tray", "hyprland/workspace", "hyprland/submap"],
   "modules-center": ["hyprland/window"],
   "modules-right": [
     "idle_inhibitor",
@@ -13,18 +13,10 @@
     "memory",
     "battery#bat1",
     "battery#bat2",
-    "keyboard-state",
-    "hyprland/language",
     "clock"
   ],
-  "keyboard-state": {
-    "numlock": true,
-    "capslock": true,
-    "format": "{name} {icon}",
-    "format-icons": {
-      "locked": "",
-      "unlocked": ""
-    }
+  "tray": {
+    "spacing": 10
   },
   "idle_inhibitor": {
     "format": "{icon}",
@@ -33,13 +25,22 @@
       "deactivated": ""
     }
   },
-  "tray": {
-    "spacing": 10
+  "wireplumber": {
+    "format": "{volume}% {icon}",
+    "format-muted": "󰝟",
+    "format-icons": ["", "", ""]
   },
-  "clock": {
-    "format": "{:%H:%M}  ",
-    "format-alt": "{:%d-%m-%Y}",
-    "tooltip": false
+  "backlight": {
+    "format": "{percent}% {icon}",
+    "format-icons": ["", "", "", "", "", "", "", "", ""]
+  },
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": "{ipaddr}/{cidr} 󰊗",
+    "format-disconnected": "Disconnected",
+    "tooltip": false,
+    "max-length": 50
   },
   "cpu": {
     "format": "{usage}% ",
@@ -48,14 +49,9 @@
   "memory": {
     "format": "{}% ",
     "tooltip": true,
-    "tooltip-format": "{used:0.1f}GiB "
+    "tooltip-format": "{used:0.1f} GiB"
   },
-  "backlight": {
-    "format": "{percent}% {icon}",
-    "format-icons": ["", "", "", "", "", "", "", "", ""]
-  },
-  "battery#bat1": {
-    "bat": "BAT1",
+  "battery": {
     "states": {
       "warning": 30,
       "critical": 15
@@ -68,33 +64,11 @@
     "format-icons": ["", "", "", "", ""]
   },
   "battery#bat2": {
-    "bat": "BAT2",
-    "states": {
-      "warning": 30,
-      "critical": 15
-    },
-    "format": "{capacity}% {icon}",
-    "format-full": "{capacity}% {icon}",
-    "format-charging": "{capacity}% ",
-    "format-plugged": "{capacity}% ",
-    "format-alt": "{time} {icon}",
-    "format-icons": ["", "", "", "", ""]
+    "bat": "BAT2"
   },
-  "network": {
-    "format": "{ifname}",
-    "format-wifi": "{essid} ({signalStrength}%) ",
-    "format-ethernet": "{ipaddr}/{cidr} 󰊗",
-    "format-disconnected": "", //An empty format will hide the module.
-    "tooltip": true,
-    "tooltip-format": "{ifname} via {gwaddr} 󰊗",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-    "tooltip-format-ethernet": "{ifname} ",
-    "tooltip-format-disconnected": "Disconnected",
-    "max-length": 50
-  },
-  "wireplumber": {
-    "format": "{volume}% {icon}",
-    "format-muted": "󰝟",
-    "format-icons": ["", "", ""]
+  "clock": {
+    "format": "{:%H:%M}  ",
+    "format-alt": "{:%d-%m-%Y}",
+    "tooltip": false
   }
 }
