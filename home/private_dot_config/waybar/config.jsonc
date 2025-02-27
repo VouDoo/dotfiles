@@ -85,7 +85,17 @@
     "format-icons": ["", "", "", "", ""]
   },
   "battery#bat1": {
-    "bat": "BAT1"
+    "bat": "BAT1",
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-full": "{capacity}% {icon}",
+    "format-charging": "{capacity}% 󱐋",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["", "", "", "", ""]
   },
   "clock": {
     "format": "{:%H:%M}  ",
