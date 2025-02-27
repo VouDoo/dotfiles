@@ -25,12 +25,4 @@ sourceDir = "{{ .chezmoi.homeDir }}/.dotfiles"
     terminal_font_size = {{ $terminalFontSize }}
 
     # Enable specific configuration
-    starship = {{ promptBoolOnce . "starship" "Enable configuration for Starship shell prompt" }}
-    alacritty = {{ promptBoolOnce . "alacritty" "Enable configuration for Alacritty terminal emulator" }}
-    {{- if eq .chezmoi.os "linux" }}
-    bash = {{ promptBoolOnce . "bash" "Enable configuration for Bash shell" }}
-    fish = {{ promptBoolOnce . "fish" "Enable configuration for Fish shell" }}
-    hyprland = {{ promptBoolOnce . "hyprland" "Enable configuration for Hyprland compositor" }}
-    qtile = {{ promptBoolOnce . "qtile" "Enable configuration for Qtile tiling window manager" }}
-    {{- end }}
     kubernetes = {{ promptBoolOnce . "kubernetes" "Enable configuration for Kubernetes development/management tools" }}

@@ -1,39 +1,11 @@
 {{ if eq .chezmoi.os "windows" }}
 .config
 .local
+.bash_profile
+.bashrc
 {{ else }}
 AppData
 Documents
-{{ end }}
-
-{{ if not .alacritty }}
-AppData/Roaming/alacritty  # Windows
-.config/alacritty.toml     # Linux
-{{ end }}
-
-{{ if or (eq .chezmoi.os "windows") (not .bash) }}
-.bash_profile
-.bashrc
-{{ end }}
-
-{{ if or (eq .chezmoi.os "windows") (not .fish) }}
-.config/fish
-{{ end }}
-
-{{ if or (eq .chezmoi.os "windows") (not .hyprland) }}
-.config/hypr
-.config/waybar
-{{ end }}
-
-{{ if or (eq .chezmoi.os "windows") (not .qtile) }}
-.config/picom
-.config/qtile
-.xbindkeysrc
-.xinitrc
-{{ end }}
-
-{{ if or (eq .chezmoi.os "windows") (and (not .hyprland) (not .qtile)) }}
-.config/dunst
 {{ end }}
 
 # ignored files and directories

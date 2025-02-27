@@ -190,12 +190,10 @@ if (Test-InteractiveSession -and -not $NonInteractive.IsPresent) {
     # Import modules
     Import-Module posh-git
     Import-Module Terminal-Icons
-    {{- if .starship }}
     # Initialize Starship
     $env:STARSHIP_CONFIG = "$env:APPDATA\starship\starship.toml"
     $env:STARSHIP_CACHE = $env:TEMP
     Invoke-Expression (& starship init powershell)
-    {{- end }}
     #endregion
 
     #region Set MOTD
