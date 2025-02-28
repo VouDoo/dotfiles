@@ -1,0 +1,11 @@
+function motd --description 'Set welcome message in interactive shells'
+    if type -q fastfetch
+        fastfetch
+        echo -e "\n\n"
+    end
+    set_color yellow
+    echo -e "GREETINGS PROFESSOR {{ .firstname | upper }}.\n"
+    echo -e "SHALL WE PLAY A GAME?"
+    set_color normal
+end
+
