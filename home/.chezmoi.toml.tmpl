@@ -26,6 +26,7 @@ sourceDir = "{{ .chezmoi.homeDir }}/.dotfiles"
     # Hyprland settings
     hypr_monitor_scale = {{ promptIntOnce . "hypr_monitor_scale" "Hyprland monitor scale (leave empty for default)" | default 1 }}
     hypr_cursor_size = {{ promptIntOnce . "hypr_cursor_size" "Hyprland cursor size (leave empty for default)" | default 24 }}
+    hypr_wallpaper = {{ promptStringOnce . "hypr_wallpaper" "Path to image file for hyprpaper wallpaper (leave empty to unset)" | quote }}
     {{- end }}
 
     # Enable specific configuration
