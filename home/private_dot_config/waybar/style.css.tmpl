@@ -1,6 +1,5 @@
-/* Documentation: https://github.com/Alexays/Waybar/wiki/Styling */
-
 /* WORK IN PROGRESS */
+/* Documentation: https://github.com/Alexays/Waybar/wiki/Styling */
 
 @import "./theme.css";
 
@@ -9,32 +8,32 @@
   border-radius: 0;
   font-family: "{{ .font_regular }}";
   font-size: {{ .font_size }}px;
-  background: @base;
-  color: @text;
 }
 
 window#waybar {
-  background: @pine;
-  border-bottom: 3px solid @gold;
-  color: @gold;
+  background: @surface;
+  color: @text;
 }
 
 tooltip {
   background: @overlay;
 }
 tooltip label {
-  color: @pine;
-  background: @overlay;
+  color: @rose;
 }
 
 #workspaces button {
-  font-size: {{ add .font_size 2 }}px;
-    padding: 0 10px;
-    color: @muted;
-    border-bottom: 3px solid transparent;
+  font-size: {{ add .font_size 3 }}px;
+  padding: 0 10px;
+  background: transparent;
+  color: @muted;
+  border-bottom: 2px solid @subtle;
 }
 
 #workspaces button.active {
-    border-bottom: 3px solid @gold;
+  border-bottom: 2px solid @gold;
 }
 
+#mode, #clock, #battery {
+    padding: 0 10px;
+}

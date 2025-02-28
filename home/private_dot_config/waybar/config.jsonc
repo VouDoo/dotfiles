@@ -2,8 +2,13 @@
 {
   "position": "bottom",
   "spacing": 4,
-  "modules-left": ["hyprland/workspaces", "tray", "hyprland/submap", "hyprland/window"],
-  "modules-center": [],
+  "modules-left": [
+    "hyprland/workspaces",
+    "tray",
+    "hyprland/submap",
+    "hyprland/window"
+  ],
+  "modules-center": ["clock"],
   "modules-right": [
     "idle_inhibitor",
     "wireplumber",
@@ -12,8 +17,7 @@
     "cpu",
     "memory",
     "battery",
-    "battery#bat1",
-    "clock"
+    "battery#bat1"
   ],
   "hyprland/workspaces": {
     "format": "{icon}",
@@ -40,6 +44,11 @@
   "hyprland/window": {
     "format": " {}",
     "separate-outputs": true
+  },
+  "clock": {
+    "format": "{:%H:%M}  ",
+    "format-alt": "{:%d/%m/%Y} ",
+    "tooltip": false
   },
   "idle_inhibitor": {
     "format": "{icon}",
@@ -104,10 +113,5 @@
     "format-plugged": "{capacity}% ",
     "format-alt": "{time} {icon}",
     "format-icons": ["", "", "", "", ""]
-  },
-  "clock": {
-    "format": "{:%H:%M}  ",
-    "format-alt": "{:%d/%m/%Y} ",
-    "tooltip": false
   }
 }
