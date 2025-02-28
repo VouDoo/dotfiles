@@ -8,6 +8,7 @@
   border-radius: 0;
   font-family: "{{ .font_regular }}";
   font-size: {{ .font_size }}px;
+  background: transparent;
 }
 
 window#waybar {
@@ -23,17 +24,58 @@ tooltip label {
 }
 
 #workspaces button {
-  font-size: {{ add .font_size 3 }}px;
   padding: 0 10px;
   background: transparent;
   color: @muted;
+  font-size: {{ add .font_size 3 }}px;
   border-bottom: 2px solid @subtle;
 }
-
 #workspaces button.active {
   border-bottom: 2px solid @gold;
 }
 
-#mode, #clock, #battery {
-    padding: 0 10px;
+#window {
+  padding: 0 10px;
+  color: @text;
+}
+
+#clock {
+  padding: 0 10px;
+  color: @gold;
+}
+
+#backlight {
+  padding: 0 10px;
+}
+
+#wireplumber {
+  padding: 0 10px;
+}
+#wireplumber.muted {
+  background: @rose;
+}
+
+#network {
+  padding: 0 10px;
+}
+#network.wifi {
+  background: @pine;
+}
+#network.ethernet {
+  background: @foam;
+}
+#network.disconnected {
+  background: @rose;
+}
+
+#cpu {
+  padding: 0 10px;
+}
+
+#memory {
+  padding: 0 10px;
+}
+
+#battery {
+  padding: 0 10px;
 }
