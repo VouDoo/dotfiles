@@ -12,4 +12,4 @@ Documents
 **/ignore_*
 
 # archives directory
-archives
+.archives
