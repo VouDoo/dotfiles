@@ -101,15 +101,12 @@
     "tooltip-format": "Battery #1: {capacity}% ({time})"
   },
   "battery#bat1": {
-    "bat": "BAT01",
+    "bat": "BAT1",
     "states": {
       "warning": 30,
       "critical": 15
     },
     "format": "{icon}",
-    //"format": "{capacity}% {icon}",
-    //"format-alt": "{time} {icon}",
-    //"format-full": "{capacity}% {icon}",
     "format-charging": "{icon} (󱐋)",
     "format-plugged": "{icon} ()",
     "format-icons": ["", "", "", "", ""],
