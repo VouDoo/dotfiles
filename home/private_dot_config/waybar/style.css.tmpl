@@ -7,7 +7,7 @@
   border: none;
   border-radius: 0;
   font-family: "{{ .font_regular }}";
-  font-size: {{ .font_size }}px;
+  font-size: {{ add .font_size 2 }}px;
   background: transparent;
 }
 
@@ -27,7 +27,7 @@ tooltip label {
   padding: 0 10px;
   background: transparent;
   color: @muted;
-  font-size: {{ add .font_size 3 }}px;
+  font-size: {{ add .font_size 4 }}px;
   border-bottom: 2px solid @subtle;
 }
 #workspaces button.active {
