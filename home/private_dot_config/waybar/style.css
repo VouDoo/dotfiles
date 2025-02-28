@@ -1,0 +1,40 @@
+/* Documentation: https://github.com/Alexays/Waybar/wiki/Styling */
+
+/* WORK IN PROGRESS */
+
+@import "./theme.css";
+
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "0xProto Nerd Font";
+  font-size: 1rem;
+  background: @base;
+  color: @text;
+}
+
+window#waybar {
+  background: @pine;
+  border-bottom: 3px solid @gold;
+  color: @gold;
+}
+
+tooltip {
+  background: @overlay;
+}
+tooltip label {
+  color: @pine;
+  background: @overlay;
+}
+
+#workspaces button {
+    font-size: 2rem;
+    padding: 0 10px;
+    color: @muted;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button.active {
+    border-bottom: 3px solid @gold;
+}
+
