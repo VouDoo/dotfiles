@@ -26,19 +26,19 @@ foreground = "#FCFCFA"
 size = {{ .terminal_font_size }}
 
 [font.bold]
-family = {{ .terminal_font_familly | quote }}
+family = {{ .font_mono | quote }}
 style = "Bold"
 
 [font.bold_italic]
-family = {{ .terminal_font_familly | quote }}
+family = {{ .font_mono | quote }}
 style = "Bold Italic"
 
 [font.italic]
-family = {{ .terminal_font_familly | quote }}
+family = {{ .font_mono | quote }}
 style = "Italic"
 
 [font.normal]
-family = {{ .terminal_font_familly | quote }}
+family = {{ .font_mono | quote }}
 style = "Regular"
 
 [scrolling]

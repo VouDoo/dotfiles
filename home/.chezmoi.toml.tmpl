@@ -13,17 +13,21 @@ sourceDir = "{{ .chezmoi.homeDir }}/.dotfiles"
     fullname = {{ cat $firstname $lastname | quote }}
     email = {{ promptStringOnce . "email" "Email address" | quote }}
 
-    # Terminal settings
-    {{- $defaultTerminalFontFamily := "0xProto Nerd Font Mono" }}
-    {{- if eq .chezmoi.os "windows" }}{{ $defaultTerminalFontFamily = "CaskaydiaCove Nerd Font Mono" }}{{ end }}
-    {{- $terminalFontFamilly := promptStringOnce . "terminal_font_familly" (printf "Font familly for Terminal (default: %s)" $defaultTerminalFontFamily) | default $defaultTerminalFontFamily }}
-    terminal_font_familly = {{ $terminalFontFamilly | quote }}
-    {{- $defaultTerminalFontSize := 12 }}
-    {{- $terminalFontSize := promptIntOnce . "terminal_font_size" (printf "Font size for Terminal (default: %d)" $defaultTerminalFontSize) | default $defaultTerminalFontSize }}
-    terminal_font_size = {{ $terminalFontSize }}
+    # Fonts
+    {{- $fontNerdFamilyDefault := "0xProto" }}
+    {{- if eq .chezmoi.os "windows" }}{{ $fontNerdFamilyDefault = "CaskaydiaCove" }}{{ end }}
+    {{- $fontNerdFamily := promptStringOnce . "font_nerd_family" (printf "Nerd Fonts font familly to use (default: %s)" $fontNerdFamilyDefault) | default $fontNerdFamilyDefault }}
+    font_nerd_family = {{ $fontNerdFamily | quote }} # Nerd Fonts font familly name
+    font_regular = {{ cat $fontNerdFamily "Nerd Font" | quote }} # regular font family (auto-generated based on font_nerd_family value)
+    font_mono = {{ cat $fontNerdFamily "Nerd Font Mono" | quote }} # monospace font family (auto-generated based on font_nerd_family value)
+    font_size = {{ promptIntOnce . "font_size" "Font size to use as referenced by every application (leave empty for default)" | default 12 }} # reference font size
+
+    # Terminal
+    {{- $terminalFontSizeDefault := 12 }}
+    terminal_font_size = {{ promptIntOnce . "terminal_font_size" (printf "Font size for Terminal (default: %d)" $terminalFontSizeDefault) | default $terminalFontSizeDefault }}
 
     {{- if eq .chezmoi.os "linux" }}
-    # Hyprland settings
+    # Hyprland and Hypr Ecosystem
     hypr_monitor_scale = {{ promptIntOnce . "hypr_monitor_scale" "Hyprland monitor scale (leave empty for default)" | default 1 }}
     hypr_cursor_size = {{ promptIntOnce . "hypr_cursor_size" "Hyprland cursor size (leave empty for default)" | default 24 }}
     hypr_wallpaper = {{ promptStringOnce . "hypr_wallpaper" "Path to image file for hyprpaper wallpaper (leave empty to unset)" | quote }}

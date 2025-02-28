@@ -78,7 +78,8 @@ scoop install extras/PSFzf           # psfzf - PowerShell module that provides a
 
 # install scoop packages (nerd-fonts bucket)
 scoop bucket add nerd-fonts
-scoop install nerd-fonts/CascadiaCode-NF-Mono  # Cascadia Code Mono - coding font
+scoop install nerd-fonts/CascadiaCode-NF       # Nerd Fonts patched 'CascadiaCode' Font family
+scoop install nerd-fonts/CascadiaCode-NF-Mono  # Nerd Fonts patched 'CascadiaCode Mono' Font family
 ```
 
 _Feel free to check out this [catalog file](./catalog.md), which provides a list of packages/applications organized by specific usage._

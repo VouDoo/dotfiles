@@ -7,8 +7,8 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: "0xProto Nerd Font";
-  font-size: 1rem;
+  font-family: "{{ .font_regular }}";
+  font-size: {{ .font_size }}px;
   background: @base;
   color: @text;
 }
@@ -28,7 +28,7 @@ tooltip label {
 }
 
 #workspaces button {
-    font-size: 2rem;
+  font-size: {{ add .font_size 2 }}px;
     padding: 0 10px;
     color: @muted;
     border-bottom: 3px solid transparent;
