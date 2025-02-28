@@ -1,3 +1,6 @@
+# load theme
+source = ~/.config/hypr/theme.conf
+
 ################
 ### MONITORS ###
 ################
@@ -40,8 +43,8 @@ general {
 
     border_size = 2
 
-    col.active_border = rgba(c4a7e7ee) rgba(ea9a97ee) rgba(9ccfd8ee) 45deg
-    col.inactive_border = rgba(6e6a86ee)
+    col.active_border = rgba(0xee$iris) rgba(0xee$rose) rgba(0xee$foam) 45deg
+    col.inactive_border = rgba(0xee$muted)
 
     layout = master
 }
@@ -51,14 +54,14 @@ decoration {
     rounding_power = 2
 
     active_opacity = 1.0
-    inactive_opacity = 0.85
+    inactive_opacity = 0.9
     fullscreen_opacity = 1.0
 
     shadow {
         enabled = true
         range = 4
         render_power = 3
-        color = rgba(2a283eee)
+        color = rgba(0xd5$highlightLow)
     }
 
     blur {
