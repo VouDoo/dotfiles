@@ -10,6 +10,7 @@ A catalog of packages/applications categorized by specific usage.
   - [Programming language](#programming-language)
   - [LLM runtime](#llm-runtime)
   - [Password management](#password-management)
+  - [Terminal text editor](#terminal-text-editor)
 
 ---
 
@@ -66,4 +67,12 @@ scoop install main/ollama
 ```sh
 scoop bucket add extras
 scoop install extras/keepassxc
+```
+
+## Terminal text editor
+
+```sh
+# Avoid using Vim/NeoVim on Windows, as it’s not the best experience in my opinion.
+# However, if you need a terminal-based editor, Helix is a great choice! :)
+scoop install main/helix
 ```
