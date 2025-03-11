@@ -107,7 +107,7 @@ To generate an SSH key, use this command:
 _Skip it if you already have a key pair._
 
 ```sh
-sh-keygen -t ed25519 -C "Generated on $(Get-date -Format 'yyyy-MM-dd HH:mm:ss')"
+ssh-keygen -t ed25519 -C "Generated on $(Get-date -Format 'yyyy-MM-dd HH:mm:ss')"
 ```
 
 Then, add the generated public key to your [GitHub SSH keys](https://github.com/settings/keys).
