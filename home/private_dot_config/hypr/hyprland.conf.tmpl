@@ -5,24 +5,25 @@ source = ~/.config/hypr/theme.conf
 ### MONITORS ###
 ################
 
-monitor=,preferred,auto,{{ .hypr_monitor_scale }}
+monitor = ,preferred,auto,{{ .hypr_monitor_scale }}
 
 
 ###################
 ### MY PROGRAMS ###
 ###################
 
-$terminal = ghostty
-$fileManager = dolphin
-$menu = wofi --show drun
+$terminal = ghostty -e fish
+$browser = zen-browser
+$menu = tofi-drun | xargs hyprctl dispatch exec --
 
 
 #################
 ### AUTOSTART ###
 #################
 
-exec-once = $terminal -e fish -C motd
+exec-once = $terminal -C motd
 exec-once = waybar & hyprpaper
+exec-once = copyq --start-server
 
 
 #############################
@@ -123,10 +124,10 @@ input {
 $mainMod = SUPER # Sets "Windows" key as main modifier
 
 bind = $mainMod SHIFT, Q, exit,
-bind = $mainMod, RETURN, exec, $terminal
 bind = $mainMod, W, killactive,
-bind = $mainMod, E, exec, $fileManager
 bind = $mainMod, V, togglefloating,
+bind = $mainMod, RETURN, exec, $terminal
+bind = $mainMod SHIFT, RETURN, exec, $browser
 bind = $mainMod, R, exec, $menu
 
 # Move focus with mainMod + vim motion keys
