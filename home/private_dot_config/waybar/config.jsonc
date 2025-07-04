@@ -1,6 +1,6 @@
 // -*- mode: jsonc -*-
 {
-  "position": "bottom",
+  "position": "top",
   "spacing": 4,
   "modules-left": [
     "hyprland/workspaces",
@@ -59,7 +59,7 @@
     "tooltip": true,
     "tooltip-format": "{ifname} via {gwaddr}",
     "tooltip-format-wifi": "{essid} (signal {signalStrength}%) [IP: {ipaddr}/{cidr}]",
-    "tooltip-format-ethernet": "{ifname} [IP: {ipaddr}/{cidr}]",
+    "tooltip-format-ethernet": "{ifname} {ipaddr}/{cidr}",
     "tooltip-format-disconnected": "Disconnected",
   },
   "cpu": {
@@ -69,7 +69,7 @@
   "memory": {
     "format": "{}% ",
     "tooltip": true,
-    "tooltip-format": "Memory usage: {used:0.1f} GiB",
+    "tooltip-format": "Memory usage {used:0.1f} GiB",
   },
   "battery": {
     "bat": "BAT0",
