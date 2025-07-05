@@ -21,9 +21,9 @@ $menu = tofi-drun | xargs hyprctl dispatch exec --
 ### AUTOSTART ###
 #################
 
-exec-once = $terminal -C motd
 exec-once = waybar & hyprpaper
 exec-once = copyq --start-server
+exec-once = $terminal -C motd
 
 
 #############################
@@ -40,7 +40,7 @@ env = HYPRCURSOR_SIZE,{{ .hypr_cursor_size }}
 
 general {
     gaps_in = 8
-    gaps_out = 12
+    gaps_out = 20
 
     border_size = 2
 
@@ -112,7 +112,7 @@ input {
     kb_options =
     kb_rules =
 
-    follow_mouse = 1
+    follow_mouse = 0
     sensitivity = 0
 }
 
@@ -123,26 +123,36 @@ input {
 
 $mainMod = SUPER # Sets "Windows" key as main modifier
 
+# Exit Hyprland desktop environment
 bind = $mainMod SHIFT, Q, exit,
+
+# Execute Alt-F4 (kill) on active window
 bind = $mainMod, W, killactive,
-bind = $mainMod, V, togglefloating,
+
+# Open my programs
 bind = $mainMod, RETURN, exec, $terminal
 bind = $mainMod SHIFT, RETURN, exec, $browser
 bind = $mainMod, SPACE, exec, $menu
 
-# Move focus with mainMod + vim motion keys
+# Move focus with main modifier key + vim motion keys
 bind = $mainMod, H, movefocus, l
 bind = $mainMod, L, movefocus, r
 bind = $mainMod, K, movefocus, u
 bind = $mainMod, J, movefocus, d
 
-# Switch workspaces with mainMod + [1-4]
+# Move focus with main modifier key + arrow keys
+bind = $mainMod, LEFT, movefocus, l
+bind = $mainMod, RIGHT, movefocus, r
+bind = $mainMod, UP, movefocus, u
+bind = $mainMod, DOWN, movefocus, d
+
+# Switch workspaces with main modifier key + [1-4]
 bind = $mainMod, 1, workspace, 1
 bind = $mainMod, 2, workspace, 2
 bind = $mainMod, 3, workspace, 3
 bind = $mainMod, 4, workspace, 4
 
-# Move active window to a workspace with mainMod + SHIFT + [1-4]
+# Move active window to a workspace with main modifier key + SHIFT + [1-4]
 bind = $mainMod SHIFT, 1, movetoworkspace, 1
 bind = $mainMod SHIFT, 2, movetoworkspace, 2
 bind = $mainMod SHIFT, 3, movetoworkspace, 3
@@ -152,15 +162,14 @@ bind = $mainMod SHIFT, 4, movetoworkspace, 4
 bind = $mainMod, N, layoutmsg, cyclenext
 bind = $mainMod, M, layoutmsg, swapwithmaster master
 
-# Scroll through existing workspaces with mainMod + scroll
-bind = $mainMod, mouse_down, workspace, e+1
-bind = $mainMod, mouse_up, workspace, e-1
+# Floating layout commands
+bind = $mainMod, V, togglefloating,
 
-# Move/resize windows with mainMod + LMB/RMB and dragging
+# Move/resize windows with main modifier key + LMB/RMB and dragging
 bindm = $mainMod, mouse:272, movewindow
 bindm = $mainMod, mouse:273, resizewindow
 
-# Laptop multimedia keys for volume and LCD brightness
+# Multimedia keys
 bindel = ,XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
 bindel = ,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 bindel = ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
@@ -178,3 +187,4 @@ windowrulev2 = suppressevent maximize, class:.*
 
 # Fix some dragging issues with XWayland
 windowrulev2 = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
+
