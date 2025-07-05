@@ -1,8 +1,11 @@
 #  https://fishshell.com/docs/current/index.html
 
+# Add to PATH environment varialble - https://fishshell.com/docs/current/cmds/fish_add_path.html
+fish_add_path -m ~/.local/bin
+
 # Environment variables - https://fishshell.com/docs/current/cmds/set.html
-set -gx EDITOR "nvim"
-set -gx PAGER "less"
+set -gx EDITOR nvim
+set -gx PAGER less
 set -gx XDG_CONFIG_HOME "$HOME/.config"
 
 if status is-interactive
