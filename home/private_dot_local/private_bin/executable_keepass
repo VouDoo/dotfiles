@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+log() {
+  local message="$1"
+  local level="${2:-normal}"
+
+  echo "${level}: $message"
+  notify-send -u "${level}" "KeePass" "$message"
+}
+
+exec 200>"$HOME/.keepass-lock"
+flock -n 200 || {
+  log "Another instance is already running." "critical"
+  exit 1
+}
+
+REMOTE="keepass:KeePass"
+KDBX="my.kdbx"
+LOCAL="${HOME}/.keepass"
+LOCAL_PATH="${LOCAL}/${KDBX}"
+
+# Create local directory with strict permissions
+mkdir -p "${LOCAL}"
+chmod 700 "${LOCAL}"
+
+# Sync remote drive to local
+if rclone sync "${REMOTE}" "${LOCAL}" --progress; then
+  log "Sync complete from remote drive."
+else
+  log "Failed to sync from remote drive." "critical"
+  exit 1
+fi
+
+# Open KeePassXC
+if command -v keepassxc >/dev/null; then
+  keepassxc "${LOCAL_PATH}"
+else
+  log "KeePassXC not found." "critical"
+  exit 1
+fi
+
+# Update file to remote drive
+if rclone copy --update "${LOCAL_PATH}" "${REMOTE}" --progress; then
+  log "Updated KDBX uploaded to remote drive."
+else
+  log "Failed to upload updated KDBX to remote drive." "critical"
+  exit 1
+fi
