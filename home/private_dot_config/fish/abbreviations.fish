@@ -3,6 +3,7 @@
 abbr -a cd z
 abbr -a find fd
 abbr -a grep rg
+abbr -a cat bat
 abbr -a tree ls --tree
 abbr -a vi nvim
 abbr -a vim nvim
