@@ -1,4 +1,3 @@
-/* WORK IN PROGRESS */
 /* Documentation: https://github.com/Alexays/Waybar/wiki/Styling */
 
 @import "./theme.css";
@@ -8,12 +7,14 @@
   border-radius: 0;
   font-family: "{{ .font_regular }}";
   font-size: 16px;
-  background: transparent;
+  min-height: 0;
 }
 
 window#waybar {
-  background: @surface;
+  background-color: @base;
   color: @text;
+  transition-property: background-color;
+  transition-duration: .5s;
 }
 
 tooltip {
@@ -23,20 +24,37 @@ tooltip label {
   color: @rose;
 }
 
+#workspaces {
+  background: @base;
+}
 #workspaces button {
-  padding: 0 10px;
+  padding: 4px 10px;
   background: transparent;
+  color: @text;
+  font-size: 60px;
+  border-bottom: 3px solid @subtle;
+}
+#workspaces button.empty {
   color: @muted;
-  font-size: 30px;
-  border-bottom: 2px solid @subtle;
+}
+#workspaces button.visible {
+  color: @foam;
 }
 #workspaces button.active {
-  border-bottom: 2px solid @gold;
+  color: @gold;
+  border-bottom: 3px solid @gold;
+}
+#workspaces button:hover {
+  box-shadow: inherit;
+  text-shadow: inherit;
 }
 
-#window {
-  padding: 0 10px;
-  color: @text;
+window#waybar #window {
+  padding: 0 20px;
+}
+window#waybar.empty #window {
+  color: transparent;
+  background: transparent;
 }
 
 #clock {
@@ -44,9 +62,21 @@ tooltip label {
   color: @gold;
 }
 
+#tray {
+  padding: 0 12px;
+  background: @highlightMed;
+}
+#tray menu {
+  color: @text;
+  background: @overlay;
+}
+#tray menu hover {
+  background: @surface;
+}
+
 #network {
-  padding: 0 20px;
-  background: @base;
+  padding: 0 14px 0 12px;
+  background: @surface;
 }
 #network.wifi {
   color: @pine;
@@ -59,25 +89,26 @@ tooltip label {
 }
 
 #cpu {
-  padding: 0 20px;
-  background: @highlightLow;
+  padding: 0 14px 0 12px;
+  background: @surface;
 }
 
 #memory {
-  padding: 0 20px;
-  background: @highlightLow;
+  padding: 0 14px 0 12px;
+  background: @surface;
 }
 
 #battery {
-  padding: 0 12px;
+  padding: 0 14px 0 12px;
 }
 
 #backlight {
-  padding: 0 15px;
+  padding: 0 14px 0 12px;
 }
 
 #wireplumber {
-  padding: 0 15px;
+  padding: 0 14px 0 12px;
+  background: @highlightMed;
 }
 #wireplumber.muted {
   color: @love;

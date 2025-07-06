@@ -25,7 +25,6 @@
       "2": "󰲣",
       "3": "󰲥",
       "4": "󰲧",
-      "active": "󰮕",
       "default": "󰄰",
     },
     "persistent-workspaces": {
@@ -40,6 +39,7 @@
   "hyprland/window": {
     "format": " {}",
     "separate-outputs": true,
+    "tooltip": false,
   },
   "clock": {
     "format": " {:%H:%M}",
@@ -47,7 +47,7 @@
     "tooltip": false,
   },
   "tray": {
-    "spacing": 10,
+    "spacing": 12,
   },
   "network": {
     "max-length": 50,
