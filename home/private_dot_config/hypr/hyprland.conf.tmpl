@@ -170,8 +170,8 @@ bindm = $mainMod, mouse:272, movewindow
 bindm = $mainMod, mouse:273, resizewindow
 
 # Screenshot commands
-bind = , PRINT, exec, hyprshot -m output -z -o /tmp
-bind = $mainMod, PRINT, exec, hyprshot -m region -z -o /tmp
+bind = , PRINT, exec, hyprshot -m output -o /tmp
+bind = $mainMod, PRINT, exec, hyprshot -m region -o /tmp
 
 # Multimedia keys
 bindel = ,XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
