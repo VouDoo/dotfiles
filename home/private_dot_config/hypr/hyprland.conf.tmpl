@@ -48,6 +48,8 @@ general {
     col.inactive_border = 0xee$muted
 
     layout = master
+
+    allow_tearing = true
 }
 
 decoration {
@@ -99,6 +101,10 @@ animations {
 
 master {
     new_status = master
+}
+
+debug {
+    full_cm_proto = true
 }
 
 misc {
@@ -164,6 +170,9 @@ bind = $mainMod, M, layoutmsg, swapwithmaster master
 
 # Floating layout commands
 bind = $mainMod, V, togglefloating,
+
+# Fullscreen layout commands
+bind = $mainMod, R, fullscreen
 
 # Move/resize windows with main modifier key + LMB/RMB and dragging
 bindm = $mainMod, mouse:272, movewindow
