@@ -10,6 +10,7 @@
   "modules-center": ["clock"],
   "modules-right": [
     "tray",
+    "custom/yay",
     "network",
     "cpu",
     "memory",
@@ -48,6 +49,12 @@
   },
   "tray": {
     "spacing": 12,
+  },
+  "custom/yay":{
+    "format": "{} ",
+    "exec": "yay -Qua | wc -l",
+    "interval": "900",
+    "tooltip": false
   },
   "network": {
     "max-length": 50,
