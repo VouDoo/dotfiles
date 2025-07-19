@@ -5,9 +5,11 @@
   "modules-left": [
     "hyprland/workspaces",
     "hyprland/submap",
-    "hyprland/window",
+    "hyprland/window"
   ],
-  "modules-center": ["clock"],
+  "modules-center": [
+    "clock"
+  ],
   "modules-right": [
     "tray",
     "custom/yay",
@@ -17,42 +19,40 @@
     "battery",
     "battery#bat1",
     "backlight",
-    "wireplumber",
+    "wireplumber"
   ],
   "hyprland/workspaces": {
     "format": "{icon}",
     "format-icons": {
       "1": "󰲡",
       "2": "󰲣",
-      "3": "󰲥",
-      "4": "󰲧",
-      "default": "󰄰",
+      "default": "󰄰"
     },
     "persistent-workspaces": {
-      "*": 4,
+      "*": 4
     }
   },
   "hyprland/submap": {
     "format": "{}",
     "max-length": 8,
-    "tooltip": false,
+    "tooltip": false
   },
   "hyprland/window": {
     "format": " {}",
     "separate-outputs": true,
-    "tooltip": false,
+    "tooltip": false
   },
   "clock": {
     "format": " {:%H:%M}",
     "format-alt": " {:%d/%m/%Y}",
-    "tooltip": false,
+    "tooltip": false
   },
   "tray": {
-    "spacing": 12,
+    "spacing": 12
   },
-  "custom/yay":{
+  "custom/yay": {
     "format": "{} ",
-    "exec": "yay -Qua | wc -l",
+    "exec": "yay -Qu | wc -l",
     "interval": "900",
     "tooltip": false
   },
@@ -62,27 +62,33 @@
     "format-wifi": "{icon}",
     "format-ethernet": "󰈁",
     "format-disconnected": "",
-    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
     "tooltip": true,
     "tooltip-format": "{ifname} via {gwaddr}",
     "tooltip-format-wifi": "{essid} (signal {signalStrength}%) [IP: {ipaddr}/{cidr}]",
     "tooltip-format-ethernet": "{ifname} {ipaddr}/{cidr}",
-    "tooltip-format-disconnected": "Disconnected",
+    "tooltip-format-disconnected": "Disconnected"
   },
   "cpu": {
     "format": "{}% ",
-    "tooltip": false,
+    "tooltip": false
   },
   "memory": {
     "format": "{}% ",
     "tooltip": true,
-    "tooltip-format": "Memory usage {used:0.1f} GiB",
+    "tooltip-format": "Memory usage {used:0.1f} GiB"
   },
   "battery": {
     "bat": "BAT0",
     "states": {
       "warning": 30,
-      "critical": 15,
+      "critical": 15
     },
     "format": "{icon}",
     //"format": "{capacity}% {icon}",
@@ -90,34 +96,60 @@
     //"format-full": "{capacity}% {icon}",
     "format-charging": "{icon} (󱐋)",
     "format-plugged": "{icon} ()",
-    "format-icons": ["", "", "", "", ""],
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
     "tooltip": true,
-    "tooltip-format": "Battery #1: {capacity}% ({time})",
+    "tooltip-format": "Battery #1: {capacity}% ({time})"
   },
   "battery#bat1": {
     "bat": "BAT1",
     "states": {
       "warning": 30,
-      "critical": 15,
+      "critical": 15
     },
     "format": "{icon}",
     "format-charging": "{icon} (󱐋)",
     "format-plugged": "{icon} ()",
-    "format-icons": ["", "", "", "", ""],
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
     "tooltip": true,
-    "tooltip-format": "Battery #2: {capacity}% ({time})",
+    "tooltip-format": "Battery #2: {capacity}% ({time})"
   },
   "backlight": {
     "format": "{icon}",
-    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
     "tooltip": true,
-    "tooltip-format": "Backlight {percent}%",
+    "tooltip-format": "Backlight {percent}%"
   },
   "wireplumber": {
     "format": "{icon}",
     "format-muted": "󰝟",
-    "format-icons": ["", "", ""],
+    "format-icons": [
+      "",
+      "",
+      ""
+    ],
     "tooltip": true,
-    "tooltip-format": "Volume {volume}%",
+    "tooltip-format": "Volume {volume}%"
   }
 }
