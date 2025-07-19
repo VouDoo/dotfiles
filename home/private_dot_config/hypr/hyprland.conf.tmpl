@@ -15,6 +15,7 @@ monitor = ,preferred,auto,{{ .hypr_monitor_scale }}
 $terminal = ghostty -e fish
 $browser = zen-browser
 $menu = tofi-drun | xargs hyprctl dispatch exec --
+$filemanager = nautilus
 
 
 #################
@@ -32,7 +33,7 @@ exec-once = $terminal -C motd
 
 env = XCURSOR_SIZE,{{ .hypr_cursor_size }}
 env = HYPRCURSOR_SIZE,{{ .hypr_cursor_size }}
-
+env = GTK_THEME,Adwaita-dark
 
 #####################
 ### LOOK AND FEEL ###
@@ -137,6 +138,7 @@ bind = $mainMod, W, killactive,
 bind = $mainMod, RETURN, exec, $terminal
 bind = $mainMod SHIFT, RETURN, exec, $browser
 bind = $mainMod, SPACE, exec, $menu
+bind = $mainMod, E, exec, $filemanager
 
 # Move focus with main modifier key + vim motion keys
 bind = $mainMod, H, movefocus, l
