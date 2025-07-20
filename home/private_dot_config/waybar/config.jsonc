@@ -52,8 +52,8 @@
   },
   "custom/yay": {
     "format": "{} ",
-    "exec": "yay -Qu | wc -l",
-    "interval": "900",
+    "exec": "(checkupdates; yay -Qua) | wc -l",
+    "interval": "1800",
     "tooltip": false
   },
   "network": {
