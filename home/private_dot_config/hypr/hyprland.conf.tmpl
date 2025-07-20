@@ -140,8 +140,9 @@ bind = $mainMod, N, layoutmsg, cyclenext
 bind = $mainMod, M, layoutmsg, swapwithmaster master
 
 # Floating layout commands
-bind = $mainMod, V, togglefloating
-bind = $mainMod, C, exec, hyprctl dispatch togglefloating && hyprctl dispatch centerwindow
+bind = SUPER, C, togglefloating
+bind = SUPER, C, resizeactive, exact 68% 94%
+bind = SUPER, C, centerwindow
 
 # Fullscreen layout commands
 bind = $mainMod, F, fullscreen
