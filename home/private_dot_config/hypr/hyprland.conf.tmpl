@@ -100,10 +100,10 @@ input {
 $mainMod = SUPER # Sets "Windows" key as main modifier
 
 # Exit Hyprland desktop environment
-bind = $mainMod SHIFT, Q, exit,
+bind = $mainMod SHIFT, Q, exit
 
 # Execute Alt-F4 (kill) on active window
-bind = $mainMod, W, killactive,
+bind = $mainMod, W, killactive
 
 # Open my programs
 bind = $mainMod, RETURN, exec, $terminal
@@ -140,7 +140,8 @@ bind = $mainMod, N, layoutmsg, cyclenext
 bind = $mainMod, M, layoutmsg, swapwithmaster master
 
 # Floating layout commands
-bind = $mainMod, V, togglefloating,
+bind = $mainMod, V, togglefloating
+bind = $mainMod, C, exec, hyprctl dispatch togglefloating && hyprctl dispatch centerwindow
 
 # Fullscreen layout commands
 bind = $mainMod, F, fullscreen
