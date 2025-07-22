@@ -1,6 +1,5 @@
+{{- $theme := (include ".theme.toml" | fromToml) -}}
 /* Documentation: https://github.com/Alexays/Waybar/wiki/Styling */
-
-@import "./theme.css";
 
 * {
   border: none;
@@ -11,14 +10,14 @@
 }
 
 window#waybar {
-  background-color: @base;
-  color: @text;
+  background-color: {{ $theme.colors.base }};
+  color: {{ $theme.colors.text }};
   transition-property: background-color;
   transition-duration: .5s;
 }
 
 tooltip {
-  background: @overlay;
+  background: {{ $theme.colors.overlay }};
 }
 tooltip label {
   color: @rose;
@@ -30,19 +29,19 @@ tooltip label {
 #workspaces button {
   padding: 4px 10px;
   background: transparent;
-  color: @text;
+  color: {{ $theme.colors.text }};
   font-size: 60px;
-  border-bottom: 3px solid @subtle;
+  border-bottom: 3px solid {{ $theme.colors.surface }};
 }
 #workspaces button.empty {
-  color: @muted;
+  color: {{ $theme.colors.muted }};
 }
 #workspaces button.visible {
-  color: @foam;
+  color: {{ $theme.colors.text }};
 }
 #workspaces button.active {
-  color: @gold;
-  border-bottom: 3px solid @gold;
+  color: {{ $theme.colors.primary }};
+  border-bottom: 3px solid {{ $theme.colors.overlay }};
 }
 #workspaces button:hover {
   box-shadow: inherit;
@@ -59,48 +58,48 @@ window#waybar.empty #window {
 
 #clock {
   padding: 0 30px;
-  color: @gold;
+  color: {{ $theme.colors.primary }};
 }
 
 #tray {
   padding: 0 12px;
-  background: @highlightMed;
+  background: {{ $theme.colors.overlay }};
 }
 #tray menu {
-  color: @text;
-  background: @overlay;
-}
-#tray menu hover {
-  background: @surface;
+  color: {{ $theme.colors.text }};
+  background: {{ $theme.colors.surface }};
 }
 
 #custom-yay {
   padding: 0 14px 0 12px;
-  background: @surface;
-}
-
-#network {
-  padding: 0 14px 0 12px;
-  background: @surface;
-}
-#network.wifi {
-  color: @pine;
-}
-#network.ethernet {
-  color: @foam;
-}
-#network.disconnected {
-  color: @love;
-}
-
-#cpu {
-  padding: 0 14px 0 12px;
-  background: @surface;
+  color: {{ $theme.colors.accent }};
+  background: {{ $theme.colors.surface }};
 }
 
 #memory {
   padding: 0 14px 0 12px;
-  background: @surface;
+  color: {{ $theme.colors.secondary }};
+  background: {{ $theme.colors.surface }};
+}
+
+#cpu {
+  padding: 0 14px 0 12px;
+  color: {{ $theme.colors.primary }};
+  background: {{ $theme.colors.surface }};
+}
+
+#network {
+  padding: 0 12px;
+  background: {{ $theme.colors.surface }};
+}
+#network.wifi {
+  color: {{ $theme.colors.info }};
+}
+#network.ethernet {
+  color: {{ $theme.colors.info }};
+}
+#network.disconnected {
+  color: {{ $theme.colors.error }};
 }
 
 #battery {
@@ -112,10 +111,10 @@ window#waybar.empty #window {
 }
 
 #wireplumber {
-  padding: 0 14px 0 12px;
-  background: @highlightMed;
+  padding: 0 24px 0 16px;
+  background: {{ $theme.colors.base }};
 }
 #wireplumber.muted {
-  color: @love;
+  color: {{ $theme.colors.error }};
 }
 

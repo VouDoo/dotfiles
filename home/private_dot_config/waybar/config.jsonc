@@ -13,9 +13,9 @@
   "modules-right": [
     "tray",
     "custom/yay",
-    "network",
-    "cpu",
     "memory",
+    "cpu",
+    "network",
     "battery",
     "battery#bat1",
     "backlight",
@@ -26,6 +26,8 @@
     "format-icons": {
       "1": "󰲡",
       "2": "󰲣",
+      "3": "󰲥",
+      "4": "󰲧",
       "default": "󰄰"
     },
     "persistent-workspaces": {
@@ -56,6 +58,15 @@
     "interval": "1800",
     "tooltip": false
   },
+  "memory": {
+    "format": "{}% ",
+    "tooltip": true,
+    "tooltip-format": "Memory usage {used:0.1f} GiB"
+  },
+  "cpu": {
+    "format": "{usage}% ",
+    "tooltip": false
+  },
   "network": {
     "max-length": 50,
     "format": "󰖈",
@@ -74,15 +85,6 @@
     "tooltip-format-wifi": "{essid} (signal {signalStrength}%) [IP: {ipaddr}/{cidr}]",
     "tooltip-format-ethernet": "{ifname} {ipaddr}/{cidr}",
     "tooltip-format-disconnected": "Disconnected"
-  },
-  "cpu": {
-    "format": "{}% ",
-    "tooltip": false
-  },
-  "memory": {
-    "format": "{}% ",
-    "tooltip": true,
-    "tooltip-format": "Memory usage {used:0.1f} GiB"
   },
   "battery": {
     "bat": "BAT0",

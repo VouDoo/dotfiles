@@ -1,6 +1,4 @@
-# load theme
-source = ~/.config/hypr/theme.conf
-
+{{- $theme := (include ".theme.toml" | fromToml) -}}
 ################
 ### MONITORS ###
 ################
@@ -43,10 +41,10 @@ general {
     gaps_in = 6
     gaps_out = 12
 
-    border_size = 2
+    border_size = 1
 
-    col.active_border = 0xee$iris 0xee$rose 0xee$foam 45deg
-    col.inactive_border = 0xee$muted
+    col.active_border = 0xee{{ $theme.colors.primary | trimPrefix "#" }}
+    col.inactive_border = 0xee{{ $theme.colors.surface | trimPrefix "#" }}
 
     layout = master
 

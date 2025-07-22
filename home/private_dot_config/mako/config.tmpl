@@ -1,9 +1,15 @@
+{{- $theme := (include ".theme.toml" | fromToml) -}}
 font={{ .font_regular }}" {{ .font_size }}
-background-color=#393552
-text-color=#e0def4
-border-color=#56526e
-progress-color=over #3e8fb0
+background-color={{ $theme.colors.base }}
+text-color={{ $theme.colors.text }}
+progress-color=over {{ $theme.colors.accent }}
+
+[urgency=low]
+border-color={{ $theme.colors.info }}
+
+[urgency=normal]
+border-color={{ $theme.colors.warning }}
 
 [urgency=high]
-border-color=#eb6f92
+border-color={{ $theme.colors.error }}
 

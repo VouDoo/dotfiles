@@ -1,0 +1,16 @@
+[colors]
+base    = "#24273a"
+surface = "#363a4f"
+overlay = "#6e738d"
+text    = "#cad3f5"
+muted   = "#6e738d"
+
+primary   = "#f9aa8f"
+secondary = "#d8aff2"
+accent    = "#eed49f"
+
+success = "#a6da95"
+error   = "#ed8796"
+warning = "#f5a97f"
+info    = "#91d7e3"
+
