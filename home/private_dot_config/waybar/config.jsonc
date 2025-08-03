@@ -4,8 +4,7 @@
   "spacing": 4,
   "modules-left": [
     "hyprland/workspaces",
-    "hyprland/submap",
-    "hyprland/window"
+    "hyprland/submap"
   ],
   "modules-center": [
     "clock"
@@ -37,11 +36,6 @@
   "hyprland/submap": {
     "format": "{}",
     "max-length": 8,
-    "tooltip": false
-  },
-  "hyprland/window": {
-    "format": " {}",
-    "separate-outputs": true,
     "tooltip": false
   },
   "clock": {
