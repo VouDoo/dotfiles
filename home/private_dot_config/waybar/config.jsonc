@@ -23,14 +23,15 @@
   "hyprland/workspaces": {
     "format": "{icon}",
     "format-icons": {
-      "1": "󰲡",
-      "2": "󰲣",
-      "3": "󰲥",
-      "4": "󰲧",
-      "default": "󰄰"
+      "1": "󰲠",
+      "2": "󰲢",
+      "3": "󰲤",
+      "4": "󰲦",
+      "5": "󰲨",
+      "default": "󰝥"
     },
     "persistent-workspaces": {
-      "*": 4
+      "*": 5
     }
   },
   "hyprland/submap": {
