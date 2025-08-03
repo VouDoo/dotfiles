@@ -12,7 +12,6 @@
   ],
   "modules-right": [
     "tray",
-    "custom/yay",
     "memory",
     "cpu",
     "network",
@@ -51,12 +50,6 @@
   },
   "tray": {
     "spacing": 12
-  },
-  "custom/yay": {
-    "format": "{} ",
-    "exec": "(checkupdates; yay -Qua) | wc -l",
-    "interval": "1800",
-    "tooltip": false
   },
   "memory": {
     "format": "{}% ",
