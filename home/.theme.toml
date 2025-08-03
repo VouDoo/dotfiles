@@ -1,4 +1,6 @@
 [colors]
+background = "#2b3047"
+
 base    = "#1a1b26"
 surface = "#24283b"
 overlay = "#414868"
