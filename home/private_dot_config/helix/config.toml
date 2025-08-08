@@ -1,0 +1,19 @@
+theme = "tokyonight"
+
+[editor]
+line-number = "relative"
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "block"
+
+[editor.whitespace.render]
+space = "all"
+tab = "all"
+nbsp = "none"
+nnbsp = "none"
+newline = "none"
+
+[keys.insert.j]
+j = "normal_mode"
