@@ -129,6 +129,9 @@ bind = $mainMod, 3, workspace, 3
 bind = $mainMod, 4, workspace, 4
 bind = $mainMod, 5, workspace, 5
 
+# Switch to gaming workspace with main modifier key + (`)
+bind = $mainMod, grave, workspace, 9
+
 # Move active window to a workspace with main modifier key + SHIFT + [1-4]
 bind = $mainMod SHIFT, 1, movetoworkspace, 1
 bind = $mainMod SHIFT, 2, movetoworkspace, 2
@@ -141,6 +144,9 @@ bind = $mainMod, N, layoutmsg, cyclenext
 bind = $mainMod, M, layoutmsg, swapwithmaster master
 
 # Floating layout commands
+bind = $mainMod, V, togglefloating
+
+# Move window to center
 bind = SUPER, C, togglefloating
 bind = SUPER, C, resizeactive, exact 68% 94%
 bind = SUPER, C, centerwindow
@@ -174,4 +180,8 @@ windowrule = suppressevent maximize, class:.*
 
 # Fix some dragging issues with XWayland
 windowrule = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
+
+# Start gaming stuff in dedicated workspace
+windowrule = workspace 9,class:steam
+windowrule = workspace 9,class:gamescope
 
