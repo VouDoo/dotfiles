@@ -10,22 +10,24 @@ PS1='[\u@\h \W]\$ '
 
 # set pager
 if [[ -x "$(command -v less 2>/dev/null)" ]]; then
-    export PAGER="less"
-    export LESSHISTFILE=-
+  pager="less"
+  export LESSHISTFILE=-
 elif [[ -x "$(command -v more 2>/dev/null)" ]]; then
-    export PAGER="more"
+  pager="more"
 else
-    export PAGER="cat"
+  pager="cat"
 fi
+export PAGER=$pager
 
 # set editor
 if [[ -x "$(command -v nvim 2>/dev/null)" ]]; then
-    export EDITOR="$(command -v nvim)"
+  editor="$(command -v nvim)"
 elif [[ -x "$(command -v vim 2>/dev/null)" ]]; then
-    export EDITOR="$(command -v vim)"
+  editor="$(command -v vim)"
 else
-    export EDITOR="$(command -v vi)"
+  editor="$(command -v vi)"
 fi
+export EDITOR=$editor
 
 # add user's local binaries to PATH
 [[ ":$PATH:" != *":${HOME}/.local/bin:"* ]] && PATH="${HOME}/.local/bin:${PATH}"
