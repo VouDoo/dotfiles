@@ -17,6 +17,8 @@ end
 if type -q bluetoothctl
     abbr -a bluetooth bluetoothctl
 end
-if type -q iwctl
+if type -q impala
+    abbr -a wifi impala
+else
     abbr -a wifi iwctl
 end
