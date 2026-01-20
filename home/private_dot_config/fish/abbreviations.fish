@@ -14,7 +14,9 @@ end
 if type -q helix
     abbr -a hx helix
 end
-if type -q bluetoothctl
+if type -q bluetui
+    abbr -a bluetooth bluetui
+else if type -q bluetoothctl
     abbr -a bluetooth bluetoothctl
 end
 if type -q impala
