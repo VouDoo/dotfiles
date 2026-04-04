@@ -51,6 +51,7 @@ layout {
 }
 
 spawn-at-startup "ashell"
+spawn-sh-at-startup "ghostty -e fish -C motd"
 
 hotkey-overlay {
     skip-at-startup
