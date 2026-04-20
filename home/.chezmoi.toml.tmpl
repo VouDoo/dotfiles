@@ -24,14 +24,5 @@
     {{- $terminalFontSizeDefault := 12 }}
     terminal_font_size = {{ promptIntOnce . "terminal_font_size" (printf "Font size for Terminal (default: %d)" $terminalFontSizeDefault) | default $terminalFontSizeDefault }}
 
-    {{- if eq .chezmoi.os "linux" }}
-    # Hyprland and Hypr Ecosystem
-    hypr_monitor_scale = {{ promptIntOnce . "hypr_monitor_scale" "Hyprland monitor scale (leave empty for default)" | default 1 }}
-    hypr_cursor_size = {{ promptIntOnce . "hypr_cursor_size" "Hyprland cursor size (leave empty for default)" | default 24 }}
-    hypr_wallpaper = {{ promptStringOnce . "hypr_wallpaper" "Path to image file for hyprpaper wallpaper (leave empty to unset)" | quote }}
-    {{- end }}
-
     # Enable specific configuration
     kubernetes = {{ promptBoolOnce . "kubernetes" "Enable configuration for Kubernetes development/management tools" }}
-    gaming = {{ promptBoolOnce . "gaming" "Enable configuration for gaming environment" }}
-

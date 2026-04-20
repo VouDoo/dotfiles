@@ -7,6 +7,9 @@ abbr -a cat bat
 abbr -a tree ls --tree
 abbr -a lgit lazygit
 abbr -a cm chezmoi
+if type -q yazi
+    abbr -a fe yazi
+end
 if type -q nvim
     abbr -a vi nvim
     abbr -a vim nvim

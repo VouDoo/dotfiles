@@ -10,10 +10,3 @@ Documents
 
 # ignored files and directories
 **/ignore_*
-
-# theme
-.theme.toml
-
-# archives directory
-.archives
-
