@@ -88,7 +88,6 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Return        hotkey-overlay-title="Open Terminal" { spawn "ghostty" "-e" "fish"; }
-    Mod+Backspace     hotkey-overlay-title="Open File explorer" { spawn "ghostty" "--confirm-close-surface=false" "-e" "yazi"; }
     Mod+Shift+Return  hotkey-overlay-title="Open Browser" { spawn "zen-browser"; }
 
     Mod+Space   hotkey-overlay-title="Open Application Launcher" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
