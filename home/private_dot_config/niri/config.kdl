@@ -69,9 +69,6 @@ debug {
     honor-xdg-activation-with-invalid-serial
 }
 binds {
-    Mod+Shift+Slash {
-        show-hotkey-overlay
-    }
     Mod+Return hotkey-overlay-title="Open Terminal" {
         spawn "ghostty" "-e" "fish"
     }
@@ -87,37 +84,64 @@ binds {
     Mod+Shift+S hotkey-overlay-title="Open Noctalia Settings" {
         spawn-sh "qs -c noctalia-shell ipc call settings toggle"
     }
+    // XF86AudioRaiseVolume allow-when-locked=true {
+    //     spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"
+    // }
     XF86AudioRaiseVolume allow-when-locked=true {
-        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"
+        spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "increase"
     }
+    // XF86AudioLowerVolume allow-when-locked=true {
+    //     spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"
+    // }
     XF86AudioLowerVolume allow-when-locked=true {
-        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"
+        spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "decrease"
     }
+    // XF86AudioMute allow-when-locked=true {
+    //     spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    // }
     XF86AudioMute allow-when-locked=true {
-        spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "muteOutput"
     }
+    // XF86AudioMicMute allow-when-locked=true {
+    //     spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+    // }
     XF86AudioMicMute allow-when-locked=true {
-        spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "muteInput"
     }
-    XF86AudioPlay allow-when-locked=true {
-        spawn-sh "playerctl play-pause"
-    }
-    XF86AudioStop allow-when-locked=true {
-        spawn-sh "playerctl stop"
-    }
-    XF86AudioPrev allow-when-locked=true {
-        spawn-sh "playerctl previous"
-    }
-    XF86AudioNext allow-when-locked=true {
-        spawn-sh "playerctl next"
-    }
-    //XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
+    // XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
     XF86MonBrightnessUp allow-when-locked=true {
         spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "increase"
     }
-    //XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+    // XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
     XF86MonBrightnessDown allow-when-locked=true {
         spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "decrease"
+    }
+    // XF86AudioPlay allow-when-locked=true {
+    //     spawn-sh "playerctl play-pause"
+    // }
+    XF86AudioPlay allow-when-locked=true {
+        spawn "qs" "-c" "noctalia-shell" "ipc" "call" "media" "playPause"
+    }
+    // XF86AudioStop allow-when-locked=true {
+    //     spawn-sh "playerctl stop"
+    // }
+    XF86AudioStop allow-when-locked=true {
+        spawn "qs" "-c" "noctalia-shell" "ipc" "call" "media" "pause"
+    }
+    // XF86AudioPrev allow-when-locked=true {
+    //     spawn-sh "playerctl previous"
+    // }
+    XF86AudioPrev allow-when-locked=true {
+        spawn "qs" "-c" "noctalia-shell" "ipc" "call" "media" "previous"
+    }
+    // XF86AudioNext allow-when-locked=true {
+    //     spawn-sh "playerctl next"
+    // }
+    XF86AudioNext allow-when-locked=true {
+        spawn "qs" "-c" "noctalia-shell" "ipc" "call" "media" "next"
+    }
+    Mod+Shift+Slash {
+        show-hotkey-overlay
     }
     Mod+O repeat=false {
         toggle-overview
