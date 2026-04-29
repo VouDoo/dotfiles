@@ -1,7 +1,8 @@
 #  https://fishshell.com/docs/current/index.html
 
-# Add to PATH environment varialble - https://fishshell.com/docs/current/cmds/fish_add_path.html
+# Add to PATH environment variable - https://fishshell.com/docs/current/cmds/fish_add_path.html
 fish_add_path -m ~/.local/bin
+fish_add_path -m ~/.npm-global/bin
 
 # Environment variables - https://fishshell.com/docs/current/cmds/set.html
 set -gx EDITOR nvim
