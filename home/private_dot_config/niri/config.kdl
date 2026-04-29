@@ -78,6 +78,9 @@ binds {
     Mod+Space hotkey-overlay-title="Open Application Launcher" {
         spawn-sh "qs -c noctalia-shell ipc call launcher toggle"
     }
+    Mod+X hotkey-overlay-title="Open Clipboard History" {
+        spawn-sh "qs -c noctalia-shell ipc call launcher clipboard"
+    }
     Mod+S hotkey-overlay-title="Open Control Center" {
         spawn-sh "qs -c noctalia-shell ipc call controlCenter toggle"
     }
