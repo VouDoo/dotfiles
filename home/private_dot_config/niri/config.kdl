@@ -48,14 +48,19 @@ spawn-at-startup "noctalia"
 // TODO: Remove the sleep delay if Niri or Noctalia fixes this initialization race.
 //
 // Ideal configuration:
-// spawn-at-startup "ghostty" "-e" "fish" "-C" "motd"
-spawn-sh-at-startup "sleep 0.5 && ghostty -e fish -C motd"
+// spawn-at-startup "ghostty" "--title='Startup Terminal'" "-e" "fish" "-C" "motd"
+spawn-sh-at-startup "sleep 1 && ghostty --title='Startup Terminal' -e fish -C motd"
 hotkey-overlay {
     skip-at-startup
 }
 screenshot-path "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png"
 animations {
     off
+}
+window-rule {
+    match app-id="^com\\.mitchellh\\.ghostty$" title="^Startup Terminal$"
+    open-floating true
+    open-focused true
 }
 window-rule {
     match app-id="^org\\.keepassxc\\.KeePassXC$"
