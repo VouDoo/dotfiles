@@ -43,7 +43,13 @@ layout {
     }
 }
 spawn-at-startup "noctalia"
-spawn-at-startup "ghostty" "-e" "fish" "-C" "motd"
+// HACK: Wayland race condition workaround with Noctalia.
+// Ghostty starts too fast on a fresh login and fails to map its window.
+// TODO: Remove the sleep delay if Niri or Noctalia fixes this initialization race.
+//
+// Ideal configuration:
+// spawn-at-startup "ghostty" "-e" "fish" "-C" "motd"
+spawn-sh-at-startup "sleep 0.5 && ghostty -e fish -C motd"
 hotkey-overlay {
     skip-at-startup
 }
