@@ -1,8 +1,6 @@
 # $ ~/\.files
 
-This repository stores all my configuration [dotfiles](https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory#Unix_and_Unix-like_environments).
+My personal [dotfiles](https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory#Unix_and_Unix-like_environments) managed with [chezmoi](https://www.chezmoi.io/).
 
-I use [chezmoi](https://www.chezmoi.io/) to easily manage them.
-
-Also, I keep track of all the packages I use and how I install my systems.
-See [docs](./docs).
+This repository also tracks my system packages and provisioning scripts.
+See [setup](./setup) for details.

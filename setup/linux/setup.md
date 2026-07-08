@@ -1,11 +1,7 @@
-# Setup `linux`
-
 - [Setup `linux`](#setup-linux)
   - [Before you start](#before-you-start)
   - [How to install Arch Linux](#how-to-install-arch-linux)
-  - [Install AUR Helper](#install-aur-helper)
-    - [Install Yay](#install-yay)
-    - [Install Paru](#install-paru)
+  - [Bootstrap](#bootstrap)
 
 ---
 
@@ -24,20 +20,30 @@ This guide will assist you in setting up your Linux environment based on **Arch 
 
 ## How to install Arch Linux
 
+### Vanilla Arch Linux
+
 > As we all know, installing Arch Linux can feel like a rite of passage… if that passage involves a maze and a few panic attacks, especially for newbies.
 >
 > But fear not! With a magical installer, you can now skip the hair-pulling, headache-inducing parts and get straight to the fun stuff!
 
 Follow the **archinstall** documentation to install Arch Linux on your computer: <https://wiki.archlinux.org/title/Archinstall>.
 
-## Install AUR Helper
+### CachyOS
 
-**_YAaaaY_** or **_PAaaRU_**? Both do a great job at installing and managing packages from the AUR — just make your choice!
+> If you want the power of Arch but fine-tuned for ultimate performance right out of the box, CachyOS is the way to go.
+>
+> It uses advanced x86-64-v3/v4 optimized binaries, custom performance kernels, and a gorgeous, user-friendly graphical installer. Think of it as Arch Linux on steroids.
 
-### Install Yay
+Follow the official installation guide to deploy CachyOS on your hardware: <https://wiki.cachyos.org/>.
 
-🔗 [How to install Yay](https://github.com/Jguer/yay?tab=readme-ov-file#installation) _The Go way..._
+## Bootstrap
 
-### Install Paru
+After a fresh install of Arch Linux, you can kick off the entire installation process with a single command.
 
-🔗 [How to install Paru](https://github.com/Morganamilo/paru?tab=readme-ov-file#installation) _The Rust way..._
+This automated script will update your system repositories, bootstrap the AUR helper if missing, pull down your dotfiles configuration via Chezmoi, and install your entire stack of applications completely unattended.
+
+Open a terminal and run the following command to download and execute the script:
+
+```sh
+sh <(curl -sSL https://raw.githubusercontent.com/VouDoo/dotfiles/main/setup/linux/rice-my-arch.sh)
+```
