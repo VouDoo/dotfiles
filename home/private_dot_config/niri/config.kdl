@@ -1,4 +1,4 @@
-include "./noctalia.kdl"
+include optional=true "./noctalia.kdl"
 input {
     keyboard {
         xkb {
