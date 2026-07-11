@@ -1,6 +1,6 @@
 function motd --description 'Set welcome message in interactive shells'
     if type -q fastfetch
-        fastfetch
+        fastfetch --logo small
         echo -e "\n\n"
     end
     set_color yellow
