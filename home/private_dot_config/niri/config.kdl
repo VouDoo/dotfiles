@@ -59,13 +59,19 @@ animations {
     off
 }
 window-rule {
+    // Launch the startup terminal as a focused, floating window
     match app-id="^com\\.mitchellh\\.ghostty$" title="^Startup Terminal$"
     open-floating true
     open-focused true
 }
 window-rule {
+    // Force Browser to always open maximized and focused
+    match app-id="^zen$"
+    open-maximized true
+    open-focused true
+}
+window-rule {
     match app-id="^org\\.keepassxc\\.KeePassXC$"
-    match app-id="^org\\.gnome\\.World\\.Secrets$"
     block-out-from "screen-capture"
 }
 window-rule {
