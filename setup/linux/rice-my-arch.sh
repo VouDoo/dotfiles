@@ -68,4 +68,7 @@ paru -S --needed impala bluetui pavucontrol yazi lazygit
 # Ghostty (Terminal), Zen (Browser), KeePassXC (Credentials), and Rclone (Cloud Storage Sync).
 paru -S --needed ghostty zen-browser-bin keepassxc qt5-wayland rclone
 
+echo "Set Fish as default shell for your user:"
+chsh --shell /usr/bin/fish
+
 echo "Base installation complete! Please reboot your system."
