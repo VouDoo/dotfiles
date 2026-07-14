@@ -1,0 +1,7 @@
+profile {
+  output eDP-1 enable scale 1.0
+}
+
+profile {
+  output HDMI-A-2 enable scale 1.5
+}
