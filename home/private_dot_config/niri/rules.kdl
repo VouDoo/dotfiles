@@ -1,4 +1,10 @@
 window-rule {
+    geometry-corner-radius 6
+    clip-to-geometry true
+}
+
+// Application-specific window rules
+window-rule {
     // Launch the startup terminal as a focused, floating window
     match app-id="^com\\.mitchellh\\.ghostty$" title="^Startup Terminal$"
     open-floating true
@@ -11,18 +17,17 @@ window-rule {
     open-focused true
 }
 window-rule {
+    // Block out password managers from screencasts
     match app-id="^org\\.keepassxc\\.KeePassXC$"
     block-out-from "screen-capture"
 }
 window-rule {
-    geometry-corner-radius 6
-    clip-to-geometry true
-}
-window-rule {
+    // Re-position Steam notification toasts
     match app-id="steam" title="^notificationtoasts_\\d+_desktop$"
     default-floating-position x=10 y=10 relative-to="bottom-right"
 }
 window-rule {
+    // Force all windows to open tiled by default
     open-floating false
 }
 
