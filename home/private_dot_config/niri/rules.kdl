@@ -1,0 +1,28 @@
+window-rule {
+    // Launch the startup terminal as a focused, floating window
+    match app-id="^com\\.mitchellh\\.ghostty$" title="^Startup Terminal$"
+    open-floating true
+    open-focused true
+}
+window-rule {
+    // Force Browser to always open maximized and focused
+    match app-id="^zen$"
+    open-maximized true
+    open-focused true
+}
+window-rule {
+    match app-id="^org\\.keepassxc\\.KeePassXC$"
+    block-out-from "screen-capture"
+}
+window-rule {
+    geometry-corner-radius 6
+    clip-to-geometry true
+}
+window-rule {
+    match app-id="steam" title="^notificationtoasts_\\d+_desktop$"
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+}
+layer-rule {
+    match namespace="^noctalia-wallpaper*"
+    place-within-backdrop true
+}

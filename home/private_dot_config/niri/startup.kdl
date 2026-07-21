@@ -1,0 +1,9 @@
+spawn-at-startup "noctalia"
+spawn-at-startup "kanshi"
+// HACK: Wayland race condition workaround with Noctalia.
+// Ghostty starts too fast on a fresh login and fails to map its window.
+// TODO: Remove the sleep delay if Niri or Noctalia fixes this initialization race.
+//
+// Ideal configuration:
+// spawn-at-startup "ghostty" "--title='Startup Terminal'" "-e" "fish" "-C" "motd"
+spawn-sh-at-startup "sleep 1 && ghostty --title='Startup Terminal' -e fish -C motd"
