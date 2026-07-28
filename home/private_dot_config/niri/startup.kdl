@@ -5,5 +5,5 @@ spawn-at-startup "kanshi"
 // TODO: Remove the sleep delay if Niri or Noctalia fixes this initialization race.
 //
 // Ideal configuration:
-// spawn-at-startup "ghostty" "--title='Startup Terminal'" "-e" "fish" "-C" "motd"
-spawn-sh-at-startup "sleep 1 && ghostty --title='Startup Terminal' -e fish -C motd"
+// spawn-at-startup "ghostty" "-e" "fish" "-C" "motd"
+spawn-sh-at-startup "sleep 1 && ghostty -e fish -C motd"

@@ -5,12 +5,6 @@ window-rule {
 
 // Application-specific window rules
 window-rule {
-    // Launch the startup terminal as a focused, floating window
-    match app-id="^com\\.mitchellh\\.ghostty$" title="^Startup Terminal$"
-    open-floating true
-    open-focused true
-}
-window-rule {
     // Force Browser to always open maximized and focused
     match app-id="^zen$"
     open-maximized true
