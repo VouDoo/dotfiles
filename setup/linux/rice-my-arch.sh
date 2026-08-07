@@ -63,7 +63,7 @@ chsh --shell /usr/bin/fish
 
 # Modern CLI Tooling
 # Some utilities replace standard coreutils (ls -> eza, cat -> bat, cd -> zoxide, etc.).
-paru -S --needed starship bat btop eza fd fzf ripgrep zoxide rsync git-delta tlrc-bin fastfetch
+paru -S --needed starship bat btop eza fd fzf ripgrep zoxide rsync git-delta tealdeer fastfetch
 
 # Text Editors
 # Neovim and Helix for modal terminal-based editing.
