@@ -3,6 +3,6 @@ gui:
 disableStartupPopups: true
 notARepository: quit
 git:
-  pagers:
-    - pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
-      colorArg: always
+  diffRenderers:
+    - colorArg: always
+      command: delta --dark --paging=never
