@@ -3,7 +3,7 @@ binds {
         spawn "ghostty" "-e" "fish"
     }
     Mod+Shift+Return hotkey-overlay-title="Open Browser" {
-        spawn "zen-browser"
+        spawn "brave-origin"
     }
     Mod+Space hotkey-overlay-title="Open Application Launcher" {
         spawn-sh "noctalia msg panel-toggle launcher"

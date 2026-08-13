@@ -6,7 +6,7 @@ window-rule {
 // Application-specific window rules
 window-rule {
     // Force Browser to always open maximized and focused
-    match app-id="^zen$"
+    match app-id="^brave-origin$"
     open-maximized true
     open-focused true
 }
