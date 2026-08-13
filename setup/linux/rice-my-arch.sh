@@ -65,6 +65,9 @@ chsh --shell /usr/bin/fish
 # Some utilities replace standard coreutils (ls -> eza, cat -> bat, cd -> zoxide, etc.).
 paru -S --needed starship bat btop eza fd fzf ripgrep zoxide rsync git-delta tealdeer fastfetch
 
+# Essential compression/archiving tools
+paru -S --needed tar zip unzip gzip xz bzip2
+
 # Text Editors
 # Neovim and Helix for modal terminal-based editing.
 paru -S --needed neovim helix
