@@ -75,6 +75,13 @@ paru -S --needed impala bluetui pavucontrol yazi lazygit
 
 # Core Productivity Apps
 # Ghostty (Terminal), Zen (Browser), KeePassXC (Credentials), and Rclone (Cloud Storage Sync).
-paru -S --needed ghostty zen-browser-bin keepassxc qt5-wayland rclone localsend-bin
+paru -S --needed ghostty zen-browser-bin keepassxc qt5-wayland rclone
+
+# Multimedia Apps
+# FFmpeg (Multimedia libs and programs), imv (Image viewer), and mpv (Media player)
+paru -S --needed ffmpeg imv mpv
+
+# Extra AUR packages
+paru -S --needed localsend-bin
 
 echo "Base installation complete! Please reboot your system."
