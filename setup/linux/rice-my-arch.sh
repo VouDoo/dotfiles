@@ -49,7 +49,7 @@ paru -S --needed niri xwayland-satellite xdg-desktop-portal xdg-desktop-portal-g
 # Installs 0xProto Nerd Font for UI iconography, and Noctalia as the top-bar/shell.
 paru -S --needed ttf-0xproto-nerd noctalia
 # Installs GTK theme
-paru -S --needed ngw-look arc-gtk-theme
+paru -S --needed nwg-look arc-gtk-theme
 
 # Clipboard Management
 # wl-clipboard provides copy/paste backends.
