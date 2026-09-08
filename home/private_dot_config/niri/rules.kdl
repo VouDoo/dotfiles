@@ -17,7 +17,7 @@ window-rule {
 }
 window-rule {
     // Re-position Steam notification toasts
-    match app-id="steam" title="^notificationtoasts_\\d+_desktop$"
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
     default-floating-position x=10 y=10 relative-to="bottom-right"
 }
 window-rule {
