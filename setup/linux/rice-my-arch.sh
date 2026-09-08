@@ -29,6 +29,10 @@ if ! command -v paru >/dev/null 2>&1; then
   rm -rf /tmp/paru
 fi
 
+# Package managers
+# Install Mise
+paru -S --needed mise
+
 # Dotfiles & Configuration
 # Deploy personal configuration files using chezmoi directly from GitHub.
 paru -S --needed chezmoi
