@@ -94,4 +94,6 @@ paru -S --needed ffmpeg imv mpv
 # Extra AUR packages
 paru -S --needed localsend-bin marktext-bin
 
-echo "Base installation complete! Please reboot your system."
+echo "Base installation complete! Reboot in 5 seconds."
+sleep 5
+reboot
