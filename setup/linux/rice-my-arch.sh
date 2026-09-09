@@ -90,6 +90,6 @@ paru -S --needed ghostty brave-origin-bin keepassxc qt5-wayland rclone
 paru -S --needed ffmpeg imv mpv
 
 # Extra AUR packages
-paru -S --needed localsend-bin
+paru -S --needed localsend-bin marktext-bin
 
 echo "Base installation complete! Please reboot your system."
