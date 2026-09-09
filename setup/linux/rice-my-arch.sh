@@ -55,6 +55,8 @@ paru -S --needed ttf-0xproto-nerd noctalia
 # Installs GTK theme
 # Noctalia can automatically theme them using the adw-gtk3 theme.
 paru -S --needed adw-gtk-theme nwg-look
+# Install icon theme
+paru -S --needed papirus-icon-theme
 
 # Clipboard Management
 # wl-clipboard provides copy/paste backends.
