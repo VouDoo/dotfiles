@@ -3,11 +3,7 @@
 	email = {{ .email }}
 
 [core]
-{{- if (eq .chezmoi.os "windows") }}
-	editor = code --wait
-{{- else }}
 	editor = nvim
-{{- end }}
 	pager = delta
 
 [interactive]

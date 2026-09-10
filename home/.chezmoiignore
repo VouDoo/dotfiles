@@ -1,12 +1,2 @@
-{{ if eq .chezmoi.os "windows" }}
-.config
-.local
-.bash_profile
-.bashrc
-{{ else }}
-AppData
-Documents
-{{ end }}
-
 # ignored files and directories
 **/ignore_*

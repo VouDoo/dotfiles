@@ -13,7 +13,6 @@
 
     # Fonts
     {{- $fontNerdFamilyDefault := "0xProto" }}
-    {{- if eq .chezmoi.os "windows" }}{{ $fontNerdFamilyDefault = "CaskaydiaCove" }}{{ end }}
     {{- $fontNerdFamily := promptStringOnce . "font_nerd_family" (printf "Nerd Fonts font familly to use (default: %s)" $fontNerdFamilyDefault) | default $fontNerdFamilyDefault }}
     font_nerd_family = {{ $fontNerdFamily | quote }} # Nerd Fonts font familly name
     font_regular = {{ cat $fontNerdFamily "Nerd Font" | quote }} # regular font family (auto-generated based on font_nerd_family value)
@@ -24,5 +23,3 @@
     {{- $terminalFontSizeDefault := 12 }}
     terminal_font_size = {{ promptIntOnce . "terminal_font_size" (printf "Font size for Terminal (default: %d)" $terminalFontSizeDefault) | default $terminalFontSizeDefault }}
 
-    # Enable specific configuration
-    kubernetes = {{ promptBoolOnce . "kubernetes" "Enable configuration for Kubernetes development/management tools" }}

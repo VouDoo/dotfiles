@@ -1,4 +1,6 @@
-- [Setup `linux`](#setup-linux)
+# Setup
+
+- [Setup](#setup)
   - [Before you start](#before-you-start)
   - [How to install Arch Linux](#how-to-install-arch-linux)
   - [Bootstrap](#bootstrap)
@@ -45,5 +47,5 @@ This automated script will update your system repositories, bootstrap the AUR he
 Open a terminal and run the following command to download and execute the script:
 
 ```sh
-sh <(curl -sSL https://raw.githubusercontent.com/VouDoo/dotfiles/main/setup/linux/rice-my-arch.sh)
+sh <(curl -sSL https://raw.githubusercontent.com/VouDoo/dotfiles/main/rice-my-arch.sh)
 ```
