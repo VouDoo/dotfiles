@@ -1,0 +1,29 @@
+# https://fishshell.com/docs/current/cmds/abbr.html
+
+abbr -a cd z
+abbr -a find fd
+abbr -a grep rg
+abbr -a cat bat
+abbr -a tree ls --tree
+abbr -a lgit lazygit
+abbr -a cm chezmoi
+if type -q yazi
+    abbr -a fe yazi
+end
+if type -q nvim
+    abbr -a vi nvim
+    abbr -a vim nvim
+end
+if type -q helix
+    abbr -a hx helix
+end
+if type -q bluetui
+    abbr -a bluetooth bluetui
+else if type -q bluetoothctl
+    abbr -a bluetooth bluetoothctl
+end
+if type -q impala
+    abbr -a wifi impala
+else
+    abbr -a wifi iwctl
+end

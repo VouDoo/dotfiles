@@ -12,7 +12,6 @@ if type -q mise
 end
 
 if status is-interactive
-    source $XDG_CONFIG_HOME/fish/abbreviations.fish
     if type -q starship
         set -gx STARSHIP_CONFIG "$XDG_CONFIG_HOME/starship.toml"
         starship init fish | source
