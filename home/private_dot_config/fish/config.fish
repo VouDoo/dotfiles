@@ -13,7 +13,6 @@ end
 
 if status is-interactive
     if type -q starship
-        set -gx STARSHIP_CONFIG "$XDG_CONFIG_HOME/starship.toml"
         starship init fish | source
     end
     if type -q zoxide
