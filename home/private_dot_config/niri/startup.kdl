@@ -6,4 +6,4 @@ spawn-at-startup "kanshi"
 //
 // Ideal configuration:
 // spawn-at-startup "ghostty" "-e" "fish" "-C" "motd"
-spawn-sh-at-startup "sleep 1 && ghostty -e fish -C motd"
+spawn-sh-at-startup "sleep 1 && ghostty -e fish"
