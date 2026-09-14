@@ -47,7 +47,7 @@ sudo systemctl enable ly@tty2.service
 # Niri is a scrollable-tiling compositor.
 # XDG portals handle screensharing and file dialogues.
 # kanshi allows you to define output profiles that are automatically enabled and disabled on hotplug.
-paru -S --needed niri xwayland-satellite xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk kanshi
+paru -S --needed niri xwayland-satellite xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk kanshi hyprpicker
 
 # Core Shell & Aesthetics
 # Installs 0xProto Nerd Font for UI iconography, and Noctalia as the top-bar/shell.
