@@ -17,8 +17,13 @@
 
 set -e
 
+if [ "$(id -u)" -eq 0 ]; then
+  echo "Do not run this script as root."
+  exit 1
+fi
+
 # System Synchronization
-# Install base packages and sync the entire system packages.
+# Synchronize repositories and perform a full system upgrade.
 sudo pacman -Syu --needed base-devel git
 
 # AUR helper
@@ -29,71 +34,83 @@ if ! command -v paru >/dev/null 2>&1; then
   rm -rf /tmp/paru
 fi
 
+# Helper function to invoke paru command
+_paru() {
+  paru -S --needed "$@"
+}
+
 # Package managers
 # Install Mise
-paru -S --needed mise
+_paru mise
 
 # Dotfiles & Configuration
 # Deploy personal configuration files using chezmoi directly from GitHub.
-paru -S --needed chezmoi
+_paru chezmoi
 chezmoi init --apply https://github.com/VouDoo/dotfiles.git
 
 # Display Manager (Login Screen)
 # Ly manages user logins. Standard ly.service handles TTY switching automatically.
-paru -S --needed ly
+_paru ly
 sudo systemctl enable ly@tty2.service
 
 # Desktop Environment (Wayland Window Manager & Portal)
 # Niri is a scrollable-tiling compositor.
 # XDG portals handle screensharing and file dialogues.
 # kanshi allows you to define output profiles that are automatically enabled and disabled on hotplug.
-paru -S --needed niri xwayland-satellite xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk kanshi hyprpicker
+_paru niri xwayland-satellite xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk kanshi hyprpicker
 
-# Core Shell & Aesthetics
-# Installs 0xProto Nerd Font for UI iconography, and Noctalia as the top-bar/shell.
-paru -S --needed ttf-0xproto-nerd noctalia
-# Installs GTK theme
-# Noctalia can automatically theme them using the adw-gtk3 theme.
-paru -S --needed adw-gtk-theme nwg-look
-# Install icon theme
-paru -S --needed papirus-icon-theme
+# Desktop Shell & Theming
+# Nerd Font for UI iconography and Noctalia desktop shell.
+_paru ttf-0xproto-nerd noctalia
+# GTK theme
+# NOTE: Noctalia manages the global theme and can dynamically apply its colors to GTK apps with adw-gtk3.
+_paru adw-gtk-theme
+# Icon theme
+_paru papirus-icon-theme
+# GTK configuration
+# nwg-look provides a GUI to configure GTK themes and icons.
+_paru nwg-look
+echo "Manual setup required: run 'nwg-look' to configure GTK."
+echo "  Widgets    -> adw-gtk3"
+echo "  Icon theme -> Papirus"
 
 # Clipboard Management
 # wl-clipboard provides copy/paste backends.
 # cliphist acts as the local clipboard history daemon.
-paru -S --needed wl-clipboard cliphist
+_paru wl-clipboard cliphist
 
 # Interactive Shell
-paru -S --needed fish
-echo "Set Fish as default shell for your user:"
-chsh --shell /usr/bin/fish
+_paru fish
+FISH_PATH="$(command -v fish)"
+if [ "$(getent passwd "$USER" | cut -d: -f7)" != "$FISH_PATH" ]; then
+  echo "Setting Fish as the default shell..."
+  chsh --shell "$FISH_PATH"
+fi
 
 # Modern CLI Tooling
 # Some utilities replace standard coreutils (ls -> eza, cat -> bat, cd -> zoxide, etc.).
-paru -S --needed starship bat btop eza fd fzf ripgrep zoxide rsync git-delta tealdeer fastfetch
+_paru starship bat btop eza fd fzf ripgrep zoxide rsync git-delta tealdeer fastfetch
 
 # Essential compression/archiving tools
-paru -S --needed tar zip unzip gzip xz bzip2
+_paru tar zip unzip gzip xz bzip2
 
 # Text Editors
 # Neovim and Helix for modal terminal-based editing.
-paru -S --needed neovim helix
+_paru neovim helix
 
 # Terminal User Interfaces (TUI)
 # Console dashboards for managing network, bluetooth, audio, files, and git.
-paru -S --needed impala bluetui pavucontrol yazi lazygit
+_paru impala bluetui pavucontrol yazi lazygit
 
 # Core Productivity Apps
 # Ghostty (Terminal), Brave Origin (Browser), KeePassXC (Credentials), and Rclone (Cloud Storage Sync).
-paru -S --needed ghostty brave-origin-bin keepassxc qt5-wayland rclone
+_paru ghostty brave-origin-bin keepassxc qt5-wayland rclone
 
 # Multimedia Apps
 # FFmpeg (Multimedia libs and programs), imv (Image viewer), and mpv (Media player)
-paru -S --needed ffmpeg imv mpv
+_paru ffmpeg imv mpv
 
 # Extra AUR packages
-paru -S --needed localsend-bin marktext-bin
+_paru localsend-bin marktext-bin
 
-echo "Base installation complete! Reboot in 5 seconds."
-sleep 5
-reboot
+echo "Base installation complete! Reboot your system to apply the changes and finish the setup."
