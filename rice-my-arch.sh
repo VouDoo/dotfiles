@@ -89,7 +89,7 @@ fi
 
 # Modern CLI Tooling
 # Some utilities replace standard coreutils (ls -> eza, cat -> bat, cd -> zoxide, etc.).
-_paru starship bat btop eza fd fzf ripgrep zoxide rsync git-delta tealdeer fastfetch
+_paru starship bat btop eza fd fzf ripgrep zoxide rsync git-delta tealdeer fastfetch tree-sitter-cli
 
 # Essential compression/archiving tools
 _paru tar zip unzip gzip xz bzip2
