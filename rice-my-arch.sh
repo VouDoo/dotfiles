@@ -35,7 +35,7 @@ if ! command -v paru >/dev/null 2>&1; then
 fi
 
 # Helper function to invoke paru command
-_paru() {
+_install() {
   paru -S --needed "$@"
 }
 
@@ -100,7 +100,7 @@ _paru neovim helix
 
 # Terminal User Interfaces (TUI)
 # Console dashboards for managing network, bluetooth, audio, files, and git.
-_paru impala bluetui pavucontrol yazi lazygit
+_paru impala bluetui pavucontrol yazi lazygit lazydocker
 
 # Core Productivity Apps
 # Ghostty (Terminal), Brave Origin (Browser), KeePassXC (Credentials), and Rclone (Cloud Storage Sync).
