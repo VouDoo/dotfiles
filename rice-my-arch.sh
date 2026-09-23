@@ -35,7 +35,7 @@ if ! command -v paru >/dev/null 2>&1; then
 fi
 
 # Helper function to invoke paru command
-_install() {
+_paru() {
   paru -S --needed "$@"
 }
 
