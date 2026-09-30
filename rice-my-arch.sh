@@ -103,8 +103,8 @@ _paru neovim tree-sitter-cli
 _paru impala bluetui pavucontrol yazi lazygit lazydocker
 
 # Core Productivity Apps
-# Ghostty (Terminal), Brave Origin (Browser), KeePassXC (Credentials), and Rclone (Cloud Storage Sync).
-_paru ghostty brave-origin-bin keepassxc qt5-wayland rclone
+# Ghostty (Terminal), Brave Origin (Browser), KeePassXC (Credentials), Rclone (Cloud Storage Sync), and Taskwarrior (ToDo list).
+_paru ghostty brave-origin-bin keepassxc qt5-wayland rclone task
 
 # Multimedia Apps
 # FFmpeg (Multimedia libs and programs), imv (Image viewer), and mpv (Media player)
