@@ -1,0 +1,67 @@
+# https://fishshell.com/docs/current/cmds/abbr.html
+
+if status is-interactive
+    if type -q starship
+        starship init fish | source
+    end
+    if type -q eza
+        function ls --wraps eza
+            eza --icons --time-style iso --group $argv
+        end
+        function ll --wraps eza
+            ls --long --header --git $argv
+        end
+        function tree --wraps eza
+            ls --tree $argv
+        end
+    end
+    if type -q zoxide
+        zoxide init fish | source
+    end
+    if type -q z
+        abbr -a cd z
+    end
+    if type -q fd
+        abbr -a find fd
+    end
+    if type -q rg
+        abbr -a grep rg
+    end
+    if type -q bat
+        abbr -a cat bat
+    end
+    if type -q lazygit
+        abbr -a lgit lazygit
+    end
+    if type -q chezmoi
+        abbr -a cm chezmoi
+    end
+    if type -q {{ .editor }}
+        abbr -a ed {{ .editor }}
+        abbr -a edit {{ .editor }}
+    end
+    if type -q sudoedit
+        abbr -a sued sudoedit
+        abbr -a suedit sudoedit
+    end
+    if type -q nvim
+        abbr -a vi nvim
+        abbr -a vim nvim
+    end
+    if type -q task
+        abbr -a todo task
+    end
+    if type -q yazi
+        abbr -a fe yazi
+    end
+    if type -q bluetui
+        abbr -a bluetooth bluetui
+    else if type -q bluetoothctl
+        abbr -a bluetooth bluetoothctl
+    end
+    if type -q impala
+        abbr -a wifi impala
+    else
+        abbr -a wifi iwctl
+    end
+end
