@@ -89,14 +89,14 @@ fi
 
 # Modern CLI Tooling
 # Some utilities replace standard coreutils (ls -> eza, cat -> bat, cd -> zoxide, etc.).
-_paru starship bat btop eza fd fzf ripgrep zoxide rsync git-delta tealdeer fastfetch tree-sitter-cli
+_paru starship bat btop eza fd fzf ripgrep zoxide rsync git-delta tealdeer fastfetch
 
 # Essential compression/archiving tools
 _paru tar zip unzip gzip xz bzip2
 
 # Text Editors
-# Neovim and Helix for modal terminal-based editing.
-_paru neovim helix
+# Neovim with dependencies for terminal-based editing.
+_paru neovim tree-sitter-cli
 
 # Terminal User Interfaces (TUI)
 # Console dashboards for managing network, bluetooth, audio, files, and git.

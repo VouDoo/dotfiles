@@ -7,15 +7,16 @@ abbr -a cat bat
 abbr -a tree ls --tree
 abbr -a lgit lazygit
 abbr -a cm chezmoi
-if type -q yazi
-    abbr -a fe yazi
-end
+abbr -a ed {{ .editor }}
+abbr -a edit {{ .editor }}
+abbr -a sued sudoedit
+abbr -a suedit sudoedit
 if type -q nvim
     abbr -a vi nvim
     abbr -a vim nvim
 end
-if type -q helix
-    abbr -a hx helix
+if type -q yazi
+    abbr -a fe yazi
 end
 if type -q bluetui
     abbr -a bluetooth bluetui

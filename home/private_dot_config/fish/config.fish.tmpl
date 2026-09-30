@@ -4,7 +4,8 @@
 fish_add_path -m ~/.local/bin
 
 # Environment variables - https://fishshell.com/docs/current/cmds/set.html
-set -gx EDITOR nvim
+set -gx EDITOR {{ .editor }}
+set -gx SUDO_EDITOR {{ .editor }}
 set -gx PAGER less
 
 if type -q mise

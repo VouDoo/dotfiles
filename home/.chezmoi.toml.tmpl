@@ -23,3 +23,6 @@
     {{- $terminalFontSizeDefault := 12 }}
     terminal_font_size = {{ promptIntOnce . "terminal_font_size" (printf "Font size for Terminal (default: %d)" $terminalFontSizeDefault) | default $terminalFontSizeDefault }}
 
+    # Editor
+    {{- $editorDefault := "nvim" }}
+    editor = {{ promptStringOnce . "editor" (printf "Default editor to use (default: %s)" $editorDefault) | default $editorDefault | quote }}
