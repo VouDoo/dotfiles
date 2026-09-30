@@ -1,0 +1,6 @@
+data.location=~/.local/share/task
+hooks.location=~/.config/task/hooks
+
+news.version=3.5.0
+
+#include ~/.config/task/custom.theme
