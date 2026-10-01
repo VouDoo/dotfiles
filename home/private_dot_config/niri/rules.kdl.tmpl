@@ -5,10 +5,10 @@ window-rule {
 
 // Application-specific window rules
 window-rule {
-    // Force Browser to always open maximized and focused
+    // Force Browser to always open focused and maximized (if enabled)
     match app-id="^brave-origin$"
-    open-maximized true
     open-focused true
+    open-maximized {{ .browser_maximized }}
 }
 window-rule {
     // Block out password managers from screencasts

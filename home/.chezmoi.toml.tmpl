@@ -26,3 +26,6 @@
     # Editor
     {{- $editorDefault := "nvim" }}
     editor = {{ promptStringOnce . "editor" (printf "Default editor to use (default: %s)" $editorDefault) | default $editorDefault | quote }}
+
+    # Window manager
+    browser_maximized = {{ promptBoolOnce . "browser_maximized" "Open browser windows maximized (default: true)" true }}
