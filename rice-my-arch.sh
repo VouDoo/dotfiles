@@ -29,9 +29,10 @@ sudo pacman -Syu --needed base-devel git
 # AUR helper
 # Install Paru.
 if ! command -v paru >/dev/null 2>&1; then
-  git clone https://aur.archlinux.org/paru.git /tmp/paru
-  (cd /tmp/paru && makepkg -si --noconfirm)
-  rm -rf /tmp/paru
+  PARU_BUILD_DIR="$(mktemp -d)"
+  git clone https://aur.archlinux.org/paru.git "$PARU_BUILD_DIR"
+  (cd "$PARU_BUILD_DIR" && makepkg -si --noconfirm)
+  rm -rf "$PARU_BUILD_DIR"
 fi
 
 # Helper function to invoke paru command
