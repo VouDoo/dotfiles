@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Use podman socket for docker commands
-export DOCKER_HOST=unix:///run/user/$(id -u)/podman/podman.sock
+export DOCKER_HOST="unix://${XDG_RUNTIME_DIR}/podman/podman.sock"
 
 # Launch lazydocker UI
 exec lazydocker "$@"
