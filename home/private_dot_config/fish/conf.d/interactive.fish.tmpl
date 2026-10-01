@@ -61,7 +61,7 @@ if status is-interactive
     end
     if type -q impala
         abbr -a wifi impala
-    else
+    else if type -q iwctl
         abbr -a wifi iwctl
     end
 end
