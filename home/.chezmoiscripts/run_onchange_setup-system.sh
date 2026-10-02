@@ -119,7 +119,16 @@ if [ "$(getent passwd "$USER" | cut -d: -f7)" != "$FISH_PATH" ]; then
 fi
 
 # Manual steps
-echo "Manual setup required: run 'nwg-look' to configure GTK."
-echo "  Widgets    -> adw-gtk3"
-echo "  Icon theme -> Papirus"
-echo "Manual setup required: run 'systemctl --user enable --now podman.socket' to use lazypodman."
+# Reminders are only shown until the step is done.
+GTK_THEME="$(gsettings get org.gnome.desktop.interface gtk-theme 2>/dev/null || true)"
+ICON_THEME="$(gsettings get org.gnome.desktop.interface icon-theme 2>/dev/null || true)"
+case "$GTK_THEME" in "'adw-gtk3"*) ;; *) GTK_TODO=1 ;; esac
+case "$ICON_THEME" in "'Papirus"*) ;; *) GTK_TODO=1 ;; esac
+if [ -n "$GTK_TODO" ]; then
+  echo "Manual setup required: run 'nwg-look' to configure GTK."
+  echo "  Widgets    -> adw-gtk3"
+  echo "  Icon theme -> Papirus"
+fi
+if ! systemctl --user is-enabled --quiet podman.socket; then
+  echo "Manual setup required: run 'systemctl --user enable --now podman.socket' to use lazypodman."
+fi
