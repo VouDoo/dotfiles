@@ -1,0 +1,8 @@
+[Sound Theme]
+Name=Parallel Windows Soundset
+Comment=CC0 sound theme from https://www.pling.com/p/2363260
+Inherits=freedesktop
+Directories=stereo
+
+[stereo]
+OutputProfile=stereo

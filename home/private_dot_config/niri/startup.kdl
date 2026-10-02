@@ -1,5 +1,6 @@
 spawn-at-startup "noctalia"
 spawn-at-startup "kanshi"
+spawn-sh-at-startup "pw-play --volume 0.95 ~/.local/share/sounds/parallel-windows/stereo/desktop-login.ogg"
 // HACK: Wayland race condition workaround with Noctalia.
 // Ghostty starts too fast on a fresh login and fails to map its window.
 // TODO: Remove the sleep delay if Niri or Noctalia fixes this initialization race.
