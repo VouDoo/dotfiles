@@ -10,6 +10,8 @@
     lastname = {{ $lastname | quote }}
     fullname = {{ cat $firstname $lastname | quote }}
     email = {{ promptStringOnce . "email" "Email address" | quote }}
+    {{- $githubUsernameDefault := "VouDoo" }}
+    github_username = {{ promptStringOnce . "github_username" (printf "GitHub username (default: %s)" $githubUsernameDefault) | default $githubUsernameDefault | quote }}
 
     # Fonts
     {{- $fontNerdFamilyDefault := "0xProto" }}
