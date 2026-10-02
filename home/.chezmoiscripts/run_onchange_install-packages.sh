@@ -4,7 +4,7 @@
 # System packages
 #
 # Description:
-#   Installs the curated stack of packages with paru.
+#   Installs paru (AUR helper) if missing, then the curated stack of packages.
 #   chezmoi re-runs this script on 'chezmoi apply' whenever its content changes,
 #   so adding a package below and running 'chezmoi apply' installs it.
 #
@@ -13,6 +13,15 @@
 ###############################################################################
 
 set -e
+
+# AUR helper
+# Install Paru.
+if ! command -v paru >/dev/null 2>&1; then
+  PARU_BUILD_DIR="$(mktemp -d)"
+  git clone https://aur.archlinux.org/paru.git "$PARU_BUILD_DIR"
+  (cd "$PARU_BUILD_DIR" && makepkg -si --noconfirm)
+  rm -rf "$PARU_BUILD_DIR"
+fi
 
 # Packages are collected per section, then installed with a single paru call.
 PACKAGES=""

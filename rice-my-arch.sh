@@ -24,21 +24,11 @@ fi
 
 # System Synchronization
 # Synchronize repositories and perform a full system upgrade.
-sudo pacman -Syu --needed base-devel git
-
-# AUR helper
-# Install Paru.
-if ! command -v paru >/dev/null 2>&1; then
-  PARU_BUILD_DIR="$(mktemp -d)"
-  git clone https://aur.archlinux.org/paru.git "$PARU_BUILD_DIR"
-  (cd "$PARU_BUILD_DIR" && makepkg -si --noconfirm)
-  rm -rf "$PARU_BUILD_DIR"
-fi
+sudo pacman -Syu --needed base-devel git chezmoi
 
 # Dotfiles, Configuration & Packages
 # Deploy personal configuration files using chezmoi directly from GitHub.
-# chezmoi also installs all system packages (see home/.chezmoiscripts/run_onchange_install-packages.sh).
-paru -S --needed chezmoi
+# chezmoi also installs paru and all system packages (see home/.chezmoiscripts/run_onchange_install-packages.sh).
 chezmoi init --apply https://github.com/VouDoo/dotfiles.git
 
 # Display Manager (Login Screen)
