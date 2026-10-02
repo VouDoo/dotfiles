@@ -1,0 +1,13 @@
+# Official web app icons, fetched once (refresh with: chezmoi apply --refresh-externals)
+
+["hicolor/scalable/apps/chatgpt.svg"]
+type = "file"
+url = "https://cdn.oaistatic.com/assets/favicon-o20kmmos.svg"
+
+["hicolor/scalable/apps/claude.svg"]
+type = "file"
+url = "https://claude.ai/favicon.svg"
+
+["hicolor/192x192/apps/twitch.png"]
+type = "file"
+url = "https://www.twitch.tv/apple-touch-icon.png"
