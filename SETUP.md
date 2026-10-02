@@ -42,7 +42,7 @@ Follow the official installation guide to deploy CachyOS on your hardware: <http
 
 After a fresh install of Arch Linux, you can kick off the entire installation process with a single command.
 
-This automated script will update your system repositories, bootstrap the AUR helper if missing, pull down your dotfiles configuration via Chezmoi, and install your entire stack of applications (paru will ask you to confirm the installation).
+This script updates your system, installs chezmoi and pulls down your dotfiles. chezmoi then installs the AUR helper and your entire stack of applications, enables the login screen and sets Fish as your default shell (paru will ask you to confirm the installation).
 
 Open a terminal and run the following command to download and execute the script:
 

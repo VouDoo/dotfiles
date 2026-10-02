@@ -1,12 +1,14 @@
 #!/usr/bin/env sh
 
 ###############################################################################
-# System packages
+# System setup
 #
 # Description:
-#   Installs paru (AUR helper) if missing, then the curated stack of packages.
+#   Installs paru (AUR helper) if missing, the curated stack of packages,
+#   then configures the Ly display manager and sets Fish as default shell.
 #   chezmoi re-runs this script on 'chezmoi apply' whenever its content changes,
 #   so adding a package below and running 'chezmoi apply' installs it.
+#   Every step is safe to run again.
 #
 # NOTE: Removing a package from this list does not uninstall it.
 #
@@ -17,6 +19,7 @@ set -e
 # AUR helper
 # Install Paru.
 if ! command -v paru >/dev/null 2>&1; then
+  sudo pacman -S --needed base-devel git
   PARU_BUILD_DIR="$(mktemp -d)"
   git clone https://aur.archlinux.org/paru.git "$PARU_BUILD_DIR"
   (cd "$PARU_BUILD_DIR" && makepkg -si --noconfirm)
@@ -99,3 +102,24 @@ add_packages localsend-bin marktext-bin
 
 # Install everything at once (word splitting of $PACKAGES is intended)
 paru -S --needed $PACKAGES
+
+# Display Manager (Login Screen)
+# Standard ly.service handles TTY switching automatically.
+if ! systemctl is-enabled --quiet ly@tty2.service; then
+  echo "Enabling Ly display manager..."
+  sudo systemctl enable ly@tty2.service
+fi
+
+# Interactive Shell
+# Set Fish as the default shell.
+FISH_PATH="$(command -v fish)"
+if [ "$(getent passwd "$USER" | cut -d: -f7)" != "$FISH_PATH" ]; then
+  echo "Setting Fish as the default shell..."
+  chsh --shell "$FISH_PATH"
+fi
+
+# Manual steps
+echo "Manual setup required: run 'nwg-look' to configure GTK."
+echo "  Widgets    -> adw-gtk3"
+echo "  Icon theme -> Papirus"
+echo "Manual setup required: run 'systemctl --user enable --now podman.socket' to use lazypodman."
