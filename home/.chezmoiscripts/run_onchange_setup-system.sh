@@ -68,7 +68,8 @@ add_packages wl-clipboard cliphist
 add_packages libnotify
 
 # Interactive Shell
-add_packages fish
+# less is the pager (used by man, git, and the cheat fish function).
+add_packages fish less
 
 # Modern CLI Tooling
 # Some utilities replace standard coreutils (ls -> eza, cat -> bat, cd -> zoxide, etc.).
@@ -120,6 +121,13 @@ fi
 if [ "$(basename "$(getent passwd "$USER" | cut -d: -f7)")" != "fish" ]; then
   echo "Setting Fish as the default shell..."
   chsh --shell /usr/bin/fish
+fi
+
+# tldr Pages
+# tealdeer starts with an empty cache, download it once so tldr (and cheat) work offline.
+if ! tldr --list >/dev/null 2>&1; then
+  echo "Downloading tldr pages..."
+  tldr --update || echo "Could not download tldr pages, run 'tldr --update' later."
 fi
 
 # Manual steps
