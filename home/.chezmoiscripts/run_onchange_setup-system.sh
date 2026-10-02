@@ -112,10 +112,10 @@ fi
 
 # Interactive Shell
 # Set Fish as the default shell.
-FISH_PATH="$(command -v fish)"
-if [ "$(getent passwd "$USER" | cut -d: -f7)" != "$FISH_PATH" ]; then
+# NOTE: /usr/bin/fish is the path listed in /etc/shells ('command -v' may return /usr/sbin/fish).
+if [ "$(basename "$(getent passwd "$USER" | cut -d: -f7)")" != "fish" ]; then
   echo "Setting Fish as the default shell..."
-  chsh --shell "$FISH_PATH"
+  chsh --shell /usr/bin/fish
 fi
 
 # Manual steps
