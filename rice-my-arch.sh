@@ -6,8 +6,8 @@
 # Description:
 #   Automates the deployment of a minimal, modern Wayland development environment
 #   on a fresh Arch Linux installation. This script synchronizes system packages,
-#   deploys user dotfiles via Chezmoi, configures the Ly TUI display manager,
-#   and installs a curated stack of modern CLI tools, TUIs, and core applications.
+#   deploys user dotfiles via Chezmoi (which also installs the curated stack of
+#   packages), configures the Ly TUI display manager and sets Fish as default shell.
 #
 # Prerequisites:
 #   - A fresh installation with an active internet connection.
@@ -35,92 +35,27 @@ if ! command -v paru >/dev/null 2>&1; then
   rm -rf "$PARU_BUILD_DIR"
 fi
 
-# Helper function to invoke paru command
-_paru() {
-  paru -S --needed "$@"
-}
-
-# Package managers
-# Install Mise
-_paru mise
-
-# Dotfiles & Configuration
+# Dotfiles, Configuration & Packages
 # Deploy personal configuration files using chezmoi directly from GitHub.
-_paru chezmoi
+# chezmoi also installs all system packages (see home/.chezmoiscripts/run_onchange_install-packages.sh).
+paru -S --needed chezmoi
 chezmoi init --apply https://github.com/VouDoo/dotfiles.git
 
 # Display Manager (Login Screen)
-# Ly manages user logins. Standard ly.service handles TTY switching automatically.
-_paru ly
+# Standard ly.service handles TTY switching automatically.
 sudo systemctl enable ly@tty2.service
 
-# Desktop Environment (Wayland Window Manager & Portal)
-# Niri is a scrollable-tiling compositor.
-# XDG portals handle screensharing and file dialogues.
-# kanshi allows you to define output profiles that are automatically enabled and disabled on hotplug.
-_paru niri xwayland-satellite xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk kanshi hyprpicker
-
-# Desktop Shell & Theming
-# Nerd Font for UI iconography and Noctalia desktop shell.
-_paru ttf-0xproto-nerd noctalia
-# GTK theme
-# NOTE: Noctalia manages the global theme and can dynamically apply its colors to GTK apps with adw-gtk3.
-_paru adw-gtk-theme
-# Icon theme
-_paru papirus-icon-theme
-# GTK configuration
-# nwg-look provides a GUI to configure GTK themes and icons.
-_paru nwg-look
-echo "Manual setup required: run 'nwg-look' to configure GTK."
-echo "  Widgets    -> adw-gtk3"
-echo "  Icon theme -> Papirus"
-
-# Clipboard Management
-# wl-clipboard provides copy/paste backends.
-# cliphist acts as the local clipboard history daemon.
-_paru wl-clipboard cliphist
-
-# Desktop Notifications
-# libnotify provides notify-send to send notifications from scripts (displayed by Noctalia).
-_paru libnotify
-
 # Interactive Shell
-_paru fish
 FISH_PATH="$(command -v fish)"
 if [ "$(getent passwd "$USER" | cut -d: -f7)" != "$FISH_PATH" ]; then
   echo "Setting Fish as the default shell..."
   chsh --shell "$FISH_PATH"
 fi
 
-# Modern CLI Tooling
-# Some utilities replace standard coreutils (ls -> eza, cat -> bat, cd -> zoxide, etc.).
-_paru starship bat btop eza fd fzf ripgrep zoxide rsync git-delta git-lfs tealdeer fastfetch
-
-# Essential compression/archiving tools
-_paru tar zip unzip gzip xz bzip2
-
-# Text Editors
-# Neovim with dependencies for terminal-based editing.
-_paru neovim tree-sitter-cli
-
-# Terminal User Interfaces (TUI)
-# Console dashboards for managing network, bluetooth, audio, files, and git.
-_paru impala bluetui pavucontrol yazi lazygit lazydocker
-
-# Containers
-# Podman is a daemonless Docker alternative (also used by lazydocker via the lazypodman wrapper).
-_paru podman
+# Manual steps
+echo "Manual setup required: run 'nwg-look' to configure GTK."
+echo "  Widgets    -> adw-gtk3"
+echo "  Icon theme -> Papirus"
 echo "Manual setup required: run 'systemctl --user enable --now podman.socket' to use lazypodman."
-
-# Core Productivity Apps
-# Ghostty (Terminal), Brave Origin (Browser), KeePassXC (Credentials), Rclone (Cloud Storage Sync), and Taskwarrior (ToDo list).
-_paru ghostty brave-origin-bin keepassxc qt5-wayland rclone task
-
-# Multimedia Apps
-# FFmpeg (Multimedia libs and programs), imv (Image viewer), and mpv (Media player)
-_paru ffmpeg imv mpv
-
-# Extra AUR packages
-_paru localsend-bin marktext-bin
 
 echo "Base installation complete! Reboot your system to apply the changes and finish the setup."
