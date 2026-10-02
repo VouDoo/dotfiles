@@ -47,5 +47,5 @@ This automated script will update your system repositories, bootstrap the AUR he
 Open a terminal and run the following command to download and execute the script:
 
 ```sh
-sh <(curl -sSL https://raw.githubusercontent.com/VouDoo/dotfiles/main/rice-my-arch.sh)
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/VouDoo/dotfiles/main/rice-my-arch.sh)"
 ```
