@@ -10,7 +10,7 @@ log() {
   notify-send -u "${level}" "KeePass" "$message"
 }
 
-exec 200>"$HOME/.keepass-lock"
+exec 200>"${XDG_RUNTIME_DIR:-/tmp}/keepass.lock"
 flock -n 200 || {
   log "Another instance is already running." "critical"
   exit 1
@@ -25,8 +25,8 @@ LOCAL_PATH="${LOCAL}/${KDBX}"
 mkdir -p "${LOCAL}"
 chmod 700 "${LOCAL}"
 
-# Sync remote drive to local
-if rclone sync "${REMOTE}" "${LOCAL}" --progress; then
+# Download from remote drive only if newer than local copy
+if rclone copy --update "${REMOTE}/${KDBX}" "${LOCAL}"; then
   log "Sync complete from remote drive."
 else
   log "Failed to sync from remote drive." "critical"
@@ -42,7 +42,7 @@ else
 fi
 
 # Update file to remote drive
-if rclone copy --update "${LOCAL_PATH}" "${REMOTE}" --progress; then
+if rclone copy --update "${LOCAL_PATH}" "${REMOTE}"; then
   log "Updated KDBX uploaded to remote drive."
 else
   log "Failed to upload updated KDBX to remote drive." "critical"
