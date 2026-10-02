@@ -10,24 +10,19 @@
     lastname = {{ $lastname | quote }}
     fullname = {{ cat $firstname $lastname | quote }}
     email = {{ promptStringOnce . "email" "Email address" | quote }}
-    {{- $githubUsernameDefault := "VouDoo" }}
-    github_username = {{ promptStringOnce . "github_username" (printf "GitHub username (default: %s)" $githubUsernameDefault) | default $githubUsernameDefault | quote }}
+    github_username = {{ promptStringOnce . "github_username" "GitHub username" "VouDoo" | quote }}
 
     # Fonts
-    {{- $fontNerdFamilyDefault := "0xProto" }}
-    {{- $fontNerdFamily := promptStringOnce . "font_nerd_family" (printf "Nerd Fonts font familly to use (default: %s)" $fontNerdFamilyDefault) | default $fontNerdFamilyDefault }}
-    font_nerd_family = {{ $fontNerdFamily | quote }} # Nerd Fonts font familly name
+    {{- $fontNerdFamily := promptStringOnce . "font_nerd_family" "Nerd Fonts font family to use" "0xProto" }}
+    font_nerd_family = {{ $fontNerdFamily | quote }} # Nerd Fonts font family name
     font_regular = {{ cat $fontNerdFamily "Nerd Font" | quote }} # regular font family (auto-generated based on font_nerd_family value)
     font_mono = {{ cat $fontNerdFamily "Nerd Font Mono" | quote }} # monospace font family (auto-generated based on font_nerd_family value)
-    font_size = {{ promptIntOnce . "font_size" "Font size to use as referenced by every application (leave empty for default)" | default 12 }} # reference font size
 
     # Terminal
-    {{- $terminalFontSizeDefault := 12 }}
-    terminal_font_size = {{ promptIntOnce . "terminal_font_size" (printf "Font size for Terminal (default: %d)" $terminalFontSizeDefault) | default $terminalFontSizeDefault }}
+    terminal_font_size = {{ promptIntOnce . "terminal_font_size" "Font size for Terminal" 12 }}
 
     # Editor
-    {{- $editorDefault := "nvim" }}
-    editor = {{ promptStringOnce . "editor" (printf "Default editor to use (default: %s)" $editorDefault) | default $editorDefault | quote }}
+    editor = {{ promptStringOnce . "editor" "Default editor to use" "nvim" | quote }}
 
     # Window manager
-    browser_maximized = {{ promptBoolOnce . "browser_maximized" "Open browser windows maximized (default: true)" true }}
+    browser_maximized = {{ promptBoolOnce . "browser_maximized" "Open browser windows maximized" true }}
