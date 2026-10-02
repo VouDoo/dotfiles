@@ -76,6 +76,8 @@ add_packages starship bat btop eza fd fzf ripgrep zoxide rsync git-delta git-lfs
 
 # Essential compression/archiving tools
 add_packages tar zip unzip gzip xz bzip2
+# ouch compresses/decompresses any format with a single command (ouch c, ouch d, ouch l).
+add_packages ouch
 
 # Text Editors
 # Neovim with dependencies for terminal-based editing.
