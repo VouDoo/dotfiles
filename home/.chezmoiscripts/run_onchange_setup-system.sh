@@ -86,6 +86,8 @@ add_packages neovim tree-sitter-cli
 # Terminal User Interfaces (TUI)
 # Console dashboards for managing network, bluetooth, audio, files, and git.
 add_packages impala bluetui pavucontrol yazi lazygit lazydocker
+# Yazi preview dependencies (PDF, archives, JSON, extra image formats, SVG).
+add_packages poppler 7zip jq imagemagick resvg
 
 # Containers
 # Podman is a daemonless Docker alternative (also used by lazydocker via the lazypodman wrapper).
