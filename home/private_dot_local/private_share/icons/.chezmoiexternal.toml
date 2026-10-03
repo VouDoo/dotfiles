@@ -11,3 +11,7 @@ url = "https://claude.ai/favicon.svg"
 ["hicolor/192x192/apps/twitch.png"]
 type = "file"
 url = "https://www.twitch.tv/apple-touch-icon.png"
+
+["hicolor/scalable/apps/codeberg.svg"]
+type = "file"
+url = "https://codeberg.org/assets/img/logo.svg"
