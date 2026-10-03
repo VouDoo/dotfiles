@@ -1,9 +1,18 @@
 # https://fishshell.com/docs/current/cmds/abbr.html
 
 if status is-interactive
+    # Initialize commands
     if type -q starship
         starship init fish | source
     end
+    if type -q zoxide
+        zoxide init fish | source
+    end
+    if type -q fzf
+        fzf --fish | source
+    end
+
+    # ls-command substitute functions
     if type -q eza
         function ls --wraps eza
             eza --icons --time-style iso --group $argv
@@ -15,12 +24,9 @@ if status is-interactive
             ls --tree $argv
         end
     end
-    if type -q zoxide
-        zoxide init fish | source
-    end
-    if type -q fzf
-        fzf --fish | source
-    end
+
+    # Abbreviations
+    abbr -a ch cheat
     if type -q z
         abbr -a cd z
     end
