@@ -104,6 +104,8 @@ add_packages ffmpeg imv mpv
 
 # Extra AUR packages
 add_packages localsend-bin marktext-bin
+# LocalSend needs libayatana-indicator at runtime but doesn't declare it as a dependency.
+add_packages libayatana-indicator
 
 # Install everything at once (word splitting of $PACKAGES is intended)
 paru -S --needed $PACKAGES
