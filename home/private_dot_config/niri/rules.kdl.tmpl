@@ -1,9 +1,17 @@
 window-rule {
     geometry-corner-radius 6
     clip-to-geometry true
+    draw-border-with-background false
 }
 
 // Application-specific window rules
+window-rule {
+    // Blur what shows through Ghostty's transparent background
+    match app-id="^com.mitchellh.ghostty$"
+    background-effect {
+        blur true
+    }
+}
 window-rule {
     // Force Browser to always open focused and maximized (if enabled)
     match app-id="^brave-origin$"
