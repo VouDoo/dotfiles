@@ -1,0 +1,24 @@
+input {
+    keyboard {
+        xkb {
+            layout {{ .keyboard_layout | quote }}
+{{- with .keyboard_variant }}
+            variant {{ . | quote }}
+{{- end }}
+{{- with .keyboard_options }}
+            options {{ . | quote }}
+{{- end }}
+        }
+        numlock
+    }
+    touchpad {
+        tap
+        natural-scroll
+    }
+    mouse {
+
+    }
+    trackpoint {
+
+    }
+}

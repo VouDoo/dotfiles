@@ -26,3 +26,8 @@
 
     # Window manager
     browser_maximized = {{ promptBoolOnce . "browser_maximized" "Open browser windows maximized" true }}
+
+    # Keyboard
+    keyboard_layout = {{ promptStringOnce . "keyboard_layout" "XKB keyboard layout" "us" | quote }}
+    keyboard_variant = {{ promptStringOnce . "keyboard_variant" "XKB keyboard variant (empty for none)" "altgr-intl" | quote }}
+    keyboard_options = {{ promptStringOnce . "keyboard_options" "XKB keyboard options (empty for none)" "compose:rctrl" | quote }}
