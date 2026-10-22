@@ -49,14 +49,11 @@ add_packages niri xwayland-satellite xdg-desktop-portal xdg-desktop-portal-gnome
 # Desktop Shell & Theming
 # Nerd Font for UI iconography and Noctalia desktop shell.
 add_packages ttf-0xproto-nerd noctalia
+# Icon theme
+add_packages papirus-icon-theme
 # GTK theme
 # NOTE: Noctalia manages the global theme and can dynamically apply its colors to GTK apps with adw-gtk3.
 add_packages adw-gtk-theme
-# Icon theme
-add_packages papirus-icon-theme
-# GTK configuration
-# nwg-look provides a GUI to configure GTK themes and icons.
-add_packages nwg-look
 # Qt theme
 # NOTE: Noctalia manages the global theme and can dynamically apply its colors to Qt apps with qt6ct.
 # qt6ct provides a GUI to configure Qt 6 themes and icons.
@@ -136,17 +133,16 @@ if ! tldr --list >/dev/null 2>&1; then
   tldr --update || echo "Could not download tldr pages, run 'tldr --update' later."
 fi
 
+# GTK configuration
+# Native Wayland GTK apps read the icon theme from gsettings (XWayland apps read ~/.config/gtk-3.0/settings.ini).
+# NOTE: The GTK theme is not set here, Noctalia sets adw-gtk3 or adw-gtk3-dark itself.
+if [ "$(gsettings get org.gnome.desktop.interface icon-theme 2>/dev/null || true)" != "'Papirus'" ]; then
+  echo "Setting GTK icon theme..."
+  gsettings set org.gnome.desktop.interface icon-theme Papirus || echo "Could not set GTK icon theme, run 'gsettings set org.gnome.desktop.interface icon-theme Papirus' later."
+fi
+
 # Manual steps
 # Reminders are only shown until the step is done.
-GTK_THEME="$(gsettings get org.gnome.desktop.interface gtk-theme 2>/dev/null || true)"
-ICON_THEME="$(gsettings get org.gnome.desktop.interface icon-theme 2>/dev/null || true)"
-case "$GTK_THEME" in "'adw-gtk3"*) ;; *) GTK_TODO=1 ;; esac
-case "$ICON_THEME" in "'Papirus"*) ;; *) GTK_TODO=1 ;; esac
-if [ -n "$GTK_TODO" ]; then
-  echo "Manual setup required: run 'nwg-look' to configure GTK."
-  echo "  Widgets    -> adw-gtk3"
-  echo "  Icon theme -> Papirus"
-fi
 if ! systemctl --user is-enabled --quiet podman.socket; then
   echo "Manual setup required: run 'systemctl --user enable --now podman.socket' to use lazypodman."
 fi
