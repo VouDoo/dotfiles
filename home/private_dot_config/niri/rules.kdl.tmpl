@@ -24,13 +24,15 @@ window-rule {
     block-out-from "screen-capture"
 }
 window-rule {
-    // Re-position Steam notification toasts
-    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
-    default-floating-position x=10 y=10 relative-to="bottom-right"
+    // Prevent Steam from stealing focus when it pops up on its own
+    match app-id="^steam$"
+    open-focused false
 }
 window-rule {
-    // Force all windows to open tiled by default
-    open-floating false
+    // Float Steam notification toasts in the corner
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    open-floating true
+    default-floating-position x=10 y=10 relative-to="bottom-right"
 }
 
 layer-rule {
