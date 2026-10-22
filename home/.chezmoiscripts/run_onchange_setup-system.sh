@@ -57,6 +57,10 @@ add_packages papirus-icon-theme
 # GTK configuration
 # nwg-look provides a GUI to configure GTK themes and icons.
 add_packages nwg-look
+# Qt configuration
+# NOTE: Noctalia manages the global theme and can dynamically apply its colors to Qt apps with qt5ct/qt6ct.
+# qt5ct and qt6ct provide GUIs to configure Qt 5 and Qt 6 themes and icons.
+add_packages qt5ct qt6ct
 
 # Clipboard Management
 # wl-clipboard provides copy/paste backends.
