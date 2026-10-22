@@ -1,0 +1,11 @@
+"$schema" = "https://docs.jj-vcs.dev/latest/config-schema.json"
+
+[user]
+name = {{ .fullname | quote }}
+email = {{ .email | quote }}
+
+[ui]
+editor = {{ .editor | quote }}
+# Use delta like git does (it needs git-style diffs).
+pager = "delta"
+diff-formatter = ":git"

@@ -73,8 +73,30 @@ add_packages libnotify
 add_packages fish less
 
 # Modern CLI Tooling
-# Some utilities replace standard coreutils (ls -> eza, cat -> bat, cd -> zoxide, etc.).
-add_packages starship bat btop eza fd fzf ripgrep zoxide rsync git-delta git-lfs tealdeer fastfetch
+# Starship is the shell prompt.
+add_packages starship
+# Replacements for standard tools (ls -> eza, cat -> bat, cd -> zoxide, find -> fd, grep -> ripgrep).
+add_packages eza bat zoxide fd ripgrep
+# Fuzzy finders.
+# television provides channels and the Ctrl-T/Ctrl-R shell bindings.
+# fzf is still used by the cheat fish function, yazi, and zoxide (zi).
+add_packages television fzf
+# tealdeer provides tldr pages (used by the cheat fish function).
+add_packages tealdeer
+# System info and monitoring.
+add_packages fastfetch btop
+# rsync copies and syncs files locally or over SSH.
+add_packages rsync
+
+# Version Control
+# git-delta is the diff pager (used by git, lazygit, and jj).
+# git-lfs handles large files in git repositories.
+# Jujutsu (jj) is a Git-compatible VCS without a staging area, with easy history rewriting and undo.
+add_packages git-delta git-lfs jujutsu
+
+# Encryption
+# age encrypts files with small explicit keys, passphrases, or SSH keys.
+add_packages age
 
 # Essential compression/archiving tools
 add_packages tar zip unzip gzip xz bzip2

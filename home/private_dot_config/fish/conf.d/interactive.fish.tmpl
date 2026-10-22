@@ -8,7 +8,10 @@ if status is-interactive
     if type -q zoxide
         zoxide init fish | source
     end
-    if type -q fzf
+    # NOTE: television and fzf both bind Ctrl-T and Ctrl-R, television takes precedence.
+    if type -q tv
+        tv init fish | source
+    else if type -q fzf
         fzf --fish | source
     end
 
