@@ -48,9 +48,9 @@ if status is-interactive
     if type -q chezmoi
         abbr -a cm chezmoi
     end
-    if type -q {{ .editor }}
-        abbr -a ed {{ .editor }}
-        abbr -a edit {{ .editor }}
+    if type -q $EDITOR
+        abbr -a ed $EDITOR
+        abbr -a edit $EDITOR
     end
     if type -q sudoedit
         abbr -a sued sudoedit
