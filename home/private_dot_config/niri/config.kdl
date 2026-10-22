@@ -1,4 +1,5 @@
 // Main configuration for Niri
+include "./environment.kdl"
 include "./input.kdl"
 include "./layout.kdl"
 include "./animations.kdl"

@@ -1,0 +1,3 @@
+environment {
+    GTK_IM_MODULE "simple"
+}
