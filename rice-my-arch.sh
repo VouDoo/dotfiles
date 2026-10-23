@@ -6,7 +6,7 @@
 # Description:
 #   Bootstraps a fresh Arch Linux installation: installs chezmoi and deploys
 #   the dotfiles. chezmoi then takes care of the rest (packages, display
-#   manager, default shell), see home/.chezmoiscripts/run_onchange_setup-system.sh.
+#   manager, default shell), see the setup script in home/.chezmoiscripts/.
 #
 # Prerequisites:
 #   - A fresh installation with an active internet connection.

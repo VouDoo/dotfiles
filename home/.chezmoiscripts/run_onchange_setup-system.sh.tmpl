@@ -5,8 +5,7 @@
 # System setup
 #
 # Description:
-#   Installs paru (AUR helper) if missing, the curated stack of packages,
-#   then configures the Ly display manager and sets Fish as default shell.
+#   Installs the system packages and configures the system for these dotfiles.
 #   chezmoi re-runs this script on 'chezmoi apply' whenever its content changes,
 #   so adding a package below and running 'chezmoi apply' installs it.
 #   Every step is safe to run again.
@@ -17,8 +16,11 @@
 
 set -e
 
-# AUR helper
-# Install Paru.
+###############################################################################
+# Packages
+###############################################################################
+
+# AUR Helper
 if ! command -v paru >/dev/null 2>&1; then
   sudo pacman -S --needed base-devel git
   PARU_BUILD_DIR="$(mktemp -d)"
@@ -33,49 +35,54 @@ add_packages() {
   PACKAGES="$PACKAGES $*"
 }
 
-# Package managers
-# Install Mise
+# Development Tools
+# mise manages per-project tool versions.
 add_packages mise
 
-# Display Manager (Login Screen)
+# Display Manager
 # Ly manages user logins.
 add_packages ly
 
-# Desktop Environment (Wayland Window Manager & Portal)
+# Desktop Environment
 # Niri is a scrollable-tiling compositor.
+# xwayland-satellite runs X11 apps under niri.
+add_packages niri xwayland-satellite
 # XDG portals handle screensharing and file dialogues.
-# kanshi allows you to define output profiles that are automatically enabled and disabled on hotplug.
-add_packages niri xwayland-satellite xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk kanshi hyprpicker
+add_packages xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk
+# kanshi switches display profiles when monitors are plugged or unplugged.
+add_packages kanshi
 
-# Desktop Shell & Theming
+# Desktop Shell and Theming
 # Nerd Font for UI iconography and Noctalia desktop shell.
 add_packages ttf-0xproto-nerd noctalia
-# Icon theme
+# hyprpicker is used by the Noctalia color picker plugin.
+add_packages hyprpicker
+# Icon theme.
 add_packages papirus-icon-theme
-# GTK theme
+# GTK theme.
 # NOTE: Noctalia manages the global theme and can dynamically apply its colors to GTK apps with adw-gtk3.
 add_packages adw-gtk-theme
-# Qt theme
+# Qt theme.
 # NOTE: Noctalia manages the global theme and can dynamically apply its colors to Qt apps with qt6ct.
 # qt6ct provides a GUI to configure Qt 6 themes and icons.
 add_packages qt6ct
 
-# Clipboard Management
-# wl-clipboard provides copy/paste backends.
-# cliphist acts as the local clipboard history daemon.
-add_packages wl-clipboard cliphist
+# Clipboard
+# wl-clipboard provides wl-copy and wl-paste (used by Neovim and other CLI tools).
+add_packages wl-clipboard
 
-# Desktop Notifications
+# Notifications
 # libnotify provides notify-send to send notifications from scripts (displayed by Noctalia).
 add_packages libnotify
 
 # Interactive Shell
-# less is the pager (used by man, git, and the cheat fish function).
-add_packages fish less
-
-# Modern CLI Tooling
-# Starship is the shell prompt.
+add_packages fish
+# Starship is a cross-shell prompt.
 add_packages starship
+
+# CLI Tools
+# less is a pager (used by man, git, and the cheat fish function).
+add_packages less
 # Replacements for standard tools (ls -> eza, cat -> bat, cd -> zoxide, find -> fd, grep -> ripgrep).
 add_packages eza bat zoxide fd ripgrep
 # Fuzzy finders.
@@ -88,9 +95,13 @@ add_packages tealdeer
 add_packages fastfetch btop
 # rsync copies and syncs files locally or over SSH.
 add_packages rsync
+# rclone syncs files with cloud storage.
+add_packages rclone
+# Taskwarrior manages to-do lists.
+add_packages task
 
 # Version Control
-# git-delta is the diff pager (used by git, lazygit, and jj).
+# git-delta is a diff pager (used by git, lazygit, and jj).
 # git-lfs handles large files in git repositories.
 # Jujutsu (jj) is a Git-compatible VCS without a staging area, with easy history rewriting and undo.
 add_packages git-delta git-lfs jujutsu
@@ -99,35 +110,47 @@ add_packages git-delta git-lfs jujutsu
 # age encrypts files with small explicit keys, passphrases, or SSH keys.
 add_packages age
 
-# Essential compression/archiving tools
-add_packages tar zip unzip gzip xz bzip2
+# Compression and Archives
+# NOTE: tar, gzip, xz and bzip2 come with base.
+add_packages zip unzip
 # ouch compresses/decompresses any format with a single command (ouch c, ouch d, ouch l).
 add_packages ouch
 
-# Text Editors
-# Neovim with dependencies for terminal-based editing.
-add_packages neovim tree-sitter-cli
+# Text Editor
+add_packages neovim
+# tree-sitter-cli builds language parsers for nvim-treesitter.
+add_packages tree-sitter-cli
 
-# Terminal User Interfaces (TUI)
-# Console dashboards for managing network, bluetooth, audio, files, and git.
-add_packages impala bluetui pavucontrol yazi lazygit
+# Terminal User Interfaces
+# Console dashboards for managing network, bluetooth, files, and git.
+add_packages impala bluetui yazi lazygit
 # Yazi preview dependencies (PDF, archives, JSON, extra image formats, SVG).
 add_packages poppler 7zip jq imagemagick resvg
 
-# Core Productivity Apps
-# Ghostty (Terminal), Brave Origin (Browser), KeePassXC (Credentials), Rclone (Cloud Storage Sync), and Taskwarrior (ToDo list).
-add_packages ghostty brave-origin-bin keepassxc qt5-wayland rclone task
+# Desktop Apps
+# Ghostty is a terminal emulator.
+add_packages ghostty
+# Brave Origin is a web browser.
+add_packages brave-origin-bin
+# KeePassXC is a password manager.
+add_packages keepassxc
+# LocalSend shares files with nearby devices.
+# NOTE: It needs libayatana-indicator at runtime but doesn't declare it as a dependency.
+add_packages localsend-bin libayatana-indicator
+# MarkText is a Markdown editor.
+add_packages marktext-bin
 
 # Multimedia Apps
-# FFmpeg (Multimedia libs and programs), imv (Image viewer), and mpv (Media player)
-add_packages ffmpeg imv mpv
+# FFmpeg provides multimedia libraries and tools.
+add_packages ffmpeg
+# imv is an image viewer.
+add_packages imv
+# mpv is a media player.
+add_packages mpv
+# pavucontrol is an audio mixer.
+add_packages pavucontrol
 
-# Extra AUR packages
-add_packages localsend-bin marktext-bin
-# LocalSend needs libayatana-indicator at runtime but doesn't declare it as a dependency.
-add_packages libayatana-indicator
-
-# Optional features (see .chezmoi.toml.tmpl)
+# Optional Features (see .chezmoi.toml.tmpl)
 {{- if .features.podman }}
 # Podman is a daemonless Docker alternative.
 # podman-compose runs Compose files (also used by 'podman compose').
@@ -142,15 +165,18 @@ add_packages kubectl k9s helm kubie stern krew
 # Install everything at once (word splitting of $PACKAGES is intended)
 paru -S --needed $PACKAGES
 
-# Display Manager (Login Screen)
+###############################################################################
+# System Configuration
+###############################################################################
+
+# Display Manager
 # Standard ly.service handles TTY switching automatically.
 if ! systemctl is-enabled --quiet ly@tty2.service; then
   echo "Enabling Ly display manager..."
   sudo systemctl enable ly@tty2.service
 fi
 
-# Interactive Shell
-# Set Fish as the default shell.
+# Default Shell
 # NOTE: /usr/bin/fish is the path listed in /etc/shells ('command -v' may return /usr/sbin/fish).
 if [ "$(basename "$(getent passwd "$USER" | cut -d: -f7)")" != "fish" ]; then
   echo "Setting Fish as the default shell..."
@@ -164,17 +190,17 @@ if ! tldr --list >/dev/null 2>&1; then
   tldr --update || echo "Could not download tldr pages, run 'tldr --update' later."
 fi
 
-# GTK configuration
+# GTK Icon Theme
 # Native Wayland GTK apps read the icon theme from gsettings (XWayland apps read ~/.config/gtk-3.0/settings.ini).
 # NOTE: The GTK theme is not set here, Noctalia sets adw-gtk3 or adw-gtk3-dark itself.
 if [ "$(gsettings get org.gnome.desktop.interface icon-theme 2>/dev/null || true)" != "'Papirus'" ]; then
   echo "Setting GTK icon theme..."
   gsettings set org.gnome.desktop.interface icon-theme Papirus || echo "Could not set GTK icon theme, run 'gsettings set org.gnome.desktop.interface icon-theme Papirus' later."
 fi
-{{- if .features.podman }}
 
-# Podman API socket
-# Used by lazydocker (via the lazypodman wrapper) and Docker-compatible tools.
+# Optional Features (see .chezmoi.toml.tmpl)
+{{- if .features.podman }}
+# Podman API socket, used by lazydocker (via the lazypodman wrapper) and Docker-compatible tools.
 # NOTE: The API service only starts on connection and exits once idle.
 if ! systemctl --user is-enabled --quiet podman.socket; then
   echo "Enabling Podman socket..."
@@ -182,9 +208,7 @@ if ! systemctl --user is-enabled --quiet podman.socket; then
 fi
 {{- end }}
 {{- if .features.kubernetes }}
-
-# krew
-# Download the plugin index once (this also creates ~/.krew/bin, added to PATH by fish).
+# krew plugin index, downloaded once (this also creates ~/.krew/bin, added to PATH by fish).
 if [ ! -d "$HOME/.krew/index/default/plugins" ]; then
   echo "Downloading krew plugin index..."
   kubectl krew update || echo "Could not download krew plugin index, run 'kubectl krew update' later."
