@@ -1,0 +1,7 @@
+# https://k9scli.io/topics/config/
+k9s:
+  skipLatestRevCheck: true
+  ui:
+    logoless: true
+    splashless: true
+    skin: everforest-dark

@@ -1,0 +1,6 @@
+# Official k9s skin, refreshed weekly (force with: chezmoi apply --refresh-externals)
+
+["skins/everforest-dark.yaml"]
+type = "file"
+url = "https://raw.githubusercontent.com/derailed/k9s/master/skins/everforest-dark.yaml"
+refreshPeriod = "168h"

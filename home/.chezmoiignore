@@ -5,3 +5,6 @@
 {{- if not .features.podman }}
 .local/bin/lazypodman
 {{- end }}
+{{- if not .features.kubernetes }}
+.config/k9s
+{{- end }}
