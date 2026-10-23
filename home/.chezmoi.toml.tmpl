@@ -12,9 +12,6 @@
     email = {{ promptStringOnce . "user.email" "Email address" | quote }}
     github_username = {{ promptStringOnce . "user.github_username" "GitHub username" "VouDoo" | quote }}
 
-[data.apps]
-    editor = {{ promptStringOnce . "apps.editor" "Default editor to use" "nvim" | quote }}
-
 [data.font]
     # 0xProto Nerd Font (installed by the setup script as ttf-0xproto-nerd)
     regular = "0xProto Nerd Font"
