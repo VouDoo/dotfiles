@@ -1,0 +1,9 @@
+{{- /* vim: set ft=toml: */ -}}
+{{- /* Nerd Font icons come from starship's built-in preset, so they follow starship updates. */ -}}
+{{- /* NOTE: Skipped until starship is installed (on a fresh machine, the next 'chezmoi apply' adds them). */ -}}
+{{ if lookPath "starship" -}}
+{{ output "starship" "preset" "nerd-font-symbols" }}
+{{ end -}}
+[character]
+success_symbol = '[󰘧 ](bold #fb7e14)'
+error_symbol = '[󰘧 ](bold red)'
