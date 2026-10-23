@@ -181,3 +181,12 @@ if ! systemctl --user is-enabled --quiet podman.socket; then
   systemctl --user enable --now podman.socket || echo "Could not enable Podman socket, run 'systemctl --user enable --now podman.socket' later."
 fi
 {{- end }}
+{{- if .features.kubernetes }}
+
+# krew
+# Download the plugin index once (this also creates ~/.krew/bin, added to PATH by fish).
+if [ ! -d "$HOME/.krew/index/default/plugins" ]; then
+  echo "Downloading krew plugin index..."
+  kubectl krew update || echo "Could not download krew plugin index, run 'kubectl krew update' later."
+fi
+{{- end }}
