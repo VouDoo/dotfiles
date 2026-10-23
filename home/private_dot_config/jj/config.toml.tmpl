@@ -6,7 +6,7 @@ name = {{ .user.fullname | quote }}
 email = {{ .user.email | quote }}
 
 [ui]
-editor = {{ .editor | quote }}
+editor = {{ .apps.editor | quote }}
 # Use delta like git does (it needs git-style diffs).
 pager = "delta"
 diff-formatter = ":git"

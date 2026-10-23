@@ -3,16 +3,6 @@
     command = "delta"
     pager = "delta"
 
-[data]
-    # Editor
-    editor = {{ promptStringOnce . "editor" "Default editor to use" "nvim" | quote }}
-
-    # Terminal
-    terminal_font_size = {{ promptIntOnce . "terminal_font_size" "Font size for Terminal" 12 }}
-
-    # Window manager
-    browser_maximized = {{ promptBoolOnce . "browser_maximized" "Open browser windows maximized" true }}
-
 [data.user]
     {{- $firstname := promptStringOnce . "user.firstname" "First name" }}
     {{- $lastname := promptStringOnce . "user.lastname" "Last name" }}
@@ -22,10 +12,16 @@
     email = {{ promptStringOnce . "user.email" "Email address" | quote }}
     github_username = {{ promptStringOnce . "user.github_username" "GitHub username" "VouDoo" | quote }}
 
+[data.apps]
+    editor = {{ promptStringOnce . "apps.editor" "Default editor to use" "nvim" | quote }}
+
 [data.font]
     # 0xProto Nerd Font (installed by the setup script as ttf-0xproto-nerd)
     regular = "0xProto Nerd Font"
     mono = "0xProto Nerd Font Mono"
+
+[data.window]
+    browser_maximized = {{ promptBoolOnce . "window.browser_maximized" "Open browser windows maximized" true }}
 
 [data.keyboard]
     {{- $keyboardLayout := promptStringOnce . "keyboard.layout" "XKB keyboard layout" "us" }}
