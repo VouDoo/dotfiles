@@ -109,13 +109,9 @@ add_packages neovim tree-sitter-cli
 
 # Terminal User Interfaces (TUI)
 # Console dashboards for managing network, bluetooth, audio, files, and git.
-add_packages impala bluetui pavucontrol yazi lazygit lazydocker
+add_packages impala bluetui pavucontrol yazi lazygit
 # Yazi preview dependencies (PDF, archives, JSON, extra image formats, SVG).
 add_packages poppler 7zip jq imagemagick resvg
-
-# Containers
-# Podman is a daemonless Docker alternative (also used by lazydocker via the lazypodman wrapper).
-add_packages podman
 
 # Core Productivity Apps
 # Ghostty (Terminal), Brave Origin (Browser), KeePassXC (Credentials), Rclone (Cloud Storage Sync), and Taskwarrior (ToDo list).
@@ -129,6 +125,14 @@ add_packages ffmpeg imv mpv
 add_packages localsend-bin marktext-bin
 # LocalSend needs libayatana-indicator at runtime but doesn't declare it as a dependency.
 add_packages libayatana-indicator
+
+# Optional features (see .chezmoi.toml.tmpl)
+{{- if .features.podman }}
+# Podman is a daemonless Docker alternative.
+# podman-compose runs Compose files (also used by 'podman compose').
+# lazydocker manages containers in a TUI (pointed at Podman by the lazypodman wrapper).
+add_packages podman podman-compose lazydocker
+{{- end }}
 
 # Install everything at once (word splitting of $PACKAGES is intended)
 paru -S --needed $PACKAGES
@@ -162,9 +166,13 @@ if [ "$(gsettings get org.gnome.desktop.interface icon-theme 2>/dev/null || true
   echo "Setting GTK icon theme..."
   gsettings set org.gnome.desktop.interface icon-theme Papirus || echo "Could not set GTK icon theme, run 'gsettings set org.gnome.desktop.interface icon-theme Papirus' later."
 fi
+{{- if .features.podman }}
 
-# Manual steps
-# Reminders are only shown until the step is done.
+# Podman API socket
+# Used by lazydocker (via the lazypodman wrapper) and Docker-compatible tools.
+# NOTE: The API service only starts on connection and exits once idle.
 if ! systemctl --user is-enabled --quiet podman.socket; then
-  echo "Manual setup required: run 'systemctl --user enable --now podman.socket' to use lazypodman."
+  echo "Enabling Podman socket..."
+  systemctl --user enable --now podman.socket || echo "Could not enable Podman socket, run 'systemctl --user enable --now podman.socket' later."
 fi
+{{- end }}

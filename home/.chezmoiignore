@@ -1,2 +1,7 @@
 # ignored files and directories
 **/ignore_*
+
+# optional features (see .chezmoi.toml.tmpl)
+{{- if not .features.podman }}
+.local/bin/lazypodman
+{{- end }}

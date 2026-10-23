@@ -34,3 +34,9 @@
     keyboard_layout = {{ $keyboardLayout | quote }}
     keyboard_variant = {{ ternary "" $keyboardVariant (eq $keyboardVariant "none") | quote }} # empty when disabled
     keyboard_options = {{ ternary "" $keyboardOptions (eq $keyboardOptions "none") | quote }} # empty when disabled
+
+[data.features]
+    # Steam: niri window rules (focus stealing, floating toasts)
+    steam = {{ promptBoolOnce . "features.steam" "Enable Steam config" false }}
+    # Podman: podman, podman-compose, lazydocker, lazypodman wrapper, API socket
+    podman = {{ promptBoolOnce . "features.podman" "Enable Podman (containers) config" false }}

@@ -23,6 +23,7 @@ window-rule {
     match app-id="^org\\.keepassxc\\.KeePassXC$"
     block-out-from "screen-capture"
 }
+{{- if .features.steam }}
 window-rule {
     // Prevent Steam from stealing focus when it pops up on its own
     match app-id="^steam$"
@@ -34,6 +35,7 @@ window-rule {
     open-floating true
     default-floating-position x=10 y=10 relative-to="bottom-right"
 }
+{{- end }}
 
 layer-rule {
     match namespace="^noctalia-wallpaper*"
