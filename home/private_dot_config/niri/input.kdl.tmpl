@@ -1,11 +1,11 @@
 input {
     keyboard {
         xkb {
-            layout {{ .keyboard_layout | quote }}
-{{- with .keyboard_variant }}
+            layout {{ .keyboard.layout | quote }}
+{{- with .keyboard.variant }}
             variant {{ . | quote }}
 {{- end }}
-{{- with .keyboard_options }}
+{{- with .keyboard.options }}
             options {{ . | quote }}
 {{- end }}
         }
