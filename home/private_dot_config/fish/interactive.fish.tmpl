@@ -1,3 +1,4 @@
+{{- /* vim: set ft=fish: */ -}}
 # https://fishshell.com/docs/current/cmds/abbr.html
 
 if status is-interactive
@@ -48,6 +49,15 @@ if status is-interactive
     if type -q chezmoi
         abbr -a cm chezmoi
     end
+{{- if .features.kubernetes }}
+    if type -q kubectl
+        abbr -a k kubectl
+    end
+    if type -q kubie
+        abbr -a kctx kubie ctx
+        abbr -a kns kubie ns
+    end
+{{- end }}
     if type -q $EDITOR
         abbr -a ed $EDITOR
         abbr -a edit $EDITOR

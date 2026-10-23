@@ -134,6 +134,10 @@ add_packages libayatana-indicator
 # lazydocker manages containers in a TUI (pointed at Podman by the lazypodman wrapper).
 add_packages podman podman-compose lazydocker
 {{- end }}
+{{- if .features.kubernetes }}
+# Kubernetes tools and krew (kubectl plugin manager).
+add_packages kubectl k9s helm kubie stern krew
+{{- end }}
 
 # Install everything at once (word splitting of $PACKAGES is intended)
 paru -S --needed $PACKAGES
