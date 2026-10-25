@@ -198,6 +198,12 @@ if [ "$(gsettings get org.gnome.desktop.interface icon-theme 2>/dev/null || true
   gsettings set org.gnome.desktop.interface icon-theme Papirus || echo "Could not set GTK icon theme, run 'gsettings set org.gnome.desktop.interface icon-theme Papirus' later."
 fi
 
+# television community channels (fish-history for Ctrl-R, etc.), downloaded once.
+if [ ! -f "$HOME/.config/television/cable/fish-history.toml" ]; then
+  echo "Downloading television channels..."
+  tv update-channels || echo "Could not download television channels, run 'tv update-channels' later."
+fi
+
 # Optional Features (see .chezmoi.toml.tmpl)
 {{- if .features.podman }}
 # Podman API socket, used by lazydocker (via the lazypodman wrapper) and Docker-compatible tools.
