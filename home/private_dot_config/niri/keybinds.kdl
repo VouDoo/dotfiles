@@ -53,7 +53,7 @@ binds {
     Mod+O repeat=false {
         toggle-overview
     }
-    Mod+W repeat=false {
+    Mod+Q repeat=false {
         close-window
     }
     Mod+Left {
@@ -290,17 +290,14 @@ binds {
     Mod+Shift+9 {
         move-column-to-workspace 9
     }
-    Mod+BracketLeft {
+    Mod+Comma {
         consume-or-expel-window-left
     }
-    Mod+BracketRight {
+    Mod+Period {
         consume-or-expel-window-right
     }
-    Mod+Comma {
+    Mod+Ctrl+Period {
         consume-window-into-column
-    }
-    Mod+Period {
-        expel-window-from-column
     }
     Mod+R {
         switch-preset-column-width
@@ -344,7 +341,7 @@ binds {
     Mod+Shift+V {
         switch-focus-between-floating-and-tiling
     }
-    Mod+A {
+    Mod+W {
         toggle-column-tabbed-display
     }
     Print {
@@ -359,7 +356,7 @@ binds {
     Mod+Escape allow-inhibiting=false {
         toggle-keyboard-shortcuts-inhibit
     }
-    Mod+Shift+Q {
+    Mod+Shift+Escape {
         quit
     }
     Ctrl+Alt+Delete {

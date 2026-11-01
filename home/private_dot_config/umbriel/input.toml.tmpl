@@ -1,0 +1,24 @@
+{{- /* vim: set ft=toml: */ -}}
+# https://docs.noctalia.dev/umbriel/input/
+[input]
+
+# https://docs.noctalia.dev/umbriel/input/#keyboard
+[input.keyboard]
+layout = {{ .keyboard.layout | quote }}
+variant = {{ .keyboard.variant | quote }}
+options = {{ .keyboard.options | quote }}
+model = ""
+repeat_rate = 25
+repeat_delay = 600
+numlock_toggle = true
+track_layout = "global"
+
+# https://docs.noctalia.dev/umbriel/input/#touchpad
+[input.touchpad]
+enabled = true
+tap = true
+natural_scroll = true
+
+# https://docs.noctalia.dev/umbriel/input/#mouse
+[input.mouse]
+natural_scroll = false

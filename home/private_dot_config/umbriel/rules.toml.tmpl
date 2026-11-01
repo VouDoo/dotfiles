@@ -1,0 +1,65 @@
+{{- /* vim: set ft=toml: */ -}}
+# https://docs.noctalia.dev/umbriel/window-rules/
+
+[[window_rule]]
+blur = false
+blur_optimized = true
+
+[[window_rule]]
+match.app_id = "^dev.noctalia.Noctalia$"
+default_floating = true
+default_floating_size_px = { width = 1020, height = 900 }
+
+[[window_rule]]
+match.app_id = "^dev.noctalia.UmbrielSharePicker$"
+default_floating = true
+default_floating_size_px = { width = 800, height = 600 }
+
+[[window_rule]]
+match.title = "^(Picture-in-Picture|Picture in picture)$"
+default_floating = true
+default_maximize = false
+default_position = { x = 20, y = 20, anchor = "bottom_right" }
+
+{{- if .features.steam }}
+
+# Prevent Steam from stealing focus when it pops up on its own
+[[window_rule]]
+match.app_id = "^steam$"
+default_focused = false
+
+# Float and pin Steam notification toasts in the corner
+[[window_rule]]
+match.app_id = "^steam$"
+match.title = "^notificationtoasts_.+_desktop"
+default_floating = true
+default_position = { x = 0, y = 0, anchor = "bottom_right" }
+default_focused = false
+default_pinned = true
+
+# Keep game menus inside their window
+[[window_rule]]
+match.app_id = "^steam_app_.*$"
+confine_pointer = true
+
+# Use variable refresh rate in games
+[[window_rule]]
+match.app_id = "^steam_app_.*$"
+vrr = "always"
+{{- end }}
+
+# Open the browser focused, and maximized if enabled
+[[window_rule]]
+match.app_id = "^brave-origin$"
+default_focused = true
+default_maximize = {{ .window.browser_maximized }}
+
+# Blur what shows through Ghostty's transparent background
+[[window_rule]]
+match.app_id = "^com.mitchellh.ghostty$"
+blur = true
+
+[[window_rule]]
+match.app_id = "^org.keepassxc.KeePassXC$"
+block_capture = true
+

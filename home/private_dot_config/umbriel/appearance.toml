@@ -1,0 +1,16 @@
+# https://docs.noctalia.dev/umbriel/appearance/
+[appearance]
+prefer_no_csd = true
+border_width = 1
+outer_border_width = 0
+corner_radius = 6
+drag_opacity = 0.75
+opaque_fullscreen = true
+
+# https://docs.noctalia.dev/umbriel/appearance/#blur
+[appearance.blur]
+enabled = true
+
+# https://docs.noctalia.dev/umbriel/appearance/#shadow
+[appearance.shadow]
+enabled = false
