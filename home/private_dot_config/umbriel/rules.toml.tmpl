@@ -1,20 +1,25 @@
 {{- /* vim: set ft=toml: */ -}}
 # https://docs.noctalia.dev/umbriel/window-rules/
+# https://docs.noctalia.dev/umbriel/layer-rules/
 
+# Disable window blur by default, using the cached wallpaper blur when enabled
 [[window_rule]]
 blur = false
 blur_optimized = true
 
+# Float the Noctalia settings window
 [[window_rule]]
 match.app_id = "^dev.noctalia.Noctalia$"
 default_floating = true
 default_floating_size_px = { width = 1020, height = 900 }
 
+# Float the screen share picker
 [[window_rule]]
 match.app_id = "^dev.noctalia.UmbrielSharePicker$"
 default_floating = true
 default_floating_size_px = { width = 800, height = 600 }
 
+# Float Picture-in-Picture windows in the bottom right corner
 [[window_rule]]
 match.title = "^(Picture-in-Picture|Picture in picture)$"
 default_floating = true
@@ -37,7 +42,7 @@ default_position = { x = 0, y = 0, anchor = "bottom_right" }
 default_focused = false
 default_pinned = true
 
-# Keep game menus inside their window
+# Keep the pointer inside game windows
 [[window_rule]]
 match.app_id = "^steam_app_.*$"
 confine_pointer = true
@@ -59,7 +64,19 @@ default_maximize = {{ .window.browser_maximized }}
 match.app_id = "^com.mitchellh.ghostty$"
 blur = true
 
+# Hide KeePassXC from screen captures
 [[window_rule]]
 match.app_id = "^org.keepassxc.KeePassXC$"
 block_capture = true
 
+# Disable blur on Noctalia surfaces, skipping low-alpha pixels and including popups when enabled
+[[layer_rule]]
+match.namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd|desktop-widget-[^\"]*)$"
+blur = false
+blur_ignore_alpha = 0.5
+blur_popups = true
+
+# Use live blur on surfaces that open over windows, not the cached wallpaper blur
+[[layer_rule]]
+match.namespace = "^noctalia-(notification|dock|panel|attached-panel|osd)$"
+blur_optimized = false
