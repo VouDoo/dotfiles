@@ -9,6 +9,7 @@
 "Mod+Q" = { action = "window-close", repeat = false }
 "Mod+Escape" = { action = "shortcuts-inhibit-toggle", allow_when_inhibited = true, repeat = false }
 "Mod+Shift+Escape" = "session-quit"
+"Mod+Alt+L" = { action = "spawn noctalia msg session lock", repeat = false }
 "Mod+Shift+question" = "cheatsheet-toggle"
 
 # https://docs.noctalia.dev/noctalia/compositor-settings/umbriel

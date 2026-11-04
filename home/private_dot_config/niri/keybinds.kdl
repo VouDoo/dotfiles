@@ -359,6 +359,9 @@ binds {
     Mod+Shift+Escape {
         quit
     }
+    Mod+Alt+L hotkey-overlay-title="Lock Session" {
+        spawn "noctalia" "msg" "session" "lock"
+    }
     Ctrl+Alt+Delete {
         quit
     }
