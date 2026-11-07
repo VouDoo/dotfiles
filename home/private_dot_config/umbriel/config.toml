@@ -22,7 +22,7 @@ autostart = [
   "noctalia",
   "kanshi",
   "pw-play --volume 0.95 ~/.local/share/sounds/parallel-windows/stereo/desktop-login.ogg",
-  "ghostty -e fish",
+  "ghostty",
 ]
 mod_key = "Super"
 show_cheatsheet = false

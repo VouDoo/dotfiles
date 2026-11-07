@@ -6,5 +6,5 @@ spawn-sh-at-startup "pw-play --volume 0.95 ~/.local/share/sounds/parallel-window
 // TODO: Remove the sleep delay if Niri or Noctalia fixes this initialization race.
 //
 // Ideal configuration:
-// spawn-at-startup "ghostty" "-e" "fish" "-C" "motd"
-spawn-sh-at-startup "sleep 1 && ghostty -e fish"
+// spawn-at-startup "ghostty"
+spawn-sh-at-startup "sleep 1 && ghostty"

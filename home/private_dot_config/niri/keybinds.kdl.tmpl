@@ -1,7 +1,7 @@
 {{- /* vim: set ft=kdl: */ -}}
 binds {
     Mod+Return hotkey-overlay-title="Open Terminal" {
-        spawn "ghostty" "-e" "fish"
+        spawn "ghostty"
     }
     Mod+Shift+Return hotkey-overlay-title="Open Browser" {
         spawn "{{ .browser.command }}"
