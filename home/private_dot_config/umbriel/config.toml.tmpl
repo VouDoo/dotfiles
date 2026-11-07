@@ -1,3 +1,4 @@
+{{- /* vim: set ft=toml: */ -}}
 # Complete reference: https://docs.noctalia.dev/umbriel/
 
 # https://docs.noctalia.dev/umbriel/configuration/#include
@@ -22,7 +23,7 @@ autostart = [
   "noctalia",
   "kanshi",
   "pw-play --volume 0.95 ~/.local/share/sounds/parallel-windows/stereo/desktop-login.ogg",
-  "ghostty",
+  "{{ .terminal.command }}",
 ]
 mod_key = "Super"
 show_cheatsheet = false

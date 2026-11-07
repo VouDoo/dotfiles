@@ -1,3 +1,4 @@
+{{- /* vim: set ft=kdl: */ -}}
 spawn-at-startup "noctalia"
 spawn-at-startup "kanshi"
 spawn-sh-at-startup "pw-play --volume 0.95 ~/.local/share/sounds/parallel-windows/stereo/desktop-login.ogg"
@@ -6,5 +7,5 @@ spawn-sh-at-startup "pw-play --volume 0.95 ~/.local/share/sounds/parallel-window
 // TODO: Remove the sleep delay if Niri or Noctalia fixes this initialization race.
 //
 // Ideal configuration:
-// spawn-at-startup "ghostty"
-spawn-sh-at-startup "sleep 1 && ghostty"
+// spawn-at-startup "{{ .terminal.command }}"
+spawn-sh-at-startup "sleep 1 && {{ .terminal.command }}"

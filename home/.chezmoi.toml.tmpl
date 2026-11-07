@@ -25,6 +25,10 @@
     webapp_flag = "--app="
     open_maximized = {{ promptBoolOnce . "browser.open_maximized" "Open browser windows maximized" true }}
 
+[data.terminal]
+    # Ghostty (installed by the setup script as ghostty)
+    command = "ghostty"
+
 [data.keyboard]
     {{- $keyboardLayout := promptStringOnce . "keyboard.layout" "XKB keyboard layout" "us" }}
     {{- $keyboardVariant := promptStringOnce . "keyboard.variant" "XKB keyboard variant (\"none\" to disable)" "altgr-intl" }}
