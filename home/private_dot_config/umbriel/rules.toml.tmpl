@@ -55,9 +55,9 @@ vrr = "always"
 
 # Open the browser focused, and maximized if enabled
 [[window_rule]]
-match.app_id = "^brave-origin$"
+match.app_id = "^{{ .browser.app_id }}$"
 default_focused = true
-default_maximize = {{ .window.browser_maximized }}
+default_maximize = {{ .browser.open_maximized }}
 
 # Blur what shows through Ghostty's transparent background
 [[window_rule]]

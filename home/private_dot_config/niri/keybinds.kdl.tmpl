@@ -1,9 +1,10 @@
+{{- /* vim: set ft=kdl: */ -}}
 binds {
     Mod+Return hotkey-overlay-title="Open Terminal" {
         spawn "ghostty" "-e" "fish"
     }
     Mod+Shift+Return hotkey-overlay-title="Open Browser" {
-        spawn "brave-origin"
+        spawn "{{ .browser.command }}"
     }
     Mod+Space hotkey-overlay-title="Open Application Launcher" {
         spawn-sh "noctalia msg panel-toggle launcher"

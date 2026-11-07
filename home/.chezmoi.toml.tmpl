@@ -17,8 +17,13 @@
     regular = "0xProto Nerd Font"
     mono = "0xProto Nerd Font Mono"
 
-[data.window]
-    browser_maximized = {{ promptBoolOnce . "window.browser_maximized" "Open browser windows maximized" true }}
+[data.browser]
+    # Brave Origin (installed by the setup script as brave-origin-bin)
+    command = "brave-origin"
+    app_id = "brave-origin"
+    # Flag to open a URL as a web app (Chromium-based browsers only, empty otherwise)
+    webapp_flag = "--app="
+    open_maximized = {{ promptBoolOnce . "browser.open_maximized" "Open browser windows maximized" true }}
 
 [data.keyboard]
     {{- $keyboardLayout := promptStringOnce . "keyboard.layout" "XKB keyboard layout" "us" }}

@@ -1,10 +1,11 @@
+{{- /* vim: set ft=toml: */ -}}
 # Syntax: https://docs.noctalia.dev/umbriel/keybinds/
 # Actions: https://docs.noctalia.dev/umbriel/actions/
 [keybinds]
 
 # Applications
 "Mod+Return" = { action = "spawn ghostty -e fish", repeat = false }
-"Mod+Shift+Return" = { action = "spawn brave-origin", repeat = false }
+"Mod+Shift+Return" = { action = "spawn {{ .browser.command }}", repeat = false }
 
 # Noctalia panels
 # https://docs.noctalia.dev/noctalia/compositor-settings/umbriel
