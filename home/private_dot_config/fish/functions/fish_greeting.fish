@@ -7,11 +7,12 @@ function fish_greeting --description 'Set welcome message in interactive shells'
     set_color normal
 
     # System information
-    set -l boot_marker /run/user/(id -u)/fish_greeting_boot
+    # Full fastfetch once per login session, a one-line summary afterwards
+    set -l login_marker /run/user/(id -u)/fish_greeting_$XDG_SESSION_ID
     set -l distro_string (string match -r '^PRETTY_NAME="?([^"]+)"?$' < /etc/os-release)[2]
     set -l user_string (whoami)@(hostname -s)
-    if not test -e $boot_marker
-        touch $boot_marker
+    if not test -e $login_marker
+        touch $login_marker
         echo
         fastfetch --logo small
         echo
