@@ -1,7 +1,12 @@
-profile {
-  output eDP-1 enable scale 1.0
-}
+# Display profiles, one per monitor setup (list outputs with: niri msg outputs, or umbriel outputs)
+# https://man.archlinux.org/man/kanshi.5
 
-profile {
-  output HDMI-A-2 enable scale 1.5
-}
+# Example: computer screen alone, and only the external monitor when one is plugged in
+# profile computer {
+#   output eDP-1 enable
+# }
+
+# profile docked {
+#   output eDP-1 disable
+#   output * enable
+# }
