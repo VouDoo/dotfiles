@@ -48,8 +48,10 @@ add_packages() {
 add_packages mise
 
 # Display Manager
-# Ly manages user logins.
-add_packages ly
+# Ly manages user logins, skipped when another display manager was chosen at installation time.
+if [ ! -e /etc/systemd/system/display-manager.service ]; then
+  add_packages ly
+fi
 
 # Desktop Environment
 # Niri is a tiling compositor.
@@ -181,7 +183,7 @@ paru -S --needed --sudoloop $PACKAGES
 
 # Display Manager
 # Standard ly.service handles TTY switching automatically.
-if ! systemctl is-enabled --quiet ly@tty2.service; then
+if [ ! -e /etc/systemd/system/display-manager.service ] && ! systemctl is-enabled --quiet ly@tty2.service; then
   echo "Enabling Ly display manager..."
   sudo systemctl enable ly@tty2.service
 fi
