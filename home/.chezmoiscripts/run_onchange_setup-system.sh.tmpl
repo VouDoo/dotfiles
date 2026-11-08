@@ -24,12 +24,17 @@ sudo -v
 ###############################################################################
 
 # AUR Helper
+# CachyOS provides paru in its repos, vanilla Arch gets the prebuilt paru-bin from the AUR.
 if ! command -v paru >/dev/null 2>&1; then
-  sudo pacman -S --needed base-devel git
-  PARU_BUILD_DIR="$(mktemp -d)"
-  git clone https://aur.archlinux.org/paru.git "$PARU_BUILD_DIR"
-  (cd "$PARU_BUILD_DIR" && makepkg -si --noconfirm)
-  rm -rf "$PARU_BUILD_DIR"
+  if pacman -Si paru >/dev/null 2>&1; then
+    sudo pacman -S --needed paru
+  else
+    sudo pacman -S --needed base-devel git
+    PARU_BUILD_DIR="$(mktemp -d)"
+    git clone https://aur.archlinux.org/paru-bin.git "$PARU_BUILD_DIR"
+    (cd "$PARU_BUILD_DIR" && makepkg -si --noconfirm)
+    rm -rf "$PARU_BUILD_DIR"
+  fi
 fi
 
 # Packages are collected per section, then installed with a single paru call.
