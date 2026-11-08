@@ -2,6 +2,7 @@
 
 - [Setup](#setup)
   - [Before you start](#before-you-start)
+    - [Scope](#scope)
   - [How to install Arch Linux](#how-to-install-arch-linux)
   - [Bootstrap](#bootstrap)
 
@@ -19,6 +20,12 @@ This guide will assist you in setting up your Linux environment based on **Arch 
 > - Installing and maintaining Arch is a more hands-on experience than many other distributions.
 >
 > Learn more about ["The Arch Way"](https://wiki.archlinux.org/title/Arch_terminology#The_Arch_Way) and how it defines the Arch philosophy!
+
+### Scope
+
+These dotfiles set up my whole desktop environment: the compositors and everything around them, the shell, the command-line tools and my apps.
+
+The base system (network, audio, Bluetooth) is left to the installer. The dotfiles only fill the gaps: a login screen when none is installed, and a few tools where the desktop shell falls short.
 
 ## How to install Arch Linux
 
