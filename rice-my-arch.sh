@@ -5,12 +5,12 @@
 #
 # Description:
 #   Bootstraps a fresh Arch Linux installation: installs chezmoi and deploys
-#   the dotfiles. chezmoi then takes care of the rest (packages, display
-#   manager, default shell), see the setup script in home/.chezmoiscripts/.
+#   the dotfiles. chezmoi then takes care of the rest, see the setup script
+#   in home/.chezmoiscripts/.
 #
 # Prerequisites:
 #   - A fresh installation with an active internet connection.
-#   - Target repository access for dotfiles deployment.
+#   - A user with sudo rights (not root).
 #
 ###############################################################################
 
@@ -18,6 +18,11 @@ set -e
 
 if [ "$(id -u)" -eq 0 ]; then
   echo "Do not run this script as root."
+  exit 1
+fi
+
+if ! command -v pacman >/dev/null 2>&1; then
+  echo "This script requires an Arch-based distribution (pacman not found)."
   exit 1
 fi
 
