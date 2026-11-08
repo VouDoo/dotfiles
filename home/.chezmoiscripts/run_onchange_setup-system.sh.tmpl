@@ -16,6 +16,9 @@
 
 set -e
 
+# Ask for the sudo password once, paru keeps it cached during builds (--sudoloop).
+sudo -v
+
 ###############################################################################
 # Packages
 ###############################################################################
@@ -165,7 +168,7 @@ add_packages kubectl k9s helm kubie stern krew
 {{- end }}
 
 # Install everything at once (word splitting of $PACKAGES is intended)
-paru -S --needed $PACKAGES
+paru -S --needed --sudoloop $PACKAGES
 
 ###############################################################################
 # System Configuration
@@ -182,7 +185,7 @@ fi
 # NOTE: /usr/bin/fish is the path listed in /etc/shells ('command -v' may return /usr/sbin/fish).
 if [ "$(basename "$(getent passwd "$USER" | cut -d: -f7)")" != "fish" ]; then
   echo "Setting Fish as the default shell..."
-  chsh --shell /usr/bin/fish
+  sudo chsh --shell /usr/bin/fish "$USER"
 fi
 
 # tldr Pages
