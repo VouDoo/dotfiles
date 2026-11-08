@@ -10,7 +10,7 @@
 
 ## Before you start
 
-This guide will assist you in setting up your Linux environment based on **Arch Linux** Linux distribution.
+This guide will assist you in setting up your Linux environment based on the **Arch Linux** distribution.
 
 > Arch Linux is my distribution of choice for several key reasons:
 >
@@ -29,6 +29,8 @@ The base system (network, audio, Bluetooth) is left to the installer. The dotfil
 
 ## How to install Arch Linux
 
+Whichever way you install it, create a user account with administrator (sudo) rights: the bootstrap script runs as that user, not as root.
+
 ### Vanilla Arch Linux
 
 > As we all know, installing Arch Linux can feel like a rite of passage… if that passage involves a maze and a few panic attacks, especially for newbies.
@@ -36,6 +38,8 @@ The base system (network, audio, Bluetooth) is left to the installer. The dotfil
 > But fear not! With a magical installer, you can now skip the hair-pulling, headache-inducing parts and get straight to the fun stuff!
 
 Follow the **archinstall** documentation to install Arch Linux on your computer: <https://wiki.archlinux.org/title/Archinstall>.
+
+In archinstall, add your user and mark it as **superuser**.
 
 ### CachyOS
 
@@ -47,12 +51,14 @@ Follow the official installation guide to deploy CachyOS on your hardware: <http
 
 ## Bootstrap
 
-After a fresh install of Arch Linux, you can kick off the entire installation process with a single command.
+After a fresh install of your Arch Linux flavor, you can kick off the entire installation process with a single command.
 
-This script updates your system, installs chezmoi and pulls down your dotfiles. chezmoi then installs the AUR helper and your entire stack of applications, enables the login screen and sets Fish as your default shell (paru will ask you to confirm the installation).
+This script updates your system, installs chezmoi and pulls down your dotfiles. chezmoi asks a few questions about you and your setup, then installs the AUR helper and your entire stack of applications, enables the login screen and sets Fish as your default shell (sudo asks for your password once, and paru asks you to confirm the installation).
 
-Open a terminal and run the following command to download and execute the script:
+Log in as your user and run the following command to download and execute the script:
 
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/VouDoo/dotfiles/main/rice-my-arch.sh)"
 ```
+
+Once it's done, reboot. At the login screen, choose a session and log in to your new desktop.
