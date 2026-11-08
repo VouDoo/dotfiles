@@ -81,9 +81,5 @@ if status is-interactive
     else if type -q bluetoothctl
         abbr -a bluetooth bluetoothctl
     end
-    if type -q impala
-        abbr -a wifi impala
-    else if type -q iwctl
-        abbr -a wifi iwctl
-    end
+    abbr -a wifi --function __wifi_tui
 end

@@ -134,8 +134,12 @@ add_packages neovim
 add_packages tree-sitter-cli
 
 # Terminal User Interfaces
-# Console dashboards for managing network, bluetooth, files, and git.
-add_packages impala bluetui yazi lazygit
+# Console dashboards for managing bluetooth, files, and git.
+add_packages bluetui yazi lazygit
+# impala manages Wi-Fi through iwd, installed only when iwd is running.
+if systemctl is-active --quiet iwd.service; then
+  add_packages impala
+fi
 # Yazi preview dependencies (PDF, archives, JSON, extra image formats, SVG).
 add_packages poppler 7zip jq imagemagick resvg
 
