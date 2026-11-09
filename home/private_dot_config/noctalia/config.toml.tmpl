@@ -2,8 +2,14 @@
 [shell]
 font_family = "{{ .font.regular }}"
 
+    [shell.panel]
+    open_near_click_control_center = true
+
     [shell.animation]
     enabled = false
+
+[control_center.calendar]
+show_events_card = false
 
 [audio]
 enable_sounds = true
@@ -25,10 +31,12 @@ enabled = false
 hide_when_no_media = true
 
 [plugins]
-enabled = [ "oldirtty/color_picker", "noctalia/world_clock" ]
+enabled = [ "oldirtty/color_picker" ]
 
-[widget.world_clock]
-type = "noctalia/world_clock:bar"
+[widget.clock]
+anchor = true
+font_scale = 1.15
+tooltip_format = "Date {:%D}"
 
 [widget.color_picker]
 type = "oldirtty/color_picker:widget"
@@ -36,7 +44,7 @@ type = "oldirtty/color_picker:widget"
 [bar.default]
 margin_ends = 6
 background_opacity = 0.85
-start = [ "session", "control-center", "workspaces", "media" ]
+start = [ "control-center", "workspaces", "media" ]
 center = [ "clock", "world_clock" ]
 end = [ "group:apps", "cpu", "ram", "network", "bluetooth", "brightness", "volume", "battery", "notifications" ]
 
