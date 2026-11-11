@@ -43,6 +43,15 @@ add_packages() {
   PACKAGES="$PACKAGES $*"
 }
 
+# System Updates
+# Update notifier and helper (arch-update command).
+# Installs the cachy-update build when the repos provide it (e.g. CachyOS), otherwise arch-update from the AUR.
+if pacman -Si cachy-update >/dev/null 2>&1; then
+  add_packages cachy-update
+else
+  add_packages arch-update
+fi
+
 # Development Tools
 # mise manages per-project tool versions.
 add_packages mise
@@ -190,6 +199,13 @@ paru -S --needed --sudoloop $PACKAGES
 if [ ! -e /etc/systemd/system/display-manager.service ] && ! systemctl is-enabled --quiet ly@tty2.service; then
   echo "Enabling Ly display manager..."
   sudo systemctl enable ly@tty2.service
+fi
+
+# Update Checks
+# The timer checks for updates periodically and sends a notification (same unit for cachy-update and arch-update).
+if ! systemctl --user is-enabled --quiet arch-update.timer; then
+  echo "Enabling update checks..."
+  systemctl --user enable --now arch-update.timer || echo "Could not enable update checks, run 'systemctl --user enable --now arch-update.timer' later."
 fi
 
 # Default Shell
