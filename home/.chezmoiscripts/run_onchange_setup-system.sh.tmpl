@@ -24,7 +24,7 @@ sudo -v
 ###############################################################################
 
 # AUR Helper
-# CachyOS provides paru in its repos, vanilla Arch gets the prebuilt paru-bin from the AUR.
+# Installed from the repos when available (e.g. CachyOS), otherwise the prebuilt paru-bin is built from the AUR.
 if ! command -v paru >/dev/null 2>&1; then
   if pacman -Si paru >/dev/null 2>&1; then
     sudo pacman -S --needed paru

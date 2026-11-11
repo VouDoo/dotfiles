@@ -10,7 +10,7 @@
 
 ## Before you start
 
-This guide will assist you in setting up your Linux environment based on the **Arch Linux** distribution.
+This guide will assist you in setting up your Linux environment based on **Arch Linux** or any Arch-based distribution.
 
 > Arch Linux is my distribution of choice for several key reasons:
 >
@@ -41,13 +41,11 @@ Follow the **archinstall** documentation to install Arch Linux on your computer:
 
 In archinstall, add your user and mark it as **superuser**.
 
-### CachyOS
+### Arch-based distributions
 
-> If you want the power of Arch but fine-tuned for ultimate performance right out of the box, CachyOS is the way to go.
->
-> It uses advanced x86-64-v3/v4 optimized binaries, custom performance kernels, and a gorgeous, user-friendly graphical installer. Think of it as Arch Linux on steroids.
+> Want Arch without the manual install? Arch-based distributions ship a graphical installer and sensible defaults, and keep pacman and the AUR.
 
-Follow the official installation guide to deploy CachyOS on your hardware: <https://wiki.cachyos.org/>.
+Any of them works, for example [CachyOS](https://wiki.cachyos.org/) or [EndeavourOS](https://discovery.endeavouros.com/). Follow its official installation guide.
 
 ## Bootstrap
 

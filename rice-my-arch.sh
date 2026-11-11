@@ -4,9 +4,9 @@
 # Arch Linux Post-Install & Environment Provisioning Script
 #
 # Description:
-#   Bootstraps a fresh Arch Linux installation: installs chezmoi and deploys
-#   the dotfiles. chezmoi then takes care of the rest, see the setup script
-#   in home/.chezmoiscripts/.
+#   Bootstraps a fresh Arch Linux (or Arch-based) installation: installs
+#   chezmoi and deploys the dotfiles. chezmoi then takes care of the rest, see
+#   the setup script in home/.chezmoiscripts/.
 #
 # Prerequisites:
 #   - A fresh installation with an active internet connection.
