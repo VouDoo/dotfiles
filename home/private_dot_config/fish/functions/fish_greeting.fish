@@ -8,10 +8,14 @@ function fish_greeting --description 'Set welcome message in interactive shells'
 
     # System information
     # Full fastfetch once per login session, a one-line summary afterwards
-    set -l login_marker /run/user/(id -u)/fish_greeting_$XDG_SESSION_ID
+    # (and always the summary when there is no login session to track)
+    set -l login_marker
+    if test -n "$XDG_SESSION_ID" -a -n "$XDG_RUNTIME_DIR"
+        set login_marker $XDG_RUNTIME_DIR/fish_greeting_$XDG_SESSION_ID
+    end
     set -l distro_string (string match -r '^PRETTY_NAME="?([^"]+)"?$' < /etc/os-release)[2]
-    set -l user_string (whoami)@(hostname -s)
-    if not test -e $login_marker
+    set -l user_string $USER@(prompt_hostname)
+    if test -n "$login_marker"; and not test -e $login_marker
         touch $login_marker
         echo
         fastfetch --logo small
@@ -23,7 +27,7 @@ function fish_greeting --description 'Set welcome message in interactive shells'
     end
 
     # WarGames-style greeting based on the time of day
-    set -l hour (date +%H | string replace '^0' '')
+    set -l hour (date +%-H)
     set_color bryellow --bold
     if test $hour -ge 6 -a $hour -lt 8
         # Early morning
