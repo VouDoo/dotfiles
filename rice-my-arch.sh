@@ -32,6 +32,6 @@ sudo pacman -Syu --needed git chezmoi
 
 # Dotfiles & System Setup
 # Deploy personal configuration files using chezmoi directly from GitHub.
-chezmoi init --apply https://github.com/VouDoo/dotfiles.git
+chezmoi init --source ~/.dotfiles --apply https://github.com/VouDoo/dotfiles.git
 
 echo "Base installation complete! Reboot your system to apply the changes and finish the setup."
