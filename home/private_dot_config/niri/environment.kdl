@@ -1,4 +1,0 @@
-environment {
-    GTK_IM_MODULE "simple"
-    QT_QPA_PLATFORMTHEME "qt6ct"
-}

@@ -1,4 +1,4 @@
-# Display profiles, one per monitor setup (list outputs with: niri msg outputs, or umbriel outputs)
+# Display profiles, one per monitor setup (list outputs with: umbriel outputs)
 # https://man.archlinux.org/man/kanshi.5
 
 # Example: computer screen alone, and only the external monitor when one is plugged in

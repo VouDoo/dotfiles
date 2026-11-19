@@ -41,7 +41,7 @@ sourceDir = "~/.dotfiles"
     options = {{ ternary "" $keyboardOptions (eq $keyboardOptions "none") | quote }}
 
 [data.features]
-    # Steam: niri and Umbriel window rules (focus stealing, floating toasts, pointer confinement)
+    # Steam: Umbriel window rules (focus stealing, floating toasts, pointer confinement)
     steam = {{ promptBoolOnce . "features.steam" "Enable Steam config" false }}
     # Podman: podman, podman-compose, lazydocker, lazypodman wrapper, API socket
     podman = {{ promptBoolOnce . "features.podman" "Enable Podman (containers) config" false }}

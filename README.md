@@ -12,7 +12,7 @@ My personal [dotfiles](https://en.wikipedia.org/wiki/Hidden_file_and_hidden_dire
 
 ## 🧰 What's inside
 
-- 🪟 **Desktop**: tiling Wayland compositors, [Noctalia](https://github.com/noctalia-dev) desktop shell
+- 🪟 **Desktop**: [Umbriel](https://docs.noctalia.dev/umbriel/) tiling Wayland compositor, [Noctalia](https://github.com/noctalia-dev) desktop shell
 - 🎨 **Theme**: Everforest, applied across apps
 - 🐚 **Shell**: [fish](https://fishshell.com/) with [Starship](https://starship.rs/) prompt
 - 🖥️ **Terminal**: [Ghostty](https://ghostty.org/)

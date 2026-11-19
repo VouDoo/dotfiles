@@ -63,13 +63,10 @@ if [ ! -e /etc/systemd/system/display-manager.service ]; then
 fi
 
 # Desktop Environment
-# Niri is a tiling compositor.
-# xwayland-satellite runs X11 apps under niri.
-add_packages niri xwayland-satellite
-# Umbriel is a tiling compositor.
+# Umbriel is a tiling compositor (it pulls in its own XDG portal for screensharing, and Xwayland for X11 apps).
 add_packages umbriel-git
-# XDG portals handle screensharing and file dialogues.
-add_packages xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk
+# XDG portals handle file dialogues and the other desktop integrations.
+add_packages xdg-desktop-portal xdg-desktop-portal-gtk
 # kanshi switches display profiles when monitors are plugged or unplugged.
 add_packages kanshi
 # xdg-utils provides xdg-open, which opens files with the default apps (set in ~/.config/mimeapps.list).

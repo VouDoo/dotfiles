@@ -23,7 +23,7 @@ This guide will assist you in setting up your Linux environment based on **Arch 
 
 ### Scope
 
-These dotfiles set up my whole desktop environment: the compositors and everything around them, the shell, the command-line tools and my apps.
+These dotfiles set up my whole desktop environment: the compositor and everything around it, the shell, the command-line tools and my apps.
 
 The base system (network, audio, Bluetooth) is left to the installer. The dotfiles only fill the gaps: a login screen when none is installed, and a few tools where the desktop shell falls short.
 
@@ -59,4 +59,4 @@ Log in as your user and run the following command to download and execute the sc
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/VouDoo/dotfiles/main/rice-my-arch.sh)"
 ```
 
-Once it's done, reboot. At the login screen, choose a session and log in to your new desktop.
+Once it's done, reboot. At the login screen, choose the Umbriel session and log in to your new desktop.
