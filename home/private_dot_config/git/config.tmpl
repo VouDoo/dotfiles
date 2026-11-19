@@ -13,11 +13,48 @@
 	navigate = true
 	line-numbers = true
 
-[pull]
-	rebase = true
+[diff]
+	# Better diffs when code moves around, and moved lines are colored differently
+	algorithm = histogram
+	colorMoved = default
 
 [merge]
 	conflictstyle = zdiff3
+
+[rerere]
+	# Remember how conflicts were resolved and replay them next time
+	enabled = true
+
+[pull]
+	rebase = true
+
+[rebase]
+	autoStash = true
+	# Squash fixup! commits automatically, and move stacked branches along
+	autoSquash = true
+	updateRefs = true
+
+[push]
+	# 'git push' on a new branch creates it on the remote
+	autoSetupRemote = true
+
+[fetch]
+	# Remove remote branches that were deleted on the remote
+	prune = true
+
+[commit]
+	# Show the diff in the commit message editor
+	verbose = true
+
+[tag]
+	sort = version:refname
+
+[branch]
+	# Most recently used branches first
+	sort = -committerdate
+
+[help]
+	autocorrect = prompt
 
 [color]
 	ui = auto
