@@ -5,4 +5,5 @@ notARepository: quit
 git:
   diffRenderers:
     - colorArg: always
-      command: delta --dark --paging=never
+      # lazygit fills in {{colorScheme}} with dark or light
+      command: delta --{{colorScheme}} --paging=never
