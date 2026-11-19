@@ -9,3 +9,19 @@ email = {{ .user.email | quote }}
 # Use delta like git does (it needs git-style diffs).
 pager = "delta"
 diff-formatter = ":git"
+{{- $signingKey := joinPath .chezmoi.homeDir ".ssh/id_ed25519.pub" }}
+{{- if stat $signingKey }}
+
+# Sign with the SSH key, like git does.
+# Commits are signed when pushed rather than on every change, so a passphrase isn't asked for each time.
+[signing]
+behavior = "drop"
+backend = "ssh"
+key = {{ $signingKey | quote }}
+
+[signing.backends.ssh]
+allowed-signers = {{ joinPath .chezmoi.homeDir ".config/git/allowed_signers" | quote }}
+
+[git]
+sign-on-push = true
+{{- end }}

@@ -1,7 +1,13 @@
 {{- /* vim: set ft=gitconfig: */ -}}
+{{- /* NOTE: Signing is skipped until the SSH key exists (once created, the next 'chezmoi apply' enables it). */ -}}
+{{- $signingKey := joinPath .chezmoi.homeDir ".ssh/id_ed25519.pub" -}}
+{{- $sign := stat $signingKey -}}
 [user]
 	name = {{ .user.fullname }}
 	email = {{ .user.email }}
+{{- if $sign }}
+	signingKey = {{ $signingKey }}
+{{- end }}
 
 [core]
 	pager = delta
@@ -45,9 +51,15 @@
 [commit]
 	# Show the diff in the commit message editor
 	verbose = true
+{{- if $sign }}
+	gpgSign = true
+{{- end }}
 
 [tag]
 	sort = version:refname
+{{- if $sign }}
+	gpgSign = true
+{{- end }}
 
 [branch]
 	# Most recently used branches first
@@ -67,3 +79,12 @@
 
 [init]
 	defaultBranch = main
+{{- if $sign }}
+
+# Sign with the SSH key (add it to GitHub as a signing key for the "Verified" badge)
+[gpg]
+	format = ssh
+
+[gpg "ssh"]
+	allowedSignersFile = {{ joinPath .chezmoi.homeDir ".config/git/allowed_signers" }}
+{{- end }}

@@ -1,0 +1,5 @@
+{{- /* Trusted SSH signing keys, used by git and jj to verify signatures (empty, so not created, until the key exists) */ -}}
+{{- $signingKey := joinPath .chezmoi.homeDir ".ssh/id_ed25519.pub" -}}
+{{- if stat $signingKey -}}
+{{ .user.email }} namespaces="git" {{ include $signingKey | trim }}
+{{ end -}}
