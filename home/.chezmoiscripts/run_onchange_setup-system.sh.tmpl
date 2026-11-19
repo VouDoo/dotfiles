@@ -72,6 +72,9 @@ add_packages umbriel-git
 add_packages xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk
 # kanshi switches display profiles when monitors are plugged or unplugged.
 add_packages kanshi
+# xdg-utils provides xdg-open, which opens files with the default apps (set in ~/.config/mimeapps.list).
+# xdg-terminal-exec opens terminal apps (Neovim, Yazi) from xdg-open and file dialogues, in the terminal set in ~/.config/xdg-terminals.list.
+add_packages xdg-utils xdg-terminal-exec
 
 # Desktop Shell and Theming
 # Nerd Font for UI iconography and Noctalia desktop shell.

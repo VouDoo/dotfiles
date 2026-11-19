@@ -1,0 +1,58 @@
+{{- /* vim: set ft=desktop: */ -}}
+{{- /* NOTE: Assumes the browser's desktop file is named after its app ID (true for brave-origin). */ -}}
+{{- $browser := printf "%s.desktop" .browser.app_id -}}
+{{- /* Terminal apps open in Ghostty through xdg-terminal-exec */ -}}
+{{- $editor := "nvim.desktop" -}}
+[Default Applications]
+# Web
+text/html={{ $browser }}
+application/xhtml+xml={{ $browser }}
+x-scheme-handler/http={{ $browser }}
+x-scheme-handler/https={{ $browser }}
+x-scheme-handler/about={{ $browser }}
+x-scheme-handler/unknown={{ $browser }}
+application/pdf={{ $browser }}
+image/svg+xml={{ $browser }}
+
+# Folders
+inode/directory=yazi.desktop
+
+# Text
+text/plain={{ $editor }}
+text/x-log={{ $editor }}
+text/x-python={{ $editor }}
+text/x-shellscript={{ $editor }}
+text/csv={{ $editor }}
+application/json={{ $editor }}
+application/toml={{ $editor }}
+application/x-yaml={{ $editor }}
+application/xml={{ $editor }}
+text/markdown=marktext.desktop
+
+# Images
+image/png=imv.desktop
+image/jpeg=imv.desktop
+image/gif=imv.desktop
+image/webp=imv.desktop
+image/bmp=imv.desktop
+image/tiff=imv.desktop
+image/avif=imv.desktop
+
+# Video
+video/mp4=mpv.desktop
+video/webm=mpv.desktop
+video/x-matroska=mpv.desktop
+video/quicktime=mpv.desktop
+video/x-msvideo=mpv.desktop
+video/mpeg=mpv.desktop
+
+# Audio
+audio/mpeg=mpv.desktop
+audio/flac=mpv.desktop
+audio/ogg=mpv.desktop
+audio/opus=mpv.desktop
+audio/wav=mpv.desktop
+audio/mp4=mpv.desktop
+
+# Claude Code sign-in links
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
