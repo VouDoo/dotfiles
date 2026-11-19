@@ -16,12 +16,12 @@ sourceDir = "~/.dotfiles"
     github_username = {{ promptStringOnce . "user.github_username" "GitHub username" "VouDoo" | quote }}
 
 [data.font]
-    # 0xProto Nerd Font (installed by the setup script as ttf-0xproto-nerd)
+    {{- /* 0xProto Nerd Font (installed by the setup script as ttf-0xproto-nerd) */}}
     regular = "0xProto Nerd Font"
     mono = "0xProto Nerd Font Mono"
 
 [data.browser]
-    # Brave Origin (installed by the setup script as brave-origin-bin)
+    {{- /* Brave Origin (installed by the setup script as brave-origin-bin) */}}
     command = "brave-origin"
     app_id = "brave-origin"
     # Flag to open a URL as a web app (Chromium-based browsers only, empty otherwise)
@@ -29,7 +29,7 @@ sourceDir = "~/.dotfiles"
     open_maximized = {{ promptBoolOnce . "browser.open_maximized" "Open browser windows maximized" true }}
 
 [data.terminal]
-    # Ghostty (installed by the setup script as ghostty)
+    {{- /* Ghostty (installed by the setup script as ghostty) */}}
     command = "ghostty"
 
 [data.keyboard]
@@ -37,8 +37,8 @@ sourceDir = "~/.dotfiles"
     {{- $keyboardVariant := promptStringOnce . "keyboard.variant" "XKB keyboard variant (\"none\" to disable)" "altgr-intl" }}
     {{- $keyboardOptions := promptStringOnce . "keyboard.options" "XKB keyboard options (\"none\" to disable)" "compose:rctrl" }}
     layout = {{ $keyboardLayout | quote }}
-    variant = {{ ternary "" $keyboardVariant (eq $keyboardVariant "none") | quote }} # empty when disabled
-    options = {{ ternary "" $keyboardOptions (eq $keyboardOptions "none") | quote }} # empty when disabled
+    variant = {{ ternary "" $keyboardVariant (eq $keyboardVariant "none") | quote }}
+    options = {{ ternary "" $keyboardOptions (eq $keyboardOptions "none") | quote }}
 
 [data.features]
     # Steam: niri and Umbriel window rules (focus stealing, floating toasts, pointer confinement)
