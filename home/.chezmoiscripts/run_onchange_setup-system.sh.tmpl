@@ -76,6 +76,8 @@ add_packages kanshi
 # Desktop Shell and Theming
 # Nerd Font for UI iconography and Noctalia desktop shell.
 add_packages ttf-0xproto-nerd noctalia
+# Fallback fonts for emoji and Chinese, Japanese and Korean characters.
+add_packages noto-fonts-emoji noto-fonts-cjk
 # hyprpicker is used by the Noctalia color picker plugin.
 add_packages hyprpicker
 # Icon theme.
@@ -103,7 +105,8 @@ add_packages starship
 
 # CLI Tools
 # less is a pager (used by man, git, and the cheat fish function).
-add_packages less
+# man-db provides the man command.
+add_packages less man-db
 # Replacements for standard tools (ls -> eza, cat -> bat, cd -> zoxide, find -> fd, grep -> ripgrep).
 add_packages eza bat zoxide fd ripgrep
 # Fuzzy finders.
