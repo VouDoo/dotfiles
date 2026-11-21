@@ -213,6 +213,12 @@ if ! systemctl --user is-enabled --quiet arch-update.timer; then
   systemctl --user enable --now arch-update.timer || echo "Could not enable update checks, run 'systemctl --user enable --now arch-update.timer' later."
 fi
 
+# SSH Agent
+if ! systemctl --user is-enabled --quiet ssh-agent.socket; then
+  echo "Enabling SSH agent..."
+  systemctl --user enable --now ssh-agent.socket || echo "Could not enable SSH agent, run 'systemctl --user enable --now ssh-agent.socket' later."
+fi
+
 # Default Shell
 # NOTE: /usr/bin/fish is the path listed in /etc/shells ('command -v' may return /usr/sbin/fish).
 if [ "$(basename "$(getent passwd "$USER" | cut -d: -f7)")" != "fish" ]; then
