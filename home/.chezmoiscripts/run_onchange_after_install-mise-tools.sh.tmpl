@@ -1,0 +1,17 @@
+{{- /* vim: set ft=sh: */ -}}
+#!/usr/bin/env sh
+
+###############################################################################
+# mise Tools
+#
+# Description:
+#   Installs the global mise tools from ~/.config/mise/config.toml.
+#   Runs after the files are applied, and again whenever the mise config changes.
+#
+# mise config hash: {{ include "private_dot_config/mise/config.toml.tmpl" | sha256sum }}
+#
+###############################################################################
+
+set -e
+
+mise install
