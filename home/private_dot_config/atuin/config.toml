@@ -1,0 +1,49 @@
+# https://docs.atuin.sh/latest/configuration/config/
+
+dialect = "uk"
+update_check = false
+search_mode = "daemon-fuzzy"
+search_mode_shell_up_key_binding = "prefix"
+filter_mode_shell_up_key_binding = "session"
+workspaces = true
+style = "auto"
+inline_height = 40
+inline_height_shell_up_key_binding = 20
+enter_accept = true
+show_help = false
+
+[stats]
+common_subcommands = [
+  "cargo",
+  "chezmoi",
+  "gh",
+  "git",
+  "jj",
+  "kubectl",
+  "mise",
+  "npm",
+  "paru",
+  "podman",
+  "systemctl",
+  "task",
+  "tv",
+]
+ignored_commands = ["cd", "z", "ls", "ll", "clear", "exit"]
+
+[daemon]
+enabled = true
+autostart = true
+
+[search]
+filters = ["workspace", "global", "directory", "session", "host"]
+
+[threads]
+capture = true
+
+[threads.resume]
+claude = "claude --resume {id}"
+pi = "pi --session {id}"
+
+[ui]
+columns = ["exit", "duration", { type = "directory", width = 25 }, "command"]
+syntax_highlight = true

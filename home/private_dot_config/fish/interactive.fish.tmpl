@@ -15,6 +15,10 @@ if status is-interactive
     else if type -q fzf
         fzf --fish | source
     end
+    # NOTE: atuin must be initialized after television/fzf so it takes over Ctrl-R (and binds Up).
+    if type -q atuin
+        atuin init fish | source
+    end
 
     # ls-command substitute functions
     if type -q eza
