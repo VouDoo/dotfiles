@@ -15,3 +15,12 @@
 set -e
 
 mise install
+{{- if .features.kubernetes }}
+
+# krew installs itself into ~/.krew/bin (added to PATH by fish) as the kubectl-krew plugin,
+# and downloads its plugin index. mise only provides the bootstrap binary.
+if [ ! -x "$HOME/.krew/bin/kubectl-krew" ]; then
+  echo "Installing krew..."
+  mise exec -- krew install krew || echo "Could not install krew, run 'krew install krew' later."
+fi
+{{- end }}

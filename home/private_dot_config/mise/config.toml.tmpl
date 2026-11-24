@@ -4,3 +4,11 @@ atuin = "latest"
 herdr = "latest"
 node = "lts"
 pipx = "latest"
+{{- if .features.kubernetes }}
+kubectl = "latest"
+helm = "latest"
+k9s = "latest"
+kubie = "latest"
+stern = "latest"
+krew = "latest"
+{{- end }}
